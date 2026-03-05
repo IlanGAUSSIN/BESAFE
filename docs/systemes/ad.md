@@ -20,7 +20,7 @@
 
 ### 🧩 Vue d’ensemble de l’architecture
 
-![Tiering Model](/active-directory/installation-active-directory-001.png)
+![Tiering Model](../assets/ad/installation-active-directory-001.png)
 
 - **Forêt** : `besafe.local`
 - **Domaine** : `besafe.local`
@@ -92,10 +92,10 @@ besafe.local
 └── Users
 ```
 
-![arborescence_01](/active-directory/installation-active-directory-002.png)
-![arborescence_02](/active-directory/installation-active-directory-003.png)
-![arborescence_03](/active-directory/installation-active-directory-004.png)  
-![arborescence_04](/active-directory/installation-active-directory-005.png)
+![arborescence_01](../assets/ad/installation-active-directory-002.png)
+![arborescence_02](../assets/ad/installation-active-directory-003.png)
+![arborescence_03](../assets/ad/installation-active-directory-004.png)  
+![arborescence_04](../assets/ad/installation-active-directory-005.png)
   
 > 🔐 Cette structure permet d’appliquer des GPO différentes par tier, tout en gardant une vision claire de l’appartenance de chaque objet.
 
@@ -189,7 +189,7 @@ Limiter la surface d’attaque et assurer une **administration lisible, segment�
 
 📌 *Le détail complet repose sur les baselines HardenAD + recommandations Microsoft.*
 
-![GPO](/active-directory/installation-active-directory-006.png)  
+![GPO](../assets/ad/installation-active-directory-006.png)  
   
 </details>
 
