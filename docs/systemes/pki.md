@@ -32,7 +32,7 @@ Elle garantit :
 
 
 ### 📸 Schéma PKI 2-Tier
-![PKI 2-Tier](/pki/pki-001.png)
+![PKI 2-Tier](../assets/pki/pki-001.png)
 
 ---
 
@@ -60,7 +60,7 @@ Le modèle 2-Tier apporte :
 ---
 
 ### 🖼️ Schéma PKI – BESAFE 
-![PKI – BESAFE](/pki/pki-002.png)
+![PKI – BESAFE](../assets/pki/pki-002.png)
   
 </details>
 
@@ -143,7 +143,7 @@ Cela permet automatiquement :
 Le certificat doit être installé dans le **magasin de l’ordinateur**, et non dans le profil utilisateur.
 
 ### 📸 Capture – Lancement de la console `certlm.msc`
-![certlm](/pki/cert-pki-003.png)
+![certlm](../assets/pki/cert-pki-003.png)
 
 ---
 
@@ -153,21 +153,21 @@ L’enrôlement se fait via **l’autorité d’inscription Active Directory**.
 Le modèle utilisé est **Web Server**, modifié précédemment dans la configuration PKI (SAN obligatoire).
 
 ### 📸 Capture – Ouverture du magasin Personnel
-![Magasin personnel](/pki/cert-pki-004.png)
+![Magasin personnel](../assets/pki/cert-pki-004.png)
 
 ### 📸 Capture – Démarrer l’assistant d’inscription
-![Assistant 1](/pki/cert-pki-005.png)
+![Assistant 1](../assets/pki/cert-pki-005.png)
 
 ### 📸 Capture – Écran “Before you begin”
-![Assistant 2](/pki/cert-pki-006.png)
+![Assistant 2](../assets/pki/cert-pki-006.png)
 
 ### 📸 Capture – Choix de la stratégie d’inscription
-![Assistant 3](/pki/cert-pki-007.png)
+![Assistant 3](../assets/pki/cert-pki-007.png)
 
 Ici, on utilise **l’inscription basée sur Active Directory** → la SubCA valide automatiquement le certificat.
 
 ### 📸 Capture – Sélection du modèle « Web Server »
-![Modèle Web Server](/pki/cert-pki-008.png)
+![Modèle Web Server](../assets/pki/cert-pki-008.png)
 
 ---
 
@@ -182,52 +182,52 @@ Un certificat serveur doit contenir :
   - Nom DNS du service  
 
 ### 📸 Capture – Propriétés avant configuration
-![Propriétés vides](/pki/cert-pki-009.png)
+![Propriétés vides](../assets/pki/cert-pki-009.png)
 
 ### 📸 Capture – Ajout du CN + SAN
-![Propriétés configurées](/pki/cert-pki-010.png)
+![Propriétés configurées](../assets/pki/cert-pki-010.png)
 
 ### 📸 Capture – Validation des propriétés
-![Validation propriétés](/pki/cert-pki-011.png)
+![Validation propriétés](../assets/pki/cert-pki-011.png)
 
 ---
 
 ### 🔹 4.4. Enrôlement et installation du certificat
 
 ### 📸 Capture – Lancer l’enrôlement
-![Enrôlement](/pki/cert-pki-012.png)
+![Enrôlement](../assets/pki/cert-pki-012.png)
 
 ### 📸 Capture – Certificat obtenu
-![Certificat OK](/pki/cert-pki-013.png)
+![Certificat OK](../assets/pki/cert-pki-013.png)
 
 Le certificat apparaît maintenant dans **Ordinateur local → Personnel → Certificats**.
 
 ### 📸 Capture – Vue dans le magasin local
-![Certlm Certificat installé](/pki/cert-pki-014.png)
+![Certlm Certificat installé](../assets/pki/cert-pki-014.png)
 
 ---
 
 ### 🔹 4.5. Export du certificat au format PFX (clé privée incluse)
 
 ### 📸 Capture – Démarrer l’export
-![Export 1](/pki/cert-pki-015.png)
+![Export 1](../assets/pki/cert-pki-015.png)
 
 ### 📸 Capture – Inclure la clé privée
-![Export 2](/pki/cert-pki-016.png)
+![Export 2](../assets/pki/cert-pki-016.png)
 
 👉 Sélection obligatoire pour obtenir un fichier **PFX**.
 
 ### 📸 Capture – Sélection du format PFX
-![Export 3](/pki/cert-pki-017.png)
+![Export 3](../assets/pki/cert-pki-017.png)
 
 ### 📸 Capture – Protection du fichier
-![Export 4](/pki/cert-pki-018.png)
+![Export 4](../assets/pki/cert-pki-018.png)
 
 > Le mot de passe protège la clé privée dans le PFX.  
 > Sans mot de passe → rejeté par la plupart des équipements.
 
 ### 📸 Capture – Sélection du chemin d’export
-![Export 5](/pki/cert-pki-019.png)
+![Export 5](../assets/pki/cert-pki-019.png)
 </details>
 
 
