@@ -19,7 +19,7 @@
 <summary>🚀 Étape 1 : Installation de l’hyperviseur</summary>
 
 ### 📸 Capture 1 – Chargement du programme d’installation
-![Chargement de l'installateur ESXi](/assets/install-esxi-001.png)
+![Chargement de l'installateur ESXi](../assets/esxi/install-esxi-001.png)
 
 L’installeur ESXi se charge depuis le média bootable (clé USB ou ISO).  
 On voit ici les modules système et drivers (`boot.cfg`, `vmk`, etc.) être chargés en mémoire.
@@ -27,7 +27,7 @@ On voit ici les modules système et drivers (`boot.cfg`, `vmk`, etc.) être char
 ---
 
 ### 📸 Capture 2 – Initialisation du VMkernel
-![Initialisation du VMkernel](/assets/install-esxi-002.png)
+![Initialisation du VMkernel](../assets/esxi/install-esxi-002.png)
 
 Le noyau **VMkernel** de VMware se charge et détecte le matériel physique.  
 Cette étape vérifie la compatibilité CPU, mémoire et pilotes.
@@ -35,7 +35,7 @@ Cette étape vérifie la compatibilité CPU, mémoire et pilotes.
 ---
 
 ### 📸 Capture 3 – Définition du mot de passe root
-![Définir le mot de passe root](/assets/install-esxi-003.png)
+![Définir le mot de passe root](../assets/esxi/install-esxi-003.png)
 
 L’assistant demande de définir le **mot de passe administrateur (root)**.  
 Celui-ci servira pour la console DCUI et la gestion web de l’hôte.
@@ -43,7 +43,7 @@ Celui-ci servira pour la console DCUI et la gestion web de l’hôte.
 ---
 
 ### 📸 Capture 4 – Fin de l’installation
-![Installation terminée](/assets/install-esxi-004.png)
+![Installation terminée](../assets/esxi/install-esxi-004.png)
 
 Une fois l’installation complétée, le système affiche l’adresse IP attribuée (ici en DHCP).  
 L’hôte est prêt à être configuré via la **console locale (DCUI)**.
@@ -56,7 +56,7 @@ L’hôte est prêt à être configuré via la **console locale (DCUI)**.
 <summary>🌐 Étape 2 : Configuration réseau de gestion</summary>
 
 ### 📸 Capture 5 – Accès au menu DCUI
-![Menu DCUI](/assets/install-esxi-005.png)
+![Menu DCUI](../assets/esxi/install-esxi-005.png)
 
 Depuis la console physique ou IPMI, appuyer sur **F2** → `Configure Management Network`.  
 C’est ici que l’on définit l’adaptateur réseau, le VLAN et l’adressage IP de gestion.
@@ -64,7 +64,7 @@ C’est ici que l’on définit l’adaptateur réseau, le VLAN et l’adressage
 ---
 
 ### 📸 Capture 6 – Choix de l’adaptateur réseau
-![Choix des interfaces réseau](/assets/install-esxi-006.png)
+![Choix des interfaces réseau](../assets/esxi/install-esxi-006.png)
 
 Par défaut, l’adaptateur **vmnic0** est sélectionné pour la gestion.  
 Il est possible d’ajouter des interfaces supplémentaires ou d’activer la tolérance de panne.
@@ -72,14 +72,14 @@ Il est possible d’ajouter des interfaces supplémentaires ou d’activer la to
 ---
 
 ### 📸 Capture 7 – Configuration IPv4 statique
-![Configuration IP statique](/assets/install-esxi-007.png)
+![Configuration IP statique](../assets/esxi/install-esxi-007.png)
 
 Sélectionner **“Set static IPv4 address”** et renseigner les paramètres
 
 ---
 
 ### 📸 Capture 8 – Page de connexion VMware Host Client
-![Interface web ESXi](/assets/install-esxi-008.png)
+![Interface web ESXi](../assets/esxi/install-esxi-008.png)
 
 L’accès se fait via l’URL :  
 👉 `https://10.47.101.X/ui`  
@@ -89,7 +89,7 @@ Connectez-vous avec le compte **"root"**
 ---
 
 ### 📸 Capture 9 – Tableau de bord de l’hôte
-![Tableau de bord ESXi](/assets/install-esxi-009.png)
+![Tableau de bord ESXi](../assets/esxi/install-esxi-009.png)
 
 L’interface web **VMware Host Client** affiche :
 - Le matériel détecté (CPU, RAM, stockage)  
@@ -120,7 +120,7 @@ Dans VMware ESXi, les **vSwitch (Virtual Switch)** permettent de relier :
 ---
 
 ### 📸 Capture 10 – Accéder à la section “Mise en réseau”
-![Mise en réseau](/assets/vswitch-esxi-010.png)
+![Mise en réseau](../assets/esxi/vswitch-esxi-010.png)
 
 Depuis le navigateur ESXi, ouvrir le menu de gauche :
 Hôte → Mise en réseau → Commutateurs virtuels
@@ -129,7 +129,7 @@ Cette interface affiche les **commutateurs existants** (par défaut : `vSwitch0`
 ---
 
 ### 📸 Capture 11 – Ajouter un nouveau commutateur virtuel
-![Ajout d’un vSwitch](/assets/vswitch-esxi-011.png)
+![Ajout d’un vSwitch](../assets/esxi/vswitch-esxi-011.png)
 
 Cliquer sur :
 Ajouter un commutateur virtuel standard
@@ -140,7 +140,7 @@ Un assistant s’ouvre pour créer un nouveau **vSwitch** et y associer une inte
 ---
 
 ### 📸 Capture 12 – Paramétrage du vSwitch
-![Configuration du vSwitch](/assets/vswitch-esxi-012.png)
+![Configuration du vSwitch](../assets/esxi/vswitch-esxi-012.png)
 
 Remplir les champs comme suit :
 
@@ -157,7 +157,7 @@ Remplir les champs comme suit :
 ---
 
 ### 📸 Capture 13 – Validation du vSwitch
-![Validation du vSwitch](/assets/vswitch-esxi-013.png)
+![Validation du vSwitch](../assets/esxi/vswitch-esxi-013.png)
 
 Le nouveau commutateur **vSwitch1** apparaît dans la liste.  
 Il est maintenant **actif** et relié à la carte réseau physique `vmnic1`.
@@ -167,7 +167,7 @@ Il est maintenant **actif** et relié à la carte réseau physique `vmnic1`.
 ---
 
 ### 📸 Capture 14 – Visualiser la topologie
-![Topologie vSwitch](/assets/vswitch-esxi-014.png)
+![Topologie vSwitch](../assets/esxi/vswitch-esxi-014.png)
 
 Dans la section « Topologie du vSwitch », tu visualises :
 - à gauche : les **groupes de ports** (par défaut, vide)  
@@ -219,7 +219,7 @@ Chaque port group correspond à un **réseau virtuel distinct**.
 ---
 
 ### 📸 Capture 15 – Accéder aux groupes de ports
-![Accès aux groupes de ports](/assets/groupport-esxi-015.png)
+![Accès aux groupes de ports](../assets/esxi/groupport-esxi-015.png)
 
 Depuis le menu principal ESXi :
 Hôte → Mise en réseau → Groupes de ports
@@ -231,7 +231,7 @@ Cette vue liste les réseaux déjà configurés, comme :
 ---
 
 ### 📸 Capture 16 – Ajouter un nouveau groupe de ports
-![Ajouter un groupe de ports](/assets/groupport-esxi-016.png)
+![Ajouter un groupe de ports](../assets/esxi/groupport-esxi-016.png)
 
 Cliquer sur :
 Ajouter un groupe de ports
@@ -242,7 +242,7 @@ Un assistant s’ouvre pour définir le **nom**, le **VLAN** et le **vSwitch ass
 ---
 
 ### 📸 Capture 17 – Configuration du groupe de ports
-![Configuration du groupe de ports](/assets/groupport-esxi-017.png)
+![Configuration du groupe de ports](../assets/esxi/groupport-esxi-017.png)
 
 Remplir les champs suivants :
 
@@ -258,7 +258,7 @@ Remplir les champs suivants :
 ---
 
 ### 📸 Capture 18 – Validation du groupe de ports
-![Validation du groupe de ports](/assets/groupport-esxi-018.png)
+![Validation du groupe de ports](../assets/esxi/groupport-esxi-018.png)
 
 Une fois ajouté, le groupe **Domotique** apparaît dans la liste :
 - **Ports actifs :** 0 (en attente de VM connectée)  
@@ -270,7 +270,7 @@ Une fois ajouté, le groupe **Domotique** apparaît dans la liste :
 ---
 
 ### 📸 Capture 19 – Visualiser la topologie du vSwitch
-![Topologie du groupe de ports](/assets/groupport-esxi-019.png)
+![Topologie du groupe de ports](../assets/esxi/groupport-esxi-019.png)
 
 Dans la section “Topologie vSwitch”, tu vois :
 - à gauche : le **groupe Domotique (VLAN 100)**  
@@ -322,7 +322,7 @@ L’intégration d’ESXi dans un domaine **Active Directory** permet :
 ---
 
 ### 📸 Capture 20 – Accéder à la configuration d’authentification
-![Accès au menu Authentification](/assets/joindomain-esxi-020.png)
+![Accès au menu Authentification](../assets/esxi/joindomain-esxi-020.png)
 
 Depuis l’interface web d’ESXi :
 Sécurité et utilisateurs → Authentification
@@ -333,7 +333,7 @@ Puis cliquer sur **« Joindre un domaine »** pour démarrer la configuration.
 ---
 
 ### 📸 Capture 21 – Renseigner les informations du domaine
-![Fenêtre de jonction au domaine](/assets/joindomain-esxi-021.png)
+![Fenêtre de jonction au domaine](../assets/esxi/joindomain-esxi-021.png)
 
 Remplir les champs suivants :
 
@@ -348,7 +348,7 @@ Remplir les champs suivants :
 ---
 
 ### 📸 Capture 22 – Validation de la jonction
-![Jonction réussie](/assets/joindomain-esxi-022.png)
+![Jonction réussie](../assets/esxi/joindomain-esxi-022.png)
 
 Une fois la jonction réussie :
 - **Active Directory activé :** Oui  
@@ -360,7 +360,7 @@ L’hôte est désormais reconnu dans le domaine et utilisable avec des comptes 
 ---
 
 ### 📸 Capture 23 – Vérification dans Active Directory
-![Ordinateur ajouté dans AD](/assets/joindomain-esxi-023.png)
+![Ordinateur ajouté dans AD](../assets/esxi/joindomain-esxi-023.png)
 
 Depuis la console **Active Directory Users and Computers**, vérifier que l’objet de l’hôte est bien créé :
 besafe.local → Computers → NTE-ESXI-001
@@ -409,21 +409,21 @@ Une fois l’hôte intégré :
 <summary>🧾 Étape 7 : Personnalisation de la bannière de connexion</summary>
 
 ### 📸 Capture 24 – Paramètres avancés
-![Paramètres avancés](/assets/banner-esxi-024.png)
+![Paramètres avancés](../assets/esxi/banner-esxi-024.png)
 
 Depuis la console **ESXi**, allez dans les paramètres avancés :
 Hôte → Système → Paramètres avancés
   
 ### 📸 Capture 25 – Paramètre Welcome Message
-![Paramètre Welcome Message](/assets/banner-esxi-025.png)
+![Paramètre Welcome Message](../assets/esxi/banner-esxi-025.png)
 
 Depuis l'onglet **Système**, modifiez la valeur Welcome Message
   
 ### 📸 Capture 26 – Welcome Message
-![Welcome Message](/assets/banner-esxi-026.png)
+![Welcome Message](../assets/esxi/banner-esxi-026.png)
   
 ### 📸 Capture 27 – Vérification de la bannière de connexion
-![Vérification de la bannière de connexion](/assets/banner-esxi-027.png)
+![Vérification de la bannière de connexion](../assets/esxi/banner-esxi-027.png)
 
 Depuis la page de connexion **Esxi**, vérifier que la bannière de l’hôte est bien créé
 
