@@ -1,0 +1,44 @@
+site_name: BESAFE Documentation
+site_description: Infrastructure pédagogique BESAFE
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+
+nav:
+  - Home: index.md
+
+  - Infrastructure:
+      - Schéma: architecture/schema.md
+      - VLAN / Plan IP: architecture/vlan-plan-ip.md
+      - Inventaire: architecture/inventaire-materiel.md
+
+  - Virtualisation:
+      - ESXi: virtualisation/esxi.md
+      - vCenter: virtualisation/vCenter.md
+
+  - Réseaux:
+      - Switch: reseaux/switch.md
+      - Stormshield: reseaux/stormshield.md
+
+  - Systèmes:
+      - iSCSI: systemes/iscsi.md
+      - AD / DNS / DHCP: systemes/ad.md
+      - PKI: systemes/pki.md
+      - Sauvegardes: systemes/veeambackup.md
+      - Database: systemes/db.md
+
+  - Services:
+      - Nextcloud: services/nextcloud.md
+      - GLPI: services/glpi.md
+      - Nginx Proxy Manager: services/npm.md
+      - Vaultwarden: services/vaultwarden.md
+
+  - Supervision:
+      - Centreon: supervision/centreon.md
+      - Zabbix: supervision/zabbix.md
+      - Grafana: supervision/grafana.md
+
+   - Security:
+      - Wazuh: security/wazuh.md 
