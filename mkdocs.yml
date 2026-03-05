@@ -1,44 +1,57 @@
-site_name: BESAFE Documentation
-site_description: Infrastructure pédagogique BESAFE
+site_name: "BESAFE - Documentation"
+site_description: "Wiki technique du projet BESAFE"
+site_url: "https://ilangaussin.github.io/BESAFE/"
+
+docs_dir: docs
 
 theme:
   name: material
+  language: fr
   palette:
     scheme: slate
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+
+plugins:
+  - search
 
 nav:
-  - Home: index.md
+  - Accueil: index.md
 
-  - Infrastructure:
-      - Schéma: architecture/schema.md
+  - Architecture:
+      - Vue d'ensemble: architecture/architecture.md
+      - Inventaire matériel: architecture/inventaire-materiel.md
       - VLAN / Plan IP: architecture/vlan-plan-ip.md
-      - Inventaire: architecture/inventaire-materiel.md
-
-  - Virtualisation:
-      - ESXi: virtualisation/esxi.md
-      - vCenter: virtualisation/vCenter.md
+      - Schéma: architecture/schema.md
 
   - Réseaux:
       - Switch: reseaux/switch.md
       - Stormshield: reseaux/stormshield.md
 
-  - Systèmes:
-      - iSCSI: systemes/iscsi.md
-      - AD / DNS / DHCP: systemes/ad.md
-      - PKI: systemes/pki.md
-      - Sauvegardes: systemes/veeambackup.md
-      - Database: systemes/db.md
+  - Sécurité:
+      - Wazuh: security/wazuh.md
 
   - Services:
+      - Vaultwarden: services/vaultwarden.md
       - Nextcloud: services/nextcloud.md
       - GLPI: services/glpi.md
-      - Nginx Proxy Manager: services/npm.md
-      - Vaultwarden: services/vaultwarden.md
+      - Nginx Proxy Manager: services/nginx-proxy-manager.md
 
   - Supervision:
       - Centreon: supervision/centreon.md
-      - Zabbix: supervision/zabbix.md
       - Grafana: supervision/grafana.md
+      - Zabbix: supervision/zabbix.md
 
-   - Security:
-      - Wazuh: security/wazuh.md 
+  - Systèmes:
+      - AD DS / DHCP / DNS: systemes/ad-ds-dhcp-dns.md
+      - PKI / AD CS: systemes/pki-adcs.md
+      - iSCSI: systemes/iscsi.md
+
+  - Virtualisation:
+      - ESXi: virtualisation/esxi.md
+      - vCenter: virtualisation/vcenter.md
