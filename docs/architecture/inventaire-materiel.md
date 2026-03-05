@@ -21,7 +21,7 @@ Cette page présente un **inventaire simplifié** du matériel déployé dans l�
 ## 🧱 Détails par catégorie
 
 ### 🖥️ Serveurs physiques
-![Serveur](/dell-poweredge-r630.png)
+![Serveur](../assets/architecture/dell-poweredge-r630.png)
 
 - **Modèle :** Dell PowerEdge R630  
 - **Processeur :** 24 CPUs x Intel(R) Xeon(R) CPU E5-2690 v3 @ 2.60GHz  
@@ -33,7 +33,7 @@ Cette page présente un **inventaire simplifié** du matériel déployé dans l�
 ---
 
 ### 🌐 Switchs réseau
-![Switch](/switch-cisco-1000s.png)
+![Switch](../assets/architecture/switch-cisco-1000s.png)
 
 - **Modèle :** Cisco Catalyst 2960-24TT  
 - **Ports :** 24 × 1 GbE + 4 × SFP  
@@ -41,7 +41,7 @@ Cette page présente un **inventaire simplifié** du matériel déployé dans l�
 ---
 
 ### 🔥 Firewall / Sécurité
-![Firewall](/sn210.png)
+![Firewall](../assets/architecture/sn210.png)
 
 - **Modèle :** Stormshield SN210  
 - **Interfaces :** WAN / LAN / DMZ
@@ -49,7 +49,7 @@ Cette page présente un **inventaire simplifié** du matériel déployé dans l�
 ---
 
 ### 💾 iSCSI / Stockage
-![NAS](/dell-poweredge-r730.png)
+![NAS](../assets/architecture/dell-poweredge-r730.png)
 
 - **Modèle :** Dell PowerEdge R730  
 - **Processeur :** 24 CPUs x Intel(R) Xeon(R) CPU E5-2690 v3 @ 2.60GHz  
