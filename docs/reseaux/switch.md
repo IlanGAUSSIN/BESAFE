@@ -41,7 +41,7 @@ write memory
   
 > 🔐 Utilise un mot de passe fort et stocké dans Vaultwarden.
 ### 📸 Capture 1 – User
-![User](/switch/install-switch-001.png) 
+![User](../assets/switch/install-switch-001.png) 
   
 ### 🧾 Définition du nom de l’équipement
 
@@ -54,7 +54,7 @@ end
 write memory
 ```  
 ### 📸 Capture 2 – Hostname
-![Hostname](/switch/install-switch-002.png)
+![Hostname](../assets/switch/install-switch-002.png)
   
 ### 🌐 Configuration de l’IP de management (VLAN 100)
 > Management via le VLAN MGT_Networks (VLAN 100), joignable depuis le réseau d’administration.  
@@ -84,7 +84,7 @@ write memory
 ```
 
 ### 📸 Capture 3 – VLAN Management
-![VLAN Management](/switch/install-switch-003.png)  
+![VLAN Management](../assets/switch/install-switch-003.png)  
 </details>
   
 ---
@@ -139,7 +139,7 @@ write memory
   
 ### 📸 Capture 4 – Affichage des VLANs existants  
 
-![VLAN List](/switch/install-switch-004.png)
+![VLAN List](../assets/switch/install-switch-004.png)
 
 > Vérifie la présence ou non des VLANs actuels avant insertion.
 
@@ -188,7 +188,7 @@ interface gi1/0/22
   
 ### 📸 Capture 5 – Affichage des ports Trunks existants  
 
-![Trunks List](/switch/install-switch-005.png)
+![Trunks List](../assets/switch/install-switch-005.png)
 
 > Vérifie la présence ou non des VLANs dans les liens Trunks.
 </details>  
@@ -204,7 +204,7 @@ interface gi1/0/22
 
 ### 📸 Capture 6 – EtherChannel actif (exemple)
 
-![EtherChannel Summary](/switch/install-switch-006.png)
+![EtherChannel Summary](../assets/switch/install-switch-006.png)
 
 > Le Port-Channel doit apparaître en **SU** (Layer2 – in Use).
 
@@ -259,7 +259,7 @@ write memory
 ### 🔐 4.1 Activation et sécurisation de SSH
 
 ### 📸 Capture 7 – Interface SSH activée  
-![SSH Enabled](/switch/install-switch-007.png)
+![SSH Enabled](../assets/switch/install-switch-007.png)
 
 ```bash
 configure terminal
@@ -294,7 +294,7 @@ end
 write memory  
 ```  
 ### 📸 Capture 8 – Domain name
-![Domain name](/switch/install-switch-008.png)  
+![Domain name](../assets/switch/install-switch-008.png)  
   
 ### 🧾 4.4 Bannière légale d’accès
 
@@ -397,7 +397,7 @@ write memory
 ```  
   
 ### 📸 Capture 9 – STP
-![STP](/switch/install-switch-009.png)  
+![STP](../assets/switch/install-switch-009.png)  
 </details>  
   
 ---
