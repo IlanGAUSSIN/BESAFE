@@ -1,6 +1,6 @@
 <div align="center" style="padding: 40px 20px; border: 2px solid #e60017; border-radius: 12px; background: #1a1a1a; color: #f0f0f0;">
 
-![image1.png](/besafe.png)
+![BESAFE](../assets/besafe.png)
 
 # 🚧 Page en construction
 
