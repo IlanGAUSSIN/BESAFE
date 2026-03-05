@@ -27,7 +27,7 @@
 ---
 
 ### 📸 Capture 1 – Lancement de l’installeur VCSA
-![Lancement de l’installeur](/assets/installation-vcenter-001.png)
+![Lancement de l’installeur](../assets/vcsa/installation-vcenter-001.png)
 
 Créer une VM pour le VCSA, mettre le **.ova** de vCenter Server puis lancer la VM.
 Configurer le réseau :
@@ -47,14 +47,14 @@ Choisir **“Install”** pour commencer le déploiement.
 ---
 
 ### 📸 Capture 2 – Sélection du déploiement
-![Choix du déploiement](/assets/installation-vcenter-002.png)
+![Choix du déploiement](../assets/vcsa/installation-vcenter-002.png)
 
 Sélectionner **“Deploy vCenter Server”**.  
 
 ---
 
 ### 📸 Capture 3 – Connexion à l’hôte ESXi
-![Connexion à l'hôte ESXi](/assets/installation-vcenter-003.png)
+![Connexion à l'hôte ESXi](../assets/vcsa/installation-vcenter-003.png)
 
 Renseigner les informations de l’hôte ESXi cible :
 
@@ -69,7 +69,7 @@ Renseigner les informations de l’hôte ESXi cible :
 ---
 
 ### 📸 Capture 4 – Choix du nom et mot de passe du VCSA
-![Nom et mot de passe VCSA](/assets/installation-vcenter-004.png)
+![Nom et mot de passe VCSA](../assets/vcsa/installation-vcenter-004.png)
 
 Nom de l’appliance : `NTE-VCSA-001`  
 Mot de passe administrateur : défini pour le compte **root** de la VCSA.
@@ -77,7 +77,7 @@ Mot de passe administrateur : défini pour le compte **root** de la VCSA.
 ---
 
 ### 📸 Capture 5 – Validation du déploiement
-![Validation du déploiement](/assets/installation-vcenter-005.png)
+![Validation du déploiement](../assets/vcsa/installation-vcenter-005.png)
 
 L’assistant vérifie la connectivité avec l’hôte ESXi et la configuration réseau.  
 Cliquer sur **Finish** pour lancer le déploiement.
@@ -85,7 +85,7 @@ Cliquer sur **Finish** pour lancer le déploiement.
 ---
 
 ### 📸 Capture 6 – Installation de la VCSA
-![Déploiement de la VCSA](/assets/installation-vcenter-006.png)
+![Déploiement de la VCSA](../assets/vcsa/installation-vcenter-006.png)
 
 Le déploiement démarre : la VCSA est copiée, configurée et initialisée sur l’hôte.  
 Cette étape peut durer plusieurs minutes selon les performances du stockage.
@@ -93,7 +93,7 @@ Cette étape peut durer plusieurs minutes selon les performances du stockage.
 ---
 
 ### 📸 Capture 7 – Étape 1 terminée
-![Fin du déploiement étape 1](/assets/installation-vcenter-007.png)
+![Fin du déploiement étape 1](../assets/vcsa/installation-vcenter-007.png)
 
 Une fois la première phase terminée, un message s’affiche :  
 > **Stage 1 completed successfully**
@@ -104,14 +104,14 @@ Vous pouvez également vous rendre sur l'interface **vCenter Server Management**
 ---
 
 ### 📸 Capture 8 – Démarrage de la configuration (Stage 2)
-![Configuration initiale](/assets/installation-vcenter-008.png)
+![Configuration initiale](../assets/vcsa/installation-vcenter-008.png)
 
 L’étape 2 permet de définir les paramètres du système et du SSO.
 
 ---
 
 ### 📸 Capture 9 – Configuration NTP et SSH
-![Paramètres NTP et SSH](/assets/installation-vcenter-009.png)
+![Paramètres NTP et SSH](../assets/vcsa/installation-vcenter-009.png)
 
 Définir un serveur NTP (synchronisation horaire essentielle).  
 Optionnel : activer **SSH access** pour maintenance.
@@ -119,7 +119,7 @@ Optionnel : activer **SSH access** pour maintenance.
 ---
 
 ### 📸 Capture 10 – Configuration du SSO
-![Configuration du SSO](/assets/installation-vcenter-010.png)
+![Configuration du SSO](../assets/vcsa/installation-vcenter-010.png)
 
 Créer un domaine SSO :
 | Paramètre | Valeur |
@@ -131,21 +131,21 @@ Créer un domaine SSO :
 ---
 
 ### 📸 Capture 11 – Résumé avant installation
-![Résumé avant installation](/assets/installation-vcenter-011.png)
+![Résumé avant installation](../assets/vcsa/installation-vcenter-011.png)
 
 L’assistant affiche un résumé complet des paramètres avant finalisation.
 
 ---
 
 ### 📸 Capture 12 – Installation en cours
-![Installation en cours](/assets/installation-vcenter-012.png)
+![Installation en cours](../assets/vcsa/installation-vcenter-012.png)
 
 La configuration des services du vCenter se lance (base de données, SSO, Tomcat, etc.).
 
 ---
 
 ### 📸 Capture 13 – Fin de l’installation
-![Installation terminée](/assets/installation-vcenter-013.png)
+![Installation terminée](../assets/vcsa/installation-vcenter-013.png)
 
 Une fois l’installation terminée, le message suivant apparaît :  
 > **vCenter Server has been successfully deployed.**
@@ -153,9 +153,9 @@ Une fois l’installation terminée, le message suivant apparaît :
 ---
 
 ### 📸 Capture 14,15 et 16 – Accès au portail vCenter
-![Accès au portail vCenter](/assets/installation-vcenter-014.png)
-![Authentification au portail vCenter](/assets/installation-vcenter-015.png)
-![Portail d'administration vCenter](/assets/installation-vcenter-016.png)
+![Accès au portail vCenter](../assets/vcsa/installation-vcenter-014.png)
+![Authentification au portail vCenter](../assets/vcsa/installation-vcenter-015.png)
+![Portail d'administration vCenter](/../assets/vcsa/installation-vcenter-016.png)
 
 Ouvrir l’URL suivante :
 https://10.47.101.204
@@ -178,8 +178,8 @@ Se connecter avec le compte `administrator@vsphere.local`.
 ---
 
 ### 📸 Capture 17 et 18 – Accès à la gestion des licences
-![Administration](/assets/licence-vcenter-017.png)
-![Gestion des licences](/assets/licence-vcenter-018.png)
+![Administration](../assets/vcsa/licence-vcenter-017.png)
+![Gestion des licences](../assets/vcsa/licence-vcenter-018.png)
 
 Dans le menu de gauche :
 Administration → Licensing
@@ -187,7 +187,7 @@ Administration → Licensing
 ---
 
 ### 📸 Capture 19 – Ajout d’une licence
-![Ajout d’une licence](/assets/licence-vcenter-019.png)
+![Ajout d’une licence](../assets/vcsa/licence-vcenter-019.png)
 
 Cliquer sur **Add New License** et saisir la clé fournie par VMware.  
 Une fois validée, la licence apparaît dans la liste.
@@ -195,7 +195,7 @@ Une fois validée, la licence apparaît dans la liste.
 ---
 
 ### 📸 Capture 20 – Attribution de la licence au vCenter
-![Attribution licence](/assets/licence-vcenter-020.png)
+![Attribution licence](../assets/vcsa/licence-vcenter-020.png)
 
 Sélectionner la licence ajoutée et cliquer sur **Assign License**.  
 L’état passe à **Active**.
@@ -214,7 +214,7 @@ L’état passe à **Active**.
 ---
 
 ### 📸 Capture 21 – Création d’un Datacenter
-![vSphere Client](/assets/datacenter-vcenter-021.png)
+![vSphere Client](../assets/vcsa/datacenter-vcenter-021.png)
 
 Clic droit sur la racine :
 vCenter Server → New Datacenter
@@ -222,7 +222,7 @@ vCenter Server → New Datacenter
 ---
 
 ### 📸 Capture 22 – Nommer le Datacenter
-![Création Datacenter](/assets/datacenter-vcenter-022.png)
+![Création Datacenter](../assets/vcsa/datacenter-vcenter-022.png)
 
 Nommer le datacenter :
 BESAFE-DATACENTER
@@ -230,7 +230,7 @@ BESAFE-DATACENTER
 ---
 
 ### 📸 Capture 23 – Datacenter créé
-![Datacenter créé](/assets/datacenter-vcenter-023.png)
+![Datacenter créé](../assets/vcsa/datacenter-vcenter-023.png)
 
 Le datacenter apparaît dans l’arborescence de vCenter.  
 Il servira à héberger les clusters, hôtes et datastores.
@@ -249,7 +249,7 @@ Il servira à héberger les clusters, hôtes et datastores.
 ---
 
 ### 📸 Capture 24 – Création du Cluster depuis le Datacenter
-![Accès au Datacenter](/assets/cluster-vcenter-024.png)
+![Accès au Datacenter](../assets/vcsa/cluster-vcenter-024.png)
 
 Depuis le Datacenter créé :
 BESAFE-DATACENTER → Actions → New Cluster
@@ -257,7 +257,7 @@ BESAFE-DATACENTER → Actions → New Cluster
 ---
 
 ### 📸 Capture 25 – Nom du cluster
-![Nom du cluster](/assets/cluster-vcenter-025.png)
+![Nom du cluster](../assets/vcsa/cluster-vcenter-025.png)
 
 Nom du cluster :
 BESAFE-CLUSTER
@@ -265,7 +265,7 @@ BESAFE-CLUSTER
 ---
 
 ### 📸 Capture 26 – Activation des services
-![Activation services](/assets/cluster-vcenter-026.png)
+![Activation services](../assets/vcsa/cluster-vcenter-026.png)
 
 Cocher :
 - ✅ **vSphere HA** (High Availability)  
@@ -275,14 +275,14 @@ Cocher :
 ---
 
 ### 📸 Capture 27 – Ajouter un hôte ESXi
-![Ajout d’un hôte](/assets/cluster-vcenter-027.png)
+![Ajout d’un hôte](../assets/vcsa/cluster-vcenter-027.png)
 
 Clic droit sur le cluster → **Add Host**
 
 ---
 
 ### 📸 Capture 28 – Saisie des informations de l’hôte
-![Infos hôte](/assets/cluster-vcenter-028.png)
+![Infos hôte](../assets/vcsa/cluster-vcenter-028.png)
 
 Renseigner :
 | Champ | Valeur |
@@ -294,7 +294,7 @@ Renseigner :
 ---
 
 ### 📸 Capture 29 – Hôtes ajoutés
-![Hôtes ajoutés](/assets/cluster-vcenter-029.png)
+![Hôtes ajoutés](../assets/vcsa/cluster-vcenter-029.png)
 
 Les deux hôtes apparaissent dans le cluster.  
 Le statut passe à **Connected**.
@@ -316,7 +316,7 @@ Les ressources (CPU, RAM, stockage) sont mutualisées.
 ---
 
 ### 📸 Capture 30 – Accès à la configuration d’identité
-![Accès configuration identité](/assets/joindomain-vcenter-030.png)
+![Accès configuration identité](../assets/vcsa/joindomain-vcenter-030.png)
 
 Dans vSphere Client :
 Administration → Single Sign-On → Configuration
@@ -324,14 +324,14 @@ Administration → Single Sign-On → Configuration
 ---
 
 ### 📸 Capture 31 – Ajout d’un domaine d’identité
-![Ajout domaine identité](/assets/joindomain-vcenter-031.png)
+![Ajout domaine identité](../assets/vcsa/joindomain-vcenter-031.png)
 
 Cliquer sur **Domain Active Directory → Add**
 
 ---
 
 ### 📸 Capture 32 – Configuration de la source AD
-![Configuration source AD](/assets/joindomain-vcenter-032.png)
+![Configuration source AD](../assets/vcsa/joindomain-vcenter-032.png)
 
 Choisir **Active Directory (Integrated Windows Authentication)**  
 et renseigner :
@@ -344,7 +344,7 @@ et renseigner :
 ---
 
 ### 📸 Capture 33 – Ajout du vCenter au domaine
-![Ajout vCenter domaine](/assets/joindomain-vcenter-033.png)
+![Ajout vCenter domaine](../assets/vcsa/joindomain-vcenter-033.png)
 
 Toujours dans :
 Administration → System Configuration → Nodes
@@ -353,7 +353,7 @@ Sélectionner `NTE-VCSA-001` → **Join Domain**
 ---
 
 ### 📸 Capture 34 – Validation finale
-![Validation finale](/assets/joindomain-vcenter-034.png)
+![Validation finale](../assets/vcsa/joindomain-vcenter-034.png)
 
 Le vCenter apparaît désormais comme membre du domaine **BESAFE.LOCAL**.  
 Les comptes AD peuvent être utilisés pour se connecter à vCenter.
@@ -383,7 +383,7 @@ Les comptes AD peuvent être utilisés pour se connecter à vCenter.
 | **Disabled**    | `NTE-ROOTCA` | Root CA – volontairement hors périmètre HA. |
   
 ### 📸 Capture 35 – Priorités HA
-![Priorités HA](/assets/ha-vcenter-035.png)  
+![Priorités HA](../assets/vcsa/ha-vcenter-035.png)  
 </details>  
  
 --- 
@@ -407,7 +407,7 @@ Les comptes AD peuvent être utilisés pour se connecter à vCenter.
 | VM-GROUP-DB    | `NTE-DB-001`,`NTE-DB-002`,`NTE-DB-003`                                           |
 
 ### 📸 Capture 36 – DRS
-![DRS](/assets/drs-vcenter-036.png)  
+![DRS](../assets/vcsa/drs-vcenter-036.png)  
   
   
   
@@ -434,7 +434,7 @@ En cas de panne d’un ESXi :
 | Rule-Backup001-Placement    | Virtual Machines to Hosts   | VM-GROUP-BACKUP-001       | HOST-GROUP-A        | **Must run on**   | BACKUP-001 lié au stockage local de ESXi-01.                                               |
 | Rule-Backup002-Placement    | Virtual Machines to Hosts   | VM-GROUP-BACKUP-002       | HOST-GROUP-B        | **Must run on**   | BACKUP-002 lié au stockage local de ESXi-02.                                               |
 ### 📸 Capture 37 – DRS
-![DRS](/assets/drs-vcenter-037.png)
+![DRS](../assets/vcsa/drs-vcenter-037.png)
 </details>   
   
 ---
