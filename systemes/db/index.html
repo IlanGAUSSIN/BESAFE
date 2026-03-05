@@ -1,0 +1,1909 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Wiki technique du projet BESAFE">
+      
+      
+      
+        <link rel="canonical" href="https://ilangaussin.github.io/BESAFE/systemes/db/">
+      
+      
+        <link rel="prev" href="../iscsi/">
+      
+      
+        <link rel="next" href="../veeambackup/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+    
+    
+      
+        <title>Database - BESAFE - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cluster-mariadb-galera-projet-besafe" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="BESAFE - Documentation" class="md-header__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BESAFE - Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Database
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BESAFE - Documentation" class="md-nav__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BESAFE - Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/inventaire-materiel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventaire matériel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/vlan-plan-ip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLAN / Plan IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schéma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Réseaux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Réseaux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/switch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/stormshield/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stormshield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sécurité
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sécurité
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/wazuh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/vaultwarden/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vaultwarden
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/nextcloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nextcloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/glpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GLPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx Proxy Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervision
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Supervision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supervision/centreon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centreon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supervision/grafana/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafana
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supervision/zabbix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zabbix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systèmes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Systèmes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AD DS / DHCP / DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PKI / AD CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iscsi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iSCSI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Détails techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ip-des-nuds-besafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 IP des nœuds BESAFE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-des-etapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résumé des étapes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liens-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Liens &amp; Références
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../veeambackup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sauvegardes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualisation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Virtualisation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../virtualisation/esxi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESXi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../virtualisation/vcenter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vCenter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Détails techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ip-des-nuds-besafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 IP des nœuds BESAFE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-des-etapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résumé des étapes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liens-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Liens &amp; Références
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="cluster-mariadb-galera-projet-besafe">🗄️ Cluster MariaDB Galera – Projet BESAFE</h1>
+<blockquote>
+<p>Cette page décrit l’installation, la configuration et la validation d’un <strong>cluster MariaDB Galera 3 nœuds</strong> pour le projet <strong>BESAFE</strong>.<br />
+Objectif : obtenir une base de données <strong>hautement disponible</strong>, <strong>multi-master</strong> (lecture/écriture sur tous les nœuds) avec <strong>réplication synchrone</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="details-techniques">⚙️ Détails techniques</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Élément</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Type de cluster</strong></td>
+<td style="text-align: left;">MariaDB Galera Cluster</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Nombre de nœuds</strong></td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Système d’exploitation</strong></td>
+<td style="text-align: left;">Debian 12 (x64)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Version MariaDB</strong></td>
+<td style="text-align: left;">10.11.x (ou 10.6.x LTS)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Fournisseur Galera</strong></td>
+<td style="text-align: left;">galera-4</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Mode</strong></td>
+<td style="text-align: left;">Multi-primary (multi-master)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Réplication</strong></td>
+<td style="text-align: left;">Synchrone WSREP</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Réseau</strong></td>
+<td style="text-align: left;">VLAN SRV <code>10.47.30.0/24</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ports utilisés</strong></td>
+<td style="text-align: left;"><code>3306/tcp</code>, <code>4567/tcp+udp</code>, <code>4568/tcp</code>, <code>4444/tcp</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ip-des-nuds-besafe">🌐 IP des nœuds BESAFE</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nœud</th>
+<th style="text-align: left;">Nom</th>
+<th style="text-align: left;">Adresse IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Node 1</td>
+<td style="text-align: left;"><code>db1</code></td>
+<td style="text-align: left;"><code>10.47.30.51</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Node 2</td>
+<td style="text-align: left;"><code>db2</code></td>
+<td style="text-align: left;"><code>10.47.30.52</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Node 3</td>
+<td style="text-align: left;"><code>db3</code></td>
+<td style="text-align: left;"><code>10.47.30.53</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<details>
+<summary>🚀 Étape 1 : Pré-requis et préparation des nœuds</summary>
+
+### ✅ Conditions nécessaires
+
+- 3 serveurs Debian 12
+- Configuration réseau `VLAN 30`
+- Accès `root` ou `sudo` sur chaque nœud
+- Résolution DNS ou `/etc/hosts` opérationnelle entre les nœuds
+- Latence faible (idéalement même VLAN SRV)
+- Synchronisation horaire **NTP obligatoire**
+- `rsync` installé (utilisé pour les SST)
+
+---
+
+### 📦 Installation de rsync
+
+
+<pre><code class="language-bash">sudo apt install rsync -y
+</code></pre>
+
+
+### 📸 Capture – Préparation système
+![Préparation système](../assets/db/001.png)
+
+
+</details>
+
+<details>
+<summary>📥 Étape 2 : Installation de MariaDB + Galera</summary>
+
+### 2.1 Ajout du dépôt MariaDB (officiel)
+
+
+<pre><code class="language-bash">sudo apt update
+sudo apt install dirmngr apt-transport-https ca-certificates curl -y
+
+curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
+
+sudo apt update
+</code></pre>
+
+
+### 2.2 Installation des paquets MariaDB + Galera
+
+<pre><code class="language-bash">sudo apt install mariadb-server mariadb-client galera-4 -y
+</code></pre>
+
+</details>
+
+<details>
+<summary>🔐 Étape 3 : Sécurisation initiale de MariaDB</summary>
+
+### 3.1 Lancer le script de sécurisation
+
+À exécuter sur **chaque nœud** :
+
+
+<pre><code class="language-bash">sudo mariadb-secure-installation
+</code></pre>
+
+
+### 3.2 Réponses recommandées
+
+>Définir un mot de passe root fort
+
+>Remove anonymous users → Y
+
+>Disallow root login remotely → Y
+
+>Remove test database → Y
+
+>Reload privilege tables → Y
+
+### 📸 Capture – Script de sécurisation
+![Script de sécurisation](../assets/db/002.png)
+
+</details>
+
+<details>
+<summary>🧱 Étape 4 : Ouverture des ports Firewall</summary>
+
+### 4.1 Ports nécessaires pour Galera
+
+| Port | Protocole | Usage |
+|------|-----------|-------|
+| **3306** | TCP | Connexions clients MariaDB |
+| **4567** | TCP/UDP | Réplication Galera (trafic principal) |
+| **4568** | TCP | IST (Incremental State Transfer) |
+| **4444** | TCP | SST (State Snapshot Transfer) |
+| **22** | TCP | SSH (administration) |
+
+---
+
+### 4.2 Configuration UFW (sur chaque nœud)
+
+
+<pre><code class="language-bash">sudo ufw allow 22/tcp
+sudo ufw allow 3306/tcp
+sudo ufw allow 4567/tcp
+sudo ufw allow 4567/udp
+sudo ufw allow 4568/tcp
+sudo ufw allow 4444/tcp
+
+sudo ufw reload
+sudo ufw enable
+</code></pre>
+
+
+### 📸 Capture – Règles Firewall configurées
+![Règles Firewall configurées](../assets/db/003.png)
+
+</details>
+
+<details>
+<summary>⚙️ Étape 5 : Configuration du cluster Galera (galera.cnf)</summary>
+
+### 5.1 Fichier de configuration Galera
+
+Le fichier utilisé :
+`/etc/mysql/conf.d/galera.cnf`
+
+
+Le contenu est identique sur les 3 nœuds, **sauf** pour :
+- `wsrep_node_name`
+- `wsrep_node_address`
+
+---
+
+### 5.2 Modèle commun (à placer sur chaque nœud)
+
+
+<pre><code class="language-ini">[mysqld]
+# Basic MariaDB settings
+binlog_format=ROW
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+bind-address=0.0.0.0 # Binds to all network interfaces. Adjust if you have a specific private IP for cluster traffic.
+
+# Galera Provider Configuration
+wsrep_on=ON
+wsrep_provider=/usr/lib/galera/libgalera_smm.so # Adjust path if different (e.g., /usr/lib64/galera-4/libgalera_smm.so)
+
+# Galera Cluster Configuration
+wsrep_cluster_name=&quot;my_galera_cluster&quot; # A unique name for your cluster
+
+# IP addresses of ALL nodes in the cluster, comma-separated.
+# Use private IPs if available for cluster communication.
+wsrep_cluster_address=&quot;gcomm://node1_ip_address,node2_ip_address,node3_ip_address&quot;
+
+# This node's specific configuration
+wsrep_node_name=&quot;node1&quot; # Must be unique for each node (e.g., node1, node2, node3)
+wsrep_node_address=&quot;node1_ip_address&quot; # This node's own IP address
+</code></pre>
+
+
+### 📸 Capture – Édition de galera.cnf
+![Édition de galera.cnf](../assets/db/004.png)
+
+</details>
+
+<details>
+<summary>🏁 Étape 6 : Bootstrapping du cluster</summary>
+
+### 6.1 Arrêt de MariaDB sur les trois nœuds
+
+Avant l'initialisation, arrêter MariaDB sur **db1**, **db2**, **db3** :
+
+
+<pre><code class="language-bash">sudo systemctl stop mariadb
+</code></pre>
+
+
+### 6.2 Bootstrapping du premier nœud (db1 UNIQUEMENT)
+
+Cette commande crée le cluster et doit être lancée une seule fois :  
+
+<pre><code class="language-bash">sudo galera_new_cluster
+</code></pre>
+
+
+### 6.3 Démarrer les deux autres nœuds (db2 & db3)
+
+<pre><code class="language-bash">sudo systemctl start mariadb
+  ```
+&lt;/details&gt;  
+
+&lt;details&gt;
+&lt;summary&gt;🔍 Étape 7 : Vérification de l’état du cluster&lt;/summary&gt;
+
+### 7.1 Connexion à MariaDB
+
+Sur n’importe quel nœud :
+
+```sqlbash
+sudo mariadb -u root -p
+</code></pre>
+
+
+### 7.2 Vérifier la taille du cluster
+
+<pre><code class="language-sql">SHOW STATUS LIKE 'wsrep_cluster_size';
+</code></pre>
+
+
+Résultat attendu :
+
+<pre><code class="language-sql">+--------------------+-------+
+| wsrep_cluster_size | 3     |
++--------------------+-------+
+</code></pre>
+
+
+### 7.3 Vérifications complémentaires
+
+<pre><code class="language-sql">SHOW STATUS LIKE 'wsrep_cluster_status';
+SHOW STATUS LIKE 'wsrep_ready';
+SHOW STATUS LIKE 'wsrep_connected';
+</code></pre>
+
+
+Valeurs attendues :
+
+<pre><code class="language-sql">wsrep_cluster_status → Primary
+
+wsrep_ready → ON
+
+wsrep_connected → ON
+</code></pre>
+
+
+
+### 📸 Capture – Vérification WSREP
+![Vérification WSREP](../assets/db/005.png)  
+
+</details>
+
+<details>
+<summary>🛡️ Étape 8 : Bonnes pratiques, supervision & maintenance</summary>
+
+### 🔐 Sécurité
+
+- Restreindre l’accès au port **3306** aux seules IP applicatives autorisées.
+- Ne **jamais** utiliser le compte `root` pour une application.
+- Créer des **comptes applicatifs dédiés** avec les privilèges minimum.
+- Mettre en place une **rotation régulière** des mots de passe.
+- Désactiver l'accès root distant si non nécessaire.
+
+---
+
+### 💾 Sauvegardes
+
+- Ne pas exécuter `mysqldump` simultanément sur plusieurs nœuds.
+- Désigner un **nœud dédié aux sauvegardes**.
+- Préférer les outils compatibles Galera (ex. **MariaBackup**) pour des sauvegardes cohérentes.
+- Vérifier régulièrement les **restaurations** (procédures PRA).
+
+---
+
+### 📈 Supervision
+
+Suivre en monitoring (Centreon, Zabbix, Wazuh...) :
+
+- `wsrep_cluster_size`  
+- `wsrep_cluster_status`  
+- `wsrep_ready`  
+- `wsrep_connected`  
+- Charge CPU / RAM  
+- Latence disque  
+- Espace disque (`/var/lib/mysql`)  
+
+---
+
+### 🧰 Commandes utiles
+
+
+<pre><code class="language-bash"># État du service
+sudo systemctl status mariadb
+
+# Logs temps réel
+sudo journalctl -u mariadb -f
+
+# Variables WSREP
+sudo mariadb -u root -p -e &quot;SHOW STATUS LIKE 'wsrep%';&quot;
+</code></pre>
+
+</details>
+
+<h2 id="resume-des-etapes">✅ Résumé des étapes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Étape</th>
+<th style="text-align: left;">Objectif</th>
+<th style="text-align: left;">Résultat attendu</th>
+<th style="text-align: left;">Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1️⃣ Pré-requis</td>
+<td style="text-align: left;">Préparer les nœuds (NTP, rsync, réseau)</td>
+<td style="text-align: left;">Nœuds prêts et synchronisés</td>
+<td style="text-align: left;">🟢</td>
+</tr>
+<tr>
+<td style="text-align: left;">2️⃣ Installation</td>
+<td style="text-align: left;">Installer MariaDB + Galera</td>
+<td style="text-align: left;">Services installés sur 3 nœuds</td>
+<td style="text-align: left;">🟢</td>
+</tr>
+<tr>
+<td style="text-align: left;">3️⃣ Sécurisation</td>
+<td style="text-align: left;">Exécuter <code>mariadb-secure-installation</code></td>
+<td style="text-align: left;">MariaDB sécurisé</td>
+<td style="text-align: left;">🟢</td>
+</tr>
+<tr>
+<td style="text-align: left;">4️⃣ Firewall</td>
+<td style="text-align: left;">Ouvrir les ports requis</td>
+<td style="text-align: left;">3306 / 4567 / 4568 / 4444 accessibles</td>
+<td style="text-align: left;">🟢</td>
+</tr>
+<tr>
+<td style="text-align: left;">5️⃣ Configuration</td>
+<td style="text-align: left;">Créer <code>galera.cnf</code> + paramètres nœud</td>
+<td style="text-align: left;">Config validée sur 3 nœuds</td>
+<td style="text-align: left;">🟢</td>
+</tr>
+<tr>
+<td style="text-align: left;">6️⃣ Bootstrapping</td>
+<td style="text-align: left;">Initialiser db1 puis démarrer db2/db3</td>
+<td style="text-align: left;">Cluster démarré</td>
+<td style="text-align: left;">🟢</td>
+</tr>
+<tr>
+<td style="text-align: left;">7️⃣ Vérification</td>
+<td style="text-align: left;">Vérification de l’état du cluster</td>
+<td style="text-align: left;">Cluster stable et Primary</td>
+<td style="text-align: left;">🟢</td>
+</tr>
+<tr>
+<td style="text-align: left;">8️⃣ Bonnes pratiques</td>
+<td style="text-align: left;">Sécurité, supervision, backups</td>
+<td style="text-align: left;">Points clés en place</td>
+<td style="text-align: left;">🟢</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="liens-references">🔗 Liens &amp; Références</h2>
+<ul>
+<li>Documentation Galera : https://mariadb.com/kb/en/galera-cluster/</li>
+<li>Quickstart MariaDB Galera : https://mariadb.com/docs/galera-cluster/galera-cluster-quickstart-guides/</li>
+<li>Documentation MariaDB : https://mariadb.com/docs/server/</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
