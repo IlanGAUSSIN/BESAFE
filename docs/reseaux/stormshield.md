@@ -25,7 +25,7 @@
 ---
 
 ### 📸 Capture 1 – Vue d’ensemble des interfaces
-![Interfaces Stormshield](/assets/stormshield/network-stormshield-001.png)
+![Interfaces Stormshield](../assets/stormshield/network-stormshield-001.png)
 
 Le pare-feu **SN210** dispose de **3 interfaces physiques principales** :
 
@@ -38,7 +38,7 @@ Le pare-feu **SN210** dispose de **3 interfaces physiques principales** :
 ---
 
 ### 📸 Capture 2 – Vue des VLAN configurés
-![VLANs configurés](/assets/stormshield/networkstormshield-002.png)
+![VLANs configurés](../assets/stormshield/networkstormshield-002.png)
 
 L’interface **IN (eth1)** transporte les VLAN suivants :
 
@@ -61,7 +61,7 @@ L’interface **IN (eth1)** transporte les VLAN suivants :
 ---
 
 ### 📸 Capture 3 – Routage par défaut
-![Routage par défaut](/assets/stormshield/network-stormshield-003.png)
+![Routage par défaut](../assets/stormshield/network-stormshield-003.png)
 
 - La **passerelle par défaut (WAN)** est obtenue via DHCP depuis la box Internet.  
 - Le routage inter-VLAN est géré localement sur le SN210.  
@@ -86,17 +86,17 @@ L’interface **IN (eth1)** transporte les VLAN suivants :
 ---
 
 ### 📸 Capture 4 – NAT sortant
-![NAT sortant](/assets/stormshield/nat-stormshield-004.png)
+![NAT sortant](../assets/stormshield/nat-stormshield-004.png)
 
 ---
 
 ### 📸 Capture 5 – NAT entrant
-![NAT entrant](/assets/stormshield/nat-stormshield-005.png)
+![NAT entrant](../assets/stormshield/nat-stormshield-005.png)
 
 ---
 
 ### 📸 Capture 6 – Politique de filtrage
-![Règles de filtrage](/assets/stormshield/nat-stormshield-006.png)
+![Règles de filtrage](../assets/stormshield/nat-stormshield-006.png)
 
 > 💡 Organiser les règles par zone (WAN, LAN, DMZ, VPN) pour plus de clarté.
 
@@ -112,7 +112,7 @@ L’interface **IN (eth1)** transporte les VLAN suivants :
 ### 🌐 3.1 – Objets réseau & ports utilisés
 
 ### 📸 Capture 7 – Objets VPN
-![Objets VPN](/assets/stormshield/vpn-stormshield-007.png)
+![Objets VPN](../assets/stormshield/vpn-stormshield-007.png)
 
 Objets utilisés par les VPN :
 
@@ -125,7 +125,7 @@ Objets utilisés par les VPN :
 ### 🔒 3.2 – Configuration VPN SSL (Client-to-Site)
 
 ### 📸 Capture 8 – Paramètres VPN SSL
-![VPN SSL](/assets/stormshield/vpn-stormshield-008.png)
+![VPN SSL](../assets/stormshield/vpn-stormshield-008.png)
 
 Principaux réglages :
 
@@ -140,7 +140,7 @@ Principaux réglages :
 ### 🛂 3.3 – Droits d’accès VPN (LDAP)
 
 ### 📸 Capture 9 – Droits VPN
-![Access Privileges](/assets/stormshield/vpn-stormshield-009.png)
+![Access Privileges](../assets/stormshield/vpn-stormshield-009.png)
 
 - Groupe AD autorisé : **VPN_Access@besafe.local**  
 - Accès **SSL VPN** : Allow  
@@ -159,7 +159,7 @@ Principaux réglages :
 ---
 
 ### 📸 Capture 10 – Certificat généré pour le firewall  
-![Certificat FW](/assets/stormshield/cert-stormshield-010.png)
+![Certificat FW](../assets/stormshield/cert-stormshield-010.png)
 
 Le certificat **fw01.besafe.local** est émis par *BesafeSubCA2* et exporté au format **P12** avec les SAN :
 - `fw01.besafe.local`
@@ -168,14 +168,14 @@ Le certificat **fw01.besafe.local** est émis par *BesafeSubCA2* et exporté au 
 ---
 
 ### 📸 Capture 11 – Export du certificat sur le serveur Windows  
-![Export Cert](/assets/stormshield/cert-stormshield-011.png)
+![Export Cert](../assets/stormshield/cert-stormshield-011.png)
 
 Le fichier **fw01.besafe.local.p12** est prêt pour l’import sur le Stormshield.
 
 ---
 
 ### 📸 Capture 12 – Import du certificat dans Stormshield  
-![Import FW Cert](/assets/stormshield/cert-stormshield-012.png)
+![Import FW Cert](../assets/stormshield/cert-stormshield-012.png)
 
 Navigation :  
 **Objects → Certificates and PKI → Add → Import a file**
@@ -183,7 +183,7 @@ Navigation :
 ---
 
 ### 📸 Capture 13 – Paramètres d’import  
-![Import File](/assets/stormshield/cert-stormshield-013.png)
+![Import File](../assets/stormshield/cert-stormshield-013.png)
 
 - **File format :** P12  
 - **Password :** mot de passe d’export  
@@ -192,7 +192,7 @@ Navigation :
 ---
 
 ### 📸 Capture 14 – Certificat importé  
-![Cert List](/assets/stormshield/cert-stormshield-014.png)
+![Cert List](../assets/stormshield/cert-stormshield-014.png)
 
 Vérification :  
 - Chaîne complète → BesafeRootCA → BesafeSubCA2 → fw01.besafe.local  
@@ -202,7 +202,7 @@ Vérification :
 ---
 
 ### 📸 Capture 15 – Affectation du certificat à l’interface d’administration  
-![Assign SSL](/assets/stormshield/cert-stormshield-015.png)
+![Assign SSL](../assets/stormshield/cert-stormshield-015.png)
 
 Chemin :  
 **System → Configuration → Firewall Administration → Configure the SSL certificate**
@@ -212,7 +212,7 @@ Sélectionner : **fw01.besafe.local**
 ---
 
 ### 📸 Capture 16 – Assignation au portail Captive  
-![Portal Cert](/assets/stormshield/cert-stormshield-016.png)
+![Portal Cert](../assets/stormshield/cert-stormshield-016.png)
 
 Chemin :  
 **Users → Authentication → Captive Portal**
@@ -222,7 +222,7 @@ Sélectionner également : **fw01.besafe.local**
 ---
 
 ### 📸 Capture 17 – Vérification côté navigateur  
-![Browser Check](/assets/stormshield/cert-stormshield-017.png)
+![Browser Check](../assets/stormshield/cert-stormshield-017.png)
 
 La connexion HTTPS est maintenant :  
 - 🔒 Sécurisée  
@@ -244,7 +244,7 @@ La connexion HTTPS est maintenant :
 
 
 ### 📸 Capture 18 – Configuration du répertoire LDAP (AD BESAFE)
-![LDAP Directory Configuration](/assets/stormshield/ldap-stormshield-018.png)
+![LDAP Directory Configuration](../assets/stormshield/ldap-stormshield-018.png)
 
 | Paramètre | Valeur BESAFE | Commentaire |
 |:--|:--|:--|
@@ -263,7 +263,7 @@ La connexion HTTPS est maintenant :
 ---
 
 ### 📸 Capture 19 – Politique d’authentification (Default = LDAP)
-![Authentication Policy](/assets/stormshield/ldap-stormshield-019.png)
+![Authentication Policy](../assets/stormshield/ldap-stormshield-019.png)
 
 Le pare-feu utilise **LDAP** comme méthode d’authentification principale pour :
 
@@ -276,7 +276,7 @@ Exemple : le groupe **`VPN_Access@besafe.local`** → accès SSL + IPSec.
 
 ---
 ### 📸 Capture 20 – Vue des utilisateurs AD reconnus par le Firewall
-![Users & Groups](/assets/stormshield/ldap-stormshield-020.png)
+![Users & Groups](../assets/stormshield/ldap-stormshield-020.png)
 
 Le pare-feu interroge directement **Active Directory** via LDAPS et remonte les comptes/groupes disponibles.  
 Cela permet d'appliquer des politiques d’accès basées sur les groupes AD (ex : `VPN_Access@besafe.local`).
