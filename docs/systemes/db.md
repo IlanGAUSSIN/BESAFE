@@ -51,7 +51,7 @@ sudo apt install rsync -y
 ```
 
 ### 📸 Capture – Préparation système
-![Préparation système](/galera/001.png)
+![Préparation système](../assets/db/001.png)
 
 
 </details> 
@@ -100,7 +100,7 @@ sudo mariadb-secure-installation
 >Reload privilege tables → Y
   
 ### 📸 Capture – Script de sécurisation
-![Script de sécurisation](/galera/002.png)
+![Script de sécurisation](../assets/db/002.png)
 
 </details>
 
@@ -134,7 +134,7 @@ sudo ufw enable
 ```
   
 ### 📸 Capture – Règles Firewall configurées
-![Règles Firewall configurées](/galera/003.png)
+![Règles Firewall configurées](../assets/db/003.png)
 
 </details>  
 
@@ -180,7 +180,7 @@ wsrep_node_address="node1_ip_address" # This node's own IP address
 ```
 
 ### 📸 Capture – Édition de galera.cnf
-![Édition de galera.cnf](/galera/004.png)
+![Édition de galera.cnf](../assets/db/004.png)
 
 </details>
 
@@ -249,7 +249,7 @@ wsrep_connected → ON
   
 
 ### 📸 Capture – Vérification WSREP
-![Vérification WSREP](/galera/005.png)  
+![Vérification WSREP](../assets/db/005.png)  
 
 </details>  
 
