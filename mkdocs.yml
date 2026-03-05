@@ -24,7 +24,6 @@ nav:
   - Accueil: index.md
 
   - Architecture:
-      - Vue d'ensemble: architecture/architecture.md
       - Inventaire matériel: architecture/inventaire-materiel.md
       - VLAN / Plan IP: architecture/vlan-plan-ip.md
       - Schéma: architecture/schema.md
@@ -40,7 +39,7 @@ nav:
       - Vaultwarden: services/vaultwarden.md
       - Nextcloud: services/nextcloud.md
       - GLPI: services/glpi.md
-      - Nginx Proxy Manager: services/nginx-proxy-manager.md
+      - Nginx Proxy Manager: services/npm.md
 
   - Supervision:
       - Centreon: supervision/centreon.md
@@ -48,9 +47,11 @@ nav:
       - Zabbix: supervision/zabbix.md
 
   - Systèmes:
-      - AD DS / DHCP / DNS: systemes/ad-ds-dhcp-dns.md
-      - PKI / AD CS: systemes/pki-adcs.md
+      - AD DS / DHCP / DNS: systemes/ad.md
+      - PKI / AD CS: systemes/pki.md
       - iSCSI: systemes/iscsi.md
+      - Database: systemes/db.md
+      - Sauvegardes: systemes/veeambackup.md
 
   - Virtualisation:
       - ESXi: virtualisation/esxi.md
