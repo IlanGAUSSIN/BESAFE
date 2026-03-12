@@ -1,24 +1,21 @@
-<div align="center" style="padding: 40px 20px; border: 2px solid #e60017; border-radius: 12px; background: #1a1a1a; color: #f0f0f0;">
 
-![BESAFE](../assets/besafe.png)
+![Logo BESAFE](../assets/besafe.png)
 
-# 🚧 Page en construction
+---
 
-### Cette section de la documentation **BESAFE** n’a pas encore été rédigée.
+## 🚧 Page en construction
 
-<br>
+Cette section de la documentation **BESAFE** n’a pas encore été rédigée.
 
-💡 Elle sera prochainement mise à jour avec :  
- Les procédures d’installation / configuration  
- Les schémas associés  
- Les bonnes pratiques et consignes de sécurité  
+---
 
-<br>
+💡 Elle sera prochainement mise à jour avec :
+
+- Les procédures d’installation / configuration
+- Les schémas associés
+- Les bonnes pratiques et consignes de sécurité
+
+---
 
 🕓 **Statut :** En attente de rédaction  
-✍️ **Responsable :** Équipe IT BESAFE  
-
-<br>
-!!! danger "test"
-</div>
-
+👨‍💻 **Responsable :** Équipe IT BESAFE
