@@ -1,94 +1,199 @@
 :root {
-  --md-primary-fg-color: #b3001b;
-  --md-primary-fg-color--light: #d90429;
-  --md-primary-fg-color--dark: #7f0012;
+  --md-primary-fg-color: #8b0a1a;
+  --md-primary-fg-color--light: #b11226;
+  --md-primary-fg-color--dark: #5c0611;
 
-  --md-accent-fg-color: #d90429;
-  --md-accent-fg-color--transparent: rgba(217, 4, 41, 0.15);
+  --md-accent-fg-color: #e63946;
+  --md-accent-fg-color--transparent: rgba(230, 57, 70, 0.15);
 
   --md-default-bg-color: #111318;
   --md-default-fg-color: #e6e6e6;
   --md-default-fg-color--light: #b8bcc8;
   --md-default-fg-color--lighter: #8f96a3;
+
+  --besafe-sidebar-bg: #131722;
+  --besafe-border: rgba(255, 255, 255, 0.08);
+  --besafe-muted: #98a2b3;
+  --besafe-active: #ff4d6d;
 }
 
-/* Barre du haut */
+/* =========================
+   HEADER
+========================= */
 .md-header {
-  background: linear-gradient(90deg, #5a000d 0%, #8f0015 35%, #b3001b 100%);
+  background: linear-gradient(90deg, #5c0611 0%, #8b0a1a 45%, #b11226 100%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
-/* Onglet recherche */
-.md-search__form {
-  border-radius: 10px;
+.md-header__button.md-logo img {
+  height: 30px;
 }
 
-/* Sidebar gauche */
-.md-sidebar--primary {
-  width: 15.5rem;
+/* =========================
+   LAYOUT DESKTOP
+========================= */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    width: 15rem;
+  }
+
+  .md-sidebar--secondary {
+    width: 13.5rem;
+  }
+
+  .md-grid {
+    max-width: 90rem;
+  }
+}
+
+/* =========================
+   MOBILE / TABLET
+   -> on laisse Material gérer
+========================= */
+@media screen and (max-width: 76.24em) {
+  .md-sidebar--primary,
+  .md-sidebar--secondary {
+    width: auto !important;
+  }
+
+  .md-sidebar__scrollwrap {
+    background: inherit;
+  }
+
+  .md-typeset h1 {
+    font-size: 1.8rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.35rem;
+  }
+
+  .md-typeset h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* =========================
+   SIDEBAR GAUCHE
+========================= */
+.md-sidebar__scrollwrap {
+  background-color: var(--besafe-sidebar-bg);
 }
 
 .md-nav--primary .md-nav__title {
   font-weight: 700;
-  color: #f0f0f0;
+  color: #f3f4f6;
+  padding-top: 0.25rem;
+  padding-bottom: 0.35rem;
 }
 
-/* Fond plus propre de la sidebar */
-.md-sidebar__scrollwrap {
-  background-color: #161a22;
-}
-
-/* Liens menu */
+/* liens généraux */
 .md-nav__link {
-  color: #d8dbe2;
+  color: #dde2ea;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .md-nav__link:hover {
-  color: #ff4d6d;
+  color: var(--besafe-active);
 }
 
-/* Élément actif dans le menu */
+/* lien actif */
 .md-nav__link--active,
 .md-nav__item .md-nav__link--active {
-  color: #ff4d6d !important;
+  color: var(--besafe-active) !important;
   font-weight: 700;
 }
 
-/* Table des matières à droite */
-.md-sidebar--secondary {
-  width: 14rem;
+/* =========================
+   DÉMARCATION DES SECTIONS
+   (Architecture, Réseaux, etc.)
+========================= */
+.md-nav--primary > .md-nav__list > .md-nav__item--section {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--besafe-border);
 }
 
-/* Largeur contenu central */
-.md-grid {
-  max-width: 92rem;
+.md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #9ea9bb !important;
+  text-transform: none;
+  opacity: 1;
 }
 
-/* Titres */
+.md-nav--primary > .md-nav__list > .md-nav__item--section:first-child {
+  margin-top: 0.35rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* sous-éléments */
+.md-nav--primary .md-nav__item .md-nav__item .md-nav__link {
+  font-size: 0.92rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+}
+
+/* =========================
+   TABLE DES MATIÈRES (droite)
+========================= */
+.md-nav--secondary .md-nav__title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #aeb7c5;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid var(--besafe-border);
+  padding-bottom: 0.45rem;
+}
+
+.md-nav--secondary .md-nav__list {
+  gap: 0.1rem;
+}
+
+.md-nav--secondary .md-nav__link {
+  font-size: 0.87rem;
+  line-height: 1.35;
+  color: #d3d9e3;
+  padding-top: 0.16rem;
+  padding-bottom: 0.16rem;
+}
+
+.md-nav--secondary .md-nav__item {
+  margin-bottom: 0.12rem;
+}
+
+/* niveau 2 et plus : plus discret */
+.md-nav--secondary .md-nav .md-nav__link {
+  font-size: 0.82rem;
+  color: #b2bac8;
+}
+
+.md-nav--secondary .md-nav .md-nav__item {
+  margin-left: 0.35rem;
+  padding-left: 0.35rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.md-nav--secondary .md-nav__link:hover {
+  color: var(--besafe-active);
+}
+
+/* =========================
+   CONTENU
+========================= */
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
   font-weight: 700;
 }
 
-/* Blocs de code */
-.md-typeset pre > code {
-  border-radius: 10px;
-}
-
-/* Tables */
 .md-typeset table:not([class]) {
   border-radius: 8px;
   overflow: hidden;
 }
 
-/* Logo sidebar custom si ajouté plus bas */
-.besafe-sidebar-logo {
-  display: block;
-  max-width: 180px;
-  margin: 0 auto 1rem auto;
-}
-
-.md-header__button.md-logo img {
-  height: 34px;
+.md-typeset pre > code {
+  border-radius: 10px;
 }
