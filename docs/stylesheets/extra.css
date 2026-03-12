@@ -143,61 +143,93 @@
 
 /* =========================
    MOBILE / TABLET
-   => on laisse Material gérer
+   => menu plein écran propre
 ========================= */
 @media screen and (max-width: 76.24em) {
-  /* on annule tout ce qui pourrait casser le drawer */
-  .md-sidebar--primary,
-  .md-sidebar--secondary {
-    width: auto !important;
-    max-width: none !important;
-    left: auto !important;
-    transform: none !important;
-    background: initial !important;
-    z-index: auto !important;
-  }
-
-  .md-sidebar__scrollwrap {
-    background: inherit !important;
-  }
-
-  .md-overlay {
-    z-index: auto !important;
-  }
-
-  .md-main,
-  .md-content,
-  .md-content__inner {
-    z-index: auto !important;
-  }
-
+  /* Header compact */
   .md-header__title {
-    font-size: 0.9rem;
+    font-size: 0.92rem !important;
   }
 
   .md-header__button.md-logo img {
-    height: 20px;
+    height: 20px !important;
   }
 
-  /* ToC masquée sur mobile pour alléger */
+  /* On masque complètement la ToC */
   .md-sidebar--secondary {
     display: none !important;
   }
 
-  /* texte un peu plus compact */
+  /* Drawer principal : plein écran */
+  .md-sidebar--primary {
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
+  .md-sidebar--primary .md-sidebar__scrollwrap,
+  .md-sidebar--primary .md-sidebar__inner {
+    background: #111318 !important;
+  }
+
+  /* Titre du drawer */
+  .md-nav--primary .md-nav__title {
+    background: linear-gradient(90deg, #5c0611 0%, #8b0a1a 45%, #b11226 100%) !important;
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    padding: 0.95rem 1rem !important;
+    margin: 0 !important;
+  }
+
+  /* Sections principales */
+  .md-nav--primary > .md-nav__list > .md-nav__item--section {
+    margin-top: 0.55rem !important;
+    padding-top: 0.55rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .md-nav--primary > .md-nav__list > .md-nav__item--section:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+  }
+
+  .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: #9ea9bb !important;
+    padding: 0.85rem 1rem 0.45rem 1rem !important;
+  }
+
+  /* Sous-pages */
+  .md-nav--primary .md-nav__item .md-nav__item .md-nav__link {
+    font-size: 0.98rem !important;
+    line-height: 1.35 !important;
+    padding: 0.55rem 1rem !important;
+    color: #dde2ea !important;
+  }
+
+  /* Lien actif */
+  .md-nav__link--active,
+  .md-nav__item .md-nav__link--active {
+    color: #ff4d6d !important;
+    font-weight: 700 !important;
+  }
+
+  /* Confort de lecture mobile */
   .md-typeset {
-    font-size: 0.78rem;
+    font-size: 0.8rem !important;
   }
 
   .md-typeset h1 {
-    font-size: 1.55rem;
+    font-size: 1.55rem !important;
   }
 
   .md-typeset h2 {
-    font-size: 1.2rem;
+    font-size: 1.2rem !important;
   }
 
   .md-typeset h3 {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
 }
