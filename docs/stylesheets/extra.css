@@ -16,9 +16,7 @@
   --besafe-active: #ff4d6d;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* Header */
 .md-header {
   background: linear-gradient(90deg, #5c0611 0%, #8b0a1a 45%, #b11226 100%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
@@ -32,9 +30,7 @@
   border-radius: 8px;
 }
 
-/* =========================
-   LIENS / TEXTE GLOBAUX
-========================= */
+/* Texte / liens globaux */
 .md-nav__link {
   color: #dde2ea;
 }
@@ -64,9 +60,7 @@
   overflow: hidden;
 }
 
-/* =========================
-   DESKTOP ONLY
-========================= */
+/* Desktop uniquement */
 @media screen and (min-width: 76.25em) {
   .md-sidebar--primary {
     width: 12.8rem;
@@ -84,7 +78,7 @@
     background-color: var(--besafe-sidebar-bg);
   }
 
-  /* Sections principales du menu */
+  /* Sections du menu */
   .md-nav--primary > .md-nav__list > .md-nav__item--section {
     margin-top: 0.7rem;
     padding-top: 0.5rem;
@@ -111,7 +105,7 @@
     padding-bottom: 0.08rem;
   }
 
-  /* Table des matières plus légère */
+  /* ToC plus légère */
   .md-nav--secondary .md-nav__title {
     font-size: 0.74rem;
     font-weight: 700;
@@ -141,95 +135,33 @@
   }
 }
 
-/* =========================
-   MOBILE / TABLET
-   => menu plein écran propre
-========================= */
+/* Mobile / tablette : on ne casse rien, on laisse Material gérer */
 @media screen and (max-width: 76.24em) {
-  /* Header compact */
-  .md-header__title {
-    font-size: 0.92rem !important;
-  }
-
-  .md-header__button.md-logo img {
-    height: 20px !important;
-  }
-
-  /* On masque complètement la ToC */
   .md-sidebar--secondary {
     display: none !important;
   }
 
-  /* Drawer principal : plein écran */
-  .md-sidebar--primary {
-    width: 100vw !important;
-    max-width: 100vw !important;
+  .md-header__title {
+    font-size: 0.92rem;
   }
 
-  .md-sidebar--primary .md-sidebar__scrollwrap,
-  .md-sidebar--primary .md-sidebar__inner {
-    background: #111318 !important;
+  .md-header__button.md-logo img {
+    height: 20px;
   }
 
-  /* Titre du drawer */
-  .md-nav--primary .md-nav__title {
-    background: linear-gradient(90deg, #5c0611 0%, #8b0a1a 45%, #b11226 100%) !important;
-    color: #ffffff !important;
-    font-size: 1rem !important;
-    font-weight: 700 !important;
-    padding: 0.95rem 1rem !important;
-    margin: 0 !important;
-  }
-
-  /* Sections principales */
-  .md-nav--primary > .md-nav__list > .md-nav__item--section {
-    margin-top: 0.55rem !important;
-    padding-top: 0.55rem !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  }
-
-  .md-nav--primary > .md-nav__list > .md-nav__item--section:first-child {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
-  }
-
-  .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link {
-    font-size: 1rem !important;
-    font-weight: 700 !important;
-    color: #9ea9bb !important;
-    padding: 0.85rem 1rem 0.45rem 1rem !important;
-  }
-
-  /* Sous-pages */
-  .md-nav--primary .md-nav__item .md-nav__item .md-nav__link {
-    font-size: 0.98rem !important;
-    line-height: 1.35 !important;
-    padding: 0.55rem 1rem !important;
-    color: #dde2ea !important;
-  }
-
-  /* Lien actif */
-  .md-nav__link--active,
-  .md-nav__item .md-nav__link--active {
-    color: #ff4d6d !important;
-    font-weight: 700 !important;
-  }
-
-  /* Confort de lecture mobile */
   .md-typeset {
-    font-size: 0.8rem !important;
+    font-size: 0.82rem;
   }
 
   .md-typeset h1 {
-    font-size: 1.55rem !important;
+    font-size: 1.55rem;
   }
 
   .md-typeset h2 {
-    font-size: 1.2rem !important;
+    font-size: 1.2rem;
   }
 
   .md-typeset h3 {
-    font-size: 1rem !important;
+    font-size: 1rem;
   }
 }
