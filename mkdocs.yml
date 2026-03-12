@@ -27,32 +27,31 @@ nav:
       - Inventaire matériel: architecture/inventaire-materiel.md
       - VLAN / Plan IP: architecture/vlan-plan-ip.md
       - Schéma: architecture/schema.md
+  
+  - Virtualisation:
+      - ESXi: virtualisation/esxi.md
+      - vCenter: virtualisation/vcenter.md
 
   - Réseaux:
       - Switch: reseaux/switch.md
       - Stormshield: reseaux/stormshield.md
 
-  - Sécurité:
-      - Wazuh: security/wazuh.md
-
+  - Systèmes:
+      - AD DS / DHCP / DNS: systemes/ad.md
+      - PKI / AD CS: systemes/pki.md
+      - iSCSI: systemes/iscsi.md
+      - Sauvegardes: systemes/veeambackup.md
+      
   - Services:
       - Vaultwarden: services/vaultwarden.md
-      - Nextcloud: services/nextcloud.md
-      - GLPI: services/glpi.md
+#      - Nextcloud: services/nextcloud.md
+#      - GLPI: services/glpi.md
       - Nginx Proxy Manager: services/npm.md
 
   - Supervision:
       - Centreon: supervision/centreon.md
       - Grafana: supervision/grafana.md
-      - Zabbix: supervision/zabbix.md
+#      - Zabbix: supervision/zabbix.md
 
-  - Systèmes:
-      - AD DS / DHCP / DNS: systemes/ad.md
-      - PKI / AD CS: systemes/pki.md
-      - iSCSI: systemes/iscsi.md
-      - Database: systemes/db.md
-      - Sauvegardes: systemes/veeambackup.md
-
-  - Virtualisation:
-      - ESXi: virtualisation/esxi.md
-      - vCenter: virtualisation/vcenter.md
+#  - Sécurité:
+#      - Wazuh: security/wazuh.md
