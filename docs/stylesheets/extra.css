@@ -113,44 +113,66 @@
 
 /* =========================
    MOBILE / TABLET
-   => on laisse Material gérer
+   => laisser Material gérer le drawer
 ========================= */
 @media screen and (max-width: 76.24em) {
+
+  /* Annule les overrides desktop */
   .md-sidebar--primary,
   .md-sidebar--secondary {
-    width: auto !important;
-    max-width: none !important;
+    width: initial !important;
+    max-width: initial !important;
+    background: initial !important;
+  }
+
+  .md-sidebar--primary {
+    left: initial !important;
+    transform: none !important;
+    z-index: initial !important;
+    position: fixed !important;
   }
 
   .md-sidebar__scrollwrap {
-    background: inherit !important;
+    background: transparent !important;
   }
 
-  .md-sidebar {
-    z-index: auto;
+  .md-overlay {
+    z-index: initial !important;
   }
 
+  .md-main,
+  .md-main__inner,
+  .md-content,
+  .md-content__inner {
+    z-index: auto !important;
+  }
+
+  /* Header plus compact */
   .md-header__title {
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
   }
 
   .md-header__button.md-logo img {
-    height: 20px;
+    height: 20px !important;
   }
 
+  /* Empêche le contenu de paraître trop gros sur mobile */
   .md-typeset h1 {
-    font-size: 1.6rem;
+    font-size: 1.6rem !important;
   }
 
   .md-typeset h2 {
-    font-size: 1.2rem;
+    font-size: 1.25rem !important;
   }
 
   .md-typeset h3 {
-    font-size: 1rem;
+    font-size: 1rem !important;
+  }
+
+  .md-typeset {
+    font-size: 0.78rem;
   }
 }
-
 /* =========================
    LIENS / TEXTE
 ========================= */
@@ -175,38 +197,4 @@
 .md-typeset table:not([class]) {
   border-radius: 8px;
   overflow: hidden;
-}
-
-/* =========================
-   FIX MENU MOBILE
-========================= */
-
-@media screen and (max-width: 76.24em) {
-
-  /* restaurer le comportement natif du drawer */
-  .md-sidebar--primary {
-    position: fixed !important;
-    left: 0 !important;
-    width: 260px !important;
-    max-width: 80% !important;
-    transform: translateX(-100%);
-    z-index: 1000 !important;
-    background: #131722 !important;
-  }
-
-  /* quand le menu est ouvert */
-  .md-toggle--drawer:checked ~ .md-container .md-sidebar--primary {
-    transform: translateX(0);
-  }
-
-  /* overlay sombre */
-  .md-overlay {
-    z-index: 900 !important;
-  }
-
-  /* contenu principal en dessous */
-  .md-main {
-    z-index: 1;
-  }
-
 }
