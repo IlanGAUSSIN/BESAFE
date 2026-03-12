@@ -9,8 +9,6 @@ theme:
   language: fr
   palette:
     scheme: slate
-    primary: red
-    accent: red
   features:
     - navigation.instant
     - navigation.sections
