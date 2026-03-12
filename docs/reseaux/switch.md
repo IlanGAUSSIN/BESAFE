@@ -17,7 +17,7 @@
 
 ---
 
-## 🧾 Étape 1 : Installation / Informations générales</summary>
+## 🧾 Étape 1 : Installation / Informations générales
 
 > Objectif : définir les **informations de base** du switch (nom, utilisateur admin, IP de management)
 
@@ -88,7 +88,7 @@ write memory
   
 ---
   
-## 🌐 Étape 2 : Configuration L2 (VLANs, ports d’accès & trunks)</summary>
+## 🌐 Étape 2 : Configuration L2 (VLANs, ports d’accès & trunks)
 
 > Objectif : créer les **VLANs**, puis **attribuer les ports** en mode access ou trunk selon le besoin.
 
@@ -192,7 +192,7 @@ interface gi1/0/22
   
   ---
   
-## 🔌 Étape 3 : LACP – Agrégation inter-switch (Port-Channel 1)</summary>
+## 🔌 Étape 3 : LACP – Agrégation inter-switch (Port-Channel 1)
 
 > Objectif : configurer et vérifier l’**agrégation de liens** (LACP) entre **NTE-SW-001** et **NTE-SW-002**
 
@@ -244,7 +244,7 @@ write memory
   
   ---
   
-## 🛠️ Étape 4 : Configuration avancée (SSH, HTTPS, domaine, bannière)</summary>
+## 🛠️ Étape 4 : Configuration avancée (SSH, HTTPS, domaine, bannière)
 
 > Objectif : sécuriser l’accès au switch, activer les services nécessaires (SSH/HTTPS), définir le domaine, et ajouter une bannière légale d’accès.
 
@@ -308,7 +308,7 @@ write memory
   
  --- 
   
-## 🛡️ Étape 5 : Sécurité L2 (Portfast, BPDU Guard, Loop Guard, STP)</summary>
+## 🛡️ Étape 5 : Sécurité L2 (Portfast, BPDU Guard, Loop Guard, STP)
 
 > Objectif : appliquer les bonnes pratiques Cisco pour sécuriser la couche 2 du switch et prévenir les boucles réseau, attaques STP et erreurs humaines.
 
