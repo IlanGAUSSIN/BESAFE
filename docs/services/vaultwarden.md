@@ -15,8 +15,6 @@
 
 ---
 
-<details open>
-
 ### 🔐 Vaultwarden – Gestionnaire de secrets BESAFE
 
 Vaultwarden est utilisé dans l’infrastructure **BESAFE** comme gestionnaire centralisé de secrets.
@@ -164,10 +162,6 @@ Cela permet :
 - une meilleure organisation
 - une gestion simplifiée des accès
 - une traçabilité des credentials utilisés.
-  
-  
-  
-</details>
   
 ---
 
