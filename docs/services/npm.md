@@ -15,8 +15,7 @@
 
 ---
 
-<details>
-<summary>🌐 Étape 1 : Architecture & rôle du service</summary>
+## 🌐 Étape 1 : Architecture & rôle du service
 
 **Nginx Proxy Manager (NPM)** est utilisé dans l’infrastructure BESAFE comme **reverse proxy central**.
 
@@ -63,13 +62,10 @@ Exemple :
 wiki.besafeit.fr → 10.47.130.102:3000
 vault.besafeit.fr → 10.47.130.201:8080
 cloud.besafeit.fr → 10.47.50.210:8080
-
-</details>
   
 ---
 
-<details>
-<summary>🐳 Étape 2 : Déploiement Docker</summary>
+## 🐳 Étape 2 : Déploiement Docker
 
 Dans l’infrastructure BESAFE, **Nginx Proxy Manager est déployé via Docker Compose** sur une machine dédiée.
 
@@ -165,14 +161,11 @@ Dans le répertoire : /opt/npm
 ```bash
 docker compose up -d  
 docker ps
-```  
-
-</details>  
+```   
   
 ---  
 
-<details>
-<summary>🔐 Étape 3 : Certificats Let's Encrypt via DNS Cloudflare</summary>
+## 🔐 Étape 3 : Certificats Let's Encrypt via DNS Cloudflare
 
 Dans l’infrastructure BESAFE, **Nginx Proxy Manager** gère les certificats TLS de manière centralisée via **Let’s Encrypt**.
 
@@ -246,7 +239,7 @@ Elle est particulièrement adaptée à une architecture où NPM joue le rôle de
 ![npm-005.png](../assets/npm/npm-005.png)
 Cici, il suffit seulement de renseigner ton registar DNS, puis de remplacer dans le credential par ton token API.
   
-</details>
+---
 
 ## ✅ Résumé des étapes – Nginx Proxy Manager
 
@@ -256,7 +249,7 @@ Cici, il suffit seulement de renseigner ton registar DNS, puis de remplacer dans
 | **2️⃣ Déploiement Docker** | Héberger NPM et sa base MariaDB | Service persistent et maintenable |
 | **3️⃣ Certificats Let's Encrypt** | Automatiser la gestion TLS via DNS Cloudflare | Certificats SSL valides |
 
-
+---
 
 ## 🔗 Liens utiles
 
