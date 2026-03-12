@@ -11,15 +11,17 @@
   --md-default-fg-color--light: #b8bcc8;
   --md-default-fg-color--lighter: #8f96a3;
 
-  --besafe-sidebar-bg: #131722;
-  --besafe-border: rgba(255, 255, 255, 0.08);
+  --besafe-border: rgba(255,255,255,0.06);
   --besafe-active: #ff4d6d;
 }
 
-/* Header */
+/* =========================
+   HEADER
+========================= */
+
 .md-header {
-  background: linear-gradient(90deg, #5c0611 0%, #8b0a1a 45%, #b11226 100%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(90deg,#5c0611 0%,#8b0a1a 45%,#b11226 100%);
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
 }
 
 .md-header__button.md-logo img {
@@ -30,138 +32,177 @@
   border-radius: 8px;
 }
 
-/* Texte / liens globaux */
+/* =========================
+   FOND GLOBAL UNIFIÉ
+========================= */
+
+.md-main,
+.md-main__inner,
+.md-content,
+.md-content__inner,
+.md-sidebar,
+.md-sidebar__scrollwrap {
+  background: transparent !important;
+}
+
+/* =========================
+   TEXTE / LIENS
+========================= */
+
 .md-nav__link {
-  color: #dde2ea;
+  color:#dde2ea;
 }
 
 .md-nav__link:hover {
-  color: var(--besafe-active);
+  color:var(--besafe-active);
 }
 
 .md-nav__link--active,
 .md-nav__item .md-nav__link--active {
-  color: var(--besafe-active) !important;
-  font-weight: 700;
+  color:var(--besafe-active)!important;
+  font-weight:700;
 }
 
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
-  font-weight: 700;
+  font-weight:700;
 }
 
 .md-typeset pre > code {
-  border-radius: 10px;
+  border-radius:10px;
 }
 
 .md-typeset table:not([class]) {
-  border-radius: 8px;
-  overflow: hidden;
+  border-radius:8px;
+  overflow:hidden;
 }
 
-/* Desktop uniquement */
-@media screen and (min-width: 76.25em) {
-  .md-sidebar--primary {
-    width: 12.8rem;
+/* =========================
+   DESKTOP
+========================= */
+
+@media screen and (min-width:76.25em){
+
+  .md-grid{
+    max-width:84rem;
   }
 
-  .md-sidebar--secondary {
-    width: 11.2rem;
+  /* largeur colonnes */
+  .md-sidebar--primary{
+    width:12.8rem;
+    border-right:1px solid var(--besafe-border);
   }
 
-  .md-grid {
-    max-width: 84rem;
+  .md-sidebar--secondary{
+    width:11.2rem;
+    border-left:1px solid var(--besafe-border);
   }
 
-  .md-sidebar__scrollwrap {
-    background-color: var(--besafe-sidebar-bg);
+  /* NAVIGATION GAUCHE */
+
+  .md-nav--primary > .md-nav__list > .md-nav__item--section{
+    margin-top:.7rem;
+    padding-top:.5rem;
+    border-top:1px solid var(--besafe-border);
   }
 
-  /* Sections du menu */
-  .md-nav--primary > .md-nav__list > .md-nav__item--section {
-    margin-top: 0.7rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--besafe-border);
+  .md-nav--primary > .md-nav__list > .md-nav__item--section:first-child{
+    margin-top:.15rem;
+    padding-top:0;
+    border-top:none;
   }
 
-  .md-nav--primary > .md-nav__list > .md-nav__item--section:first-child {
-    margin-top: 0.15rem;
-    padding-top: 0;
-    border-top: none;
+  .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link{
+    font-size:.82rem;
+    font-weight:700;
+    color:#9ea9bb!important;
+    padding-bottom:.2rem;
   }
 
-  .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #9ea9bb !important;
-    letter-spacing: 0;
-    padding-bottom: 0.2rem;
+  .md-nav--primary .md-nav__item .md-nav__item .md-nav__link{
+    font-size:.76rem;
+    padding-top:.08rem;
+    padding-bottom:.08rem;
   }
 
-  .md-nav--primary .md-nav__item .md-nav__item .md-nav__link {
-    font-size: 0.76rem;
-    padding-top: 0.08rem;
-    padding-bottom: 0.08rem;
+  /* TABLE DES MATIÈRES */
+
+  .md-nav--secondary{
+    background:transparent!important;
+    box-shadow:none!important;
   }
 
-  /* ToC plus légère */
-  .md-nav--secondary .md-nav__title {
-    font-size: 0.74rem;
-    font-weight: 700;
-    color: #aeb7c5;
-    margin-bottom: 0.35rem;
-    border-bottom: 1px solid var(--besafe-border);
-    padding-bottom: 0.3rem;
+  .md-nav--secondary .md-nav__title{
+    font-size:.74rem;
+    font-weight:700;
+    color:#aeb7c5;
+    margin-bottom:.35rem;
+    border-bottom:1px solid var(--besafe-border);
+    padding-bottom:.3rem;
   }
 
-  .md-nav--secondary .md-nav__link {
-    font-size: 0.74rem;
-    line-height: 1.25;
-    color: #d3d9e3;
-    padding-top: 0.08rem;
-    padding-bottom: 0.08rem;
+  .md-nav--secondary .md-nav__link{
+    font-size:.74rem;
+    line-height:1.25;
+    color:#d3d9e3;
+    padding-top:.08rem;
+    padding-bottom:.08rem;
+    opacity:.92;
   }
 
-  .md-nav--secondary .md-nav .md-nav__link {
-    font-size: 0.7rem;
-    color: #b2bac8;
+  .md-nav--secondary .md-nav__link:hover{
+    opacity:1;
   }
 
-  .md-nav--secondary .md-nav .md-nav__item {
-    margin-left: 0.2rem;
-    padding-left: 0.28rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
+  .md-nav--secondary .md-nav .md-nav__link{
+    font-size:.7rem;
+    color:#b2bac8;
   }
+
+  .md-nav--secondary .md-nav .md-nav__item{
+    margin-left:.2rem;
+    padding-left:.28rem;
+    border-left:1px solid rgba(255,255,255,.05);
+  }
+
 }
 
-/* Mobile / tablette : on ne casse rien, on laisse Material gérer */
-@media screen and (max-width: 76.24em) {
-  .md-sidebar--secondary {
-    display: none !important;
+/* =========================
+   MOBILE / TABLET
+========================= */
+
+@media screen and (max-width:76.24em){
+
+  /* on masque la ToC */
+  .md-sidebar--secondary{
+    display:none!important;
   }
 
-  .md-header__title {
-    font-size: 0.92rem;
+  /* header compact */
+  .md-header__title{
+    font-size:.92rem;
   }
 
-  .md-header__button.md-logo img {
-    height: 20px;
+  .md-header__button.md-logo img{
+    height:20px;
   }
 
-  .md-typeset {
-    font-size: 0.82rem;
+  /* texte plus compact */
+  .md-typeset{
+    font-size:.82rem;
   }
 
-  .md-typeset h1 {
-    font-size: 1.55rem;
+  .md-typeset h1{
+    font-size:1.55rem;
   }
 
-  .md-typeset h2 {
-    font-size: 1.2rem;
+  .md-typeset h2{
+    font-size:1.2rem;
   }
 
-  .md-typeset h3 {
-    font-size: 1rem;
+  .md-typeset h3{
+    font-size:1rem;
   }
+
 }
