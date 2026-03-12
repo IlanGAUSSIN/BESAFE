@@ -17,8 +17,7 @@
 
 ---
 
-<details>
-<summary>🌐 Étape 1 : Configuration réseau</summary>
+## 🌐 Étape 1 : Configuration réseau
 
 > Objectif : définir les interfaces physiques et VLANs associés afin d’assurer le routage entre les réseaux internes et la connectivité Internet.
 
@@ -74,12 +73,10 @@ L’interface **IN (eth1)** transporte les VLAN suivants :
 - 🧱 Créer des objets réseau par VLAN pour simplifier les règles.  
 - 🕒 Activer la NTP sync sur le FW pour les logs centralisés.  
 
-</details>
 
 ---
 
-<details>
-<summary>🧱 Étape 2 : NAT et filtrage</summary>
+## 🧱 Étape 2 : NAT et filtrage
 
 > Objectif : créer les règles de translation d’adresse (NAT) et de filtrage entre les VLANs internes, la DMZ et Internet.
 
@@ -102,12 +99,7 @@ L’interface **IN (eth1)** transporte les VLAN suivants :
 
 ---
 
-</details>
-
----
-
-<details>
-<summary>🔐 Étape 3 : VPN (IPSec / SSL)</summary>
+## 🔐 Étape 3 : VPN (IPSec / SSL)
 
 ### 🌐 3.1 – Objets réseau & ports utilisés
 
@@ -147,12 +139,9 @@ Principaux réglages :
 - Accès **IPSec** : Allow  
 - Authentification via **LDAP AD**
 
---- 
-</details>
-
 ---
 
-<details><summary>📜 Étape 4 : Certificat SSL du Firewall</summary>
+## 📜 Étape 4 : Certificat SSL du Firewall
 
 > L’objectif est d’importer un **certificat signé par la **PKI interne** pour sécuriser l’accès HTTPS à l’interface d’administration du pare-feu et au portail d’authentification.
 
@@ -229,13 +218,9 @@ La connexion HTTPS est maintenant :
 - ✔️ Sans avertissement  
 - 🎯 Signée par ta PKI BesafeSubCA2
 
-</details>
-
-
 ---
 
-<details>
-<summary>🧩 Étape 5 : Intégration Active Directory / LDAP</summary>
+## 🧩 Étape 5 : Intégration Active Directory / LDAP
 
 > Objectif : permettre au pare-feu Stormshield d’utiliser **les comptes AD** pour  
 > – l’authentification VPN (SSL & IPSec),  
@@ -280,9 +265,6 @@ Exemple : le groupe **`VPN_Access@besafe.local`** → accès SSL + IPSec.
 
 Le pare-feu interroge directement **Active Directory** via LDAPS et remonte les comptes/groupes disponibles.  
 Cela permet d'appliquer des politiques d’accès basées sur les groupes AD (ex : `VPN_Access@besafe.local`).
-
-</details>
-
 
 ---
 
