@@ -1,0 +1,90 @@
+:root {
+  --md-primary-fg-color: #b3001b;
+  --md-primary-fg-color--light: #d90429;
+  --md-primary-fg-color--dark: #7f0012;
+
+  --md-accent-fg-color: #d90429;
+  --md-accent-fg-color--transparent: rgba(217, 4, 41, 0.15);
+
+  --md-default-bg-color: #111318;
+  --md-default-fg-color: #e6e6e6;
+  --md-default-fg-color--light: #b8bcc8;
+  --md-default-fg-color--lighter: #8f96a3;
+}
+
+/* Barre du haut */
+.md-header {
+  background: linear-gradient(90deg, #5a000d 0%, #8f0015 35%, #b3001b 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Onglet recherche */
+.md-search__form {
+  border-radius: 10px;
+}
+
+/* Sidebar gauche */
+.md-sidebar--primary {
+  width: 15.5rem;
+}
+
+.md-nav--primary .md-nav__title {
+  font-weight: 700;
+  color: #f0f0f0;
+}
+
+/* Fond plus propre de la sidebar */
+.md-sidebar__scrollwrap {
+  background-color: #161a22;
+}
+
+/* Liens menu */
+.md-nav__link {
+  color: #d8dbe2;
+}
+
+.md-nav__link:hover {
+  color: #ff4d6d;
+}
+
+/* Élément actif dans le menu */
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active {
+  color: #ff4d6d !important;
+  font-weight: 700;
+}
+
+/* Table des matières à droite */
+.md-sidebar--secondary {
+  width: 14rem;
+}
+
+/* Largeur contenu central */
+.md-grid {
+  max-width: 92rem;
+}
+
+/* Titres */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight: 700;
+}
+
+/* Blocs de code */
+.md-typeset pre > code {
+  border-radius: 10px;
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Logo sidebar custom si ajouté plus bas */
+.besafe-sidebar-logo {
+  display: block;
+  max-width: 180px;
+  margin: 0 auto 1rem auto;
+}
