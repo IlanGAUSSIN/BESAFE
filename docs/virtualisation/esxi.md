@@ -15,8 +15,7 @@
 
 ---
 
-<details>
-<summary>🌐 Étape 1 : Configuration réseau de management</summary>
+## 🌐 Étape 1 : Configuration réseau de management
 
 > Cette section décrit la configuration réseau utilisée par l’hôte **ESXi** pour son administration et son intégration dans l’infrastructure **BESAFE**.
 
@@ -107,12 +106,9 @@ Cela permet :
   
 ![esxi-004.png](../assets/esxi/esxi-004.png)
 
-</details>
-
 ---
 
-<details>
-<summary>🔀 Étape 2 : Architecture réseau virtuelle</summary>
+## 🔀 Étape 2 : Architecture réseau virtuelle
 
 Cette section décrit l’architecture réseau virtuelle de l’hôte **ESXi nte-esxi-001** au sein de l’infrastructure **BESAFE**.
 
@@ -289,12 +285,9 @@ Cette architecture réseau permet :
 
 Elle constitue la base du fonctionnement réseau de l’infrastructure virtualisée **BESAFE**.
 
-</details>
-
 ---
 
-<details>
-<summary>💾 Étape 3 : Architecture stockage iSCSI</summary>
+## 💾 Étape 3 : Architecture stockage iSCSI
 
 Cette section décrit la configuration du stockage **iSCSI** utilisée par l’hôte ESXi dans l’infrastructure **BESAFE**.
 
@@ -418,8 +411,7 @@ L’hôte ESXi est capable :
 
 Cette configuration constitue la base du stockage des machines virtuelles de l’infrastructure **BESAFE**.
 
-</details>
-
+---
 
 ## ✅ Résumé des étapes
 
