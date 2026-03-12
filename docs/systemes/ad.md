@@ -32,8 +32,7 @@
 
 ---
 
-<details>
-<summary>🏛️ 1. Modèle de tiering (T0 / T12 / TL)</summary>
+## 🏛️ 1. Modèle de tiering (T0 / T12 / TL)
 
 ### 🎯 Objectif du tiering
 
@@ -63,12 +62,9 @@ Limiter l’impact d’un compte compromis en **segmentant les privilèges** :
 
 > 🎯 Objectif final : un compte compromis en T12 ou TL **ne permet pas** de remonter facilement vers T0.
 
-</details>
-
 ---
 
-<details>
-<summary>🗂️ 2. Structure des OU</summary>
+## 🗂️ 2. Structure des OU
 
 ### 🧱 Principes de design
 
@@ -99,11 +95,9 @@ besafe.local
   
 > 🔐 Cette structure permet d’appliquer des GPO différentes par tier, tout en gardant une vision claire de l’appartenance de chaque objet.
 
-</details>
-
 ---
 
-<details> <summary>👥 3. Comptes & groupes administratifs</summary>
+## 👥 3. Comptes & groupes administratifs
 
 ### 🔑 Séparation des comptes
 
@@ -147,11 +141,9 @@ besafe.local
 
 Limiter la surface d’attaque et assurer une **administration lisible, segmentée et sécurisée**.
 
-</details>
-
 ---
 
-<details> <summary>🧷 4. GPO & durcissement (vue d’ensemble)</summary>
+## 🧷 4. GPO & durcissement (vue d’ensemble)
 
 ### 🧬 Architecture GPO (exemple)
 
@@ -190,9 +182,6 @@ Limiter la surface d’attaque et assurer une **administration lisible, segment�
 📌 *Le détail complet repose sur les baselines HardenAD + recommandations Microsoft.*
 
 ![GPO](../assets/ad/installation-active-directory-006.png)  
-  
-</details>
-
 
 ---
 
