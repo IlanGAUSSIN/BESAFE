@@ -19,8 +19,7 @@
 
 ---
 
-<details>
-<summary>🧩 Étape 1 : Architecture vCenter BESAFE</summary>
+## 🧩 Étape 1 : Architecture vCenter BESAFE
 
 Le **vCenter Server Appliance (VCSA)** constitue le point central d'administration de l'infrastructure VMware.
 
@@ -59,12 +58,9 @@ Cette organisation permet de structurer l'infrastructure VMware selon une hiéra
 - **Cluster** : regroupement des hôtes
 - **Hosts ESXi** : hyperviseurs exécutant les VM
 
-</details>
-
 ---
 
-<details>
-<summary>🖥️ Étape 2 : Cluster VMware</summary>
+## 🖥️ Étape 2 : Cluster VMware
 
 ![vcsa-002.png](../assets/vcsa/vcsa-002.png)
   
@@ -95,12 +91,9 @@ Les ressources CPU et mémoire sont partagées entre les hôtes.
 
 Cette architecture garantit une **continuité de service** pour les machines virtuelles.
 
-</details>
-
 ---
 
-<details>
-<summary>🌐 Étape 3 : Réseau distribué (VDS)</summary>
+## 🌐 Étape 3 : Réseau distribué (VDS)
 
 L'infrastructure BESAFE utilise un **vSphere Distributed Switch (VDS)** nommé : **VDS_TRUNK**
 
@@ -126,12 +119,9 @@ Chaque port group correspond à un **VLAN spécifique de l’infrastructure**.
 
 Les machines virtuelles se connectent à ces réseaux virtuels via leurs interfaces réseau.
 
-</details>
-
 ---
 
-<details>
-<summary>💾 Étape 4 : Organisation du stockage</summary>
+## 💾 Étape 4 : Organisation du stockage
 
 Le stockage de l'infrastructure VMware est organisé via plusieurs **datastores VMFS**.
 
@@ -155,12 +145,9 @@ L'objectif était de rendre les LUN et les DATASTORE clair à l'utilisation.
 | DS_BACKUP | Nos sauvegardes, en local sur le serveur et sur le NAS |
 | DS_SYSTEM | La partition système du serveur |
 
-</details>
-
 ---
 
-<details>
-<summary>📁 Étape 5 : Organisation des machines virtuelles</summary>
+## 📁 Étape 5 : Organisation des machines virtuelles
 
 Les machines virtuelles sont organisées dans des **dossiers logiques** afin de structurer l’infrastructure.
 
@@ -185,8 +172,6 @@ Exemples :
 
 Cette organisation permet de maintenir une **infrastructure claire et structurée**.
 
-</details>
-
 ---
 
 ## ✅ Résumé global
@@ -198,7 +183,6 @@ Cette organisation permet de maintenir une **infrastructure claire et structuré
 | **3️⃣ Réseau distribué (VDS)** | Centraliser la gestion réseau des hôtes ESXi | VLANs et port groups uniformisés |
 | **4️⃣ Organisation du stockage** | Structurer les datastores VMware | Stockage partagé pour les VM |
 | **5️⃣ Organisation des machines virtuelles** | Classer les VM par rôle et par VLAN | Infrastructure claire et maintenable |
-
 
 ---
 
