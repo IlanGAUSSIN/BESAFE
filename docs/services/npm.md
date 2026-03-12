@@ -148,7 +148,7 @@ services:
 ### Port exposés :
   
 | Port | Fonction |
-|:--|:--|:--|  
+|:--|:--| 
 | 80 | HTTP|
 | 443 | HTTPS |  
 | 81 | Interface d'administration |  
