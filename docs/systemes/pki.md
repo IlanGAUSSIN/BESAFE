@@ -20,8 +20,7 @@ Elle garantit :
 
 ---
 
-<details>
-<summary>🏗️ Étape 1 : Architecture PKI BESAFE</summary>
+## 🏗️ Étape 1 : Architecture PKI BESAFE
   
 ### Architecture PKI BESAFE
 
@@ -61,13 +60,10 @@ Le modèle 2-Tier apporte :
 
 ### 🖼️ Schéma PKI – BESAFE 
 ![PKI – BESAFE](../assets/pki/pki-002.png)
-  
-</details>
 
 ---
 
-<details>
-<summary>🔗 Étape 2 : Intégration avec Active Directory & Modèle de Tiering</summary>
+## 🔗 Étape 2 : Intégration avec Active Directory & Modèle de Tiering
 
 > La PKI BESAFE applique strictement le modèle **Microsoft Enterprise PKI + Tiering AD**.  
 > L’objectif : garantir une **séparation totale des privilèges**, une **émission contrôlée des certificats** et une **surface d’attaque minimale**.
@@ -126,12 +122,10 @@ Cela permet automatiquement :
 
 ➡️ Les serveurs, ESXi, appliances réseau utilisent **SUBCA-001**.  
 ➡️ Les applications web (Nextcloud, NPM, Vaultwarden…) utilisent **SUBCA-002**.
-</details>
 
 ---
 
-<details>
-<summary> 📄 Étape 3 : Demande, installation et export d’un certificat serveur (PFX)</summary>
+## 📄 Étape 3 : Demande, installation et export d’un certificat serveur (PFX)
 
 > Cette étape décrit comment créer un **certificat Web Server** signé par la PKI interne.
 > L’objectif est d’assurer une authentification TLS fiable basée sur la PKI BESAFE.
@@ -228,8 +222,8 @@ Le certificat apparaît maintenant dans **Ordinateur local → Personnel → Cer
 
 ### 📸 Capture – Sélection du chemin d’export
 ![Export 5](../assets/pki/cert-pki-019.png)
-</details>
 
+---
 
 ## 🧩 Résumé des étapes
 
