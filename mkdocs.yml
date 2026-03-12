@@ -7,8 +7,12 @@ docs_dir: docs
 theme:
   name: material
   language: fr
+  logo: assets/besafe.png
+  favicon: assets/besafe.png
   palette:
     scheme: slate
+    primary: custom
+    accent: custom
   features:
     - navigation.instant
     - navigation.sections
@@ -16,9 +20,13 @@ theme:
     - navigation.top
     - search.suggest
     - search.highlight
+    - content.code.copy
 
 plugins:
   - search
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Accueil: index.md
