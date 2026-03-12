@@ -17,8 +17,7 @@
 
 ---
 
-<details>
-<summary>🧾 Étape 1 : Installation / Informations générales</summary>
+## 🧾 Étape 1 : Installation / Informations générales</summary>
 
 > Objectif : définir les **informations de base** du switch (nom, utilisateur admin, IP de management)
 
@@ -85,12 +84,11 @@ write memory
 
 ### 📸 Capture 3 – VLAN Management
 ![VLAN Management](../assets/switch/install-switch-003.png)  
-</details>
+
   
 ---
   
-<details>
-<summary>🌐 Étape 2 : Configuration L2 (VLANs, ports d’accès & trunks)</summary>
+## 🌐 Étape 2 : Configuration L2 (VLANs, ports d’accès & trunks)</summary>
 
 > Objectif : créer les **VLANs**, puis **attribuer les ports** en mode access ou trunk selon le besoin.
 
@@ -190,13 +188,11 @@ interface gi1/0/22
 
 ![Trunks List](../assets/switch/install-switch-005.png)
 
-> Vérifie la présence ou non des VLANs dans les liens Trunks.
-</details>  
+> Vérifie la présence ou non des VLANs dans les liens Trunks.  
   
   ---
   
-<details>
-<summary>🔌 Étape 3 : LACP – Agrégation inter-switch (Port-Channel 1)</summary>
+## 🔌 Étape 3 : LACP – Agrégation inter-switch (Port-Channel 1)</summary>
 
 > Objectif : configurer et vérifier l’**agrégation de liens** (LACP) entre **NTE-SW-001** et **NTE-SW-002**
 
@@ -244,13 +240,11 @@ write memory
 | **port-channel 1** | Po1 commun | Identification unique entre les 2 switches |
 | **spanning-tree link-type point-to-point** | STP optimisé | Convergence rapide |
 | **guard loop** | Protection L2 | Évite les boucles accidentelles |
-  
-</details>  
+    
   
   ---
   
-<details>
-<summary>🛠️ Étape 4 : Configuration avancée (SSH, HTTPS, domaine, bannière)</summary>
+## 🛠️ Étape 4 : Configuration avancée (SSH, HTTPS, domaine, bannière)</summary>
 
 > Objectif : sécuriser l’accès au switch, activer les services nécessaires (SSH/HTTPS), définir le domaine, et ajouter une bannière légale d’accès.
 
@@ -311,12 +305,10 @@ banner login ^
 end
 write memory  
 ```  
-</details>  
   
  --- 
   
-<details>
-<summary>🛡️ Étape 5 : Sécurité L2 (Portfast, BPDU Guard, Loop Guard, STP)</summary>
+## 🛡️ Étape 5 : Sécurité L2 (Portfast, BPDU Guard, Loop Guard, STP)</summary>
 
 > Objectif : appliquer les bonnes pratiques Cisco pour sécuriser la couche 2 du switch et prévenir les boucles réseau, attaques STP et erreurs humaines.
 
@@ -398,7 +390,6 @@ write memory
   
 ### 📸 Capture 9 – STP
 ![STP](../assets/switch/install-switch-009.png)  
-</details>  
   
 ---
 
