@@ -43,7 +43,7 @@ Cette adresse correspond au **réseau de management de l’infrastructure**.
 L’accès à l’hyperviseur s’effectue via :
 https://10.47.101.201 ou https://nte-esxi-001
   
-![esxi-001.png](/assets/esxi/esxi-001.png)
+![esxi-001.png](../assets/esxi/esxi-001.png)
 
 ---
 
@@ -64,7 +64,7 @@ Cela permet notamment :
 - l’intégration dans les outils d’administration
 - l’utilisation du FQDN pour l’accès à l’hyperviseur
 
-![esxi-002.png](/assets/esxi/esxi-002.png)
+![esxi-002.png](../assets/esxi/esxi-002.png)
 
 ---
 
@@ -82,7 +82,7 @@ nte-esxi-001
 sera automatiquement résolu vers :
 nte-esxi-001.besafeit.local
   
-![esxi-003.png](/assets/esxi/esxi-003.png)
+![esxi-003.png](../assets/esxi/esxi-003.png)
 
 ---
 
@@ -105,7 +105,7 @@ Cela permet :
 - intégration dans l’infrastructure BESAFE
 - isolation du réseau d’administration
   
-![esxi-004.png](/assets/esxi/esxi-004.png)
+![esxi-004.png](../assets/esxi/esxi-004.png)
 
 </details>
 
@@ -127,7 +127,7 @@ L’objectif est de comprendre :
 
 ### 🧠 Architecture générale
 
-![Architecture VMware Networking](/assets/esxi/42jdglxxbz.png)
+![Architecture VMware Networking](../assets/esxi/42jdglxxbz.png)
   
 Ce schéma illustre le fonctionnement du **réseau virtuel VMware**.
 
@@ -164,7 +164,7 @@ Le trafic qui transite par cette interface inclut notamment :
 
 Cette interface constitue donc le **point d’entrée principal de l’hyperviseur**.
 
-![esxi-005.png](/assets/esxi/esxi-005.png)
+![esxi-005.png](../assets/esxi/esxi-005.png)
 
 ### 🔁 Interfaces VMkernel dédiées aux services
 
@@ -204,7 +204,7 @@ Elle permet la migration des machines virtuelles entre les hôtes ESXi sans inte
 
 Le trafic vMotion est généralement très important en volume, c’est pourquoi il est isolé sur un réseau spécifique.
 
-![esxi-006.png](/assets/esxi/esxi-006.png)
+![esxi-006.png](../assets/esxi/esxi-006.png)
 
 ---
 
@@ -238,7 +238,7 @@ Ce choix d’architecture permet :
 - d’éviter toute interférence avec le réseau VM
 - d’améliorer la performance et la stabilité du stockage
 
-![esxi-007.png](/assets/esxi/esxi-007.png)
+![esxi-007.png](../assets/esxi/esxi-007.png)
 
 ---
 
@@ -261,7 +261,7 @@ Les machines virtuelles sont ensuite connectées à ces port groups selon leur r
 
 Cela permet d’appliquer une **segmentation réseau stricte** au niveau de la virtualisation.
 
-![esxi-008.png](/assets/esxi/esxi-008.png)
+![esxi-008.png](../assets/esxi/esxi-008.png)
 
 ---
 
@@ -374,7 +374,7 @@ Les connexions sont établies via le port standard : 3260
   
 Les différentes LUN présentées par le stockage sont ensuite détectées par l’hyperviseur.
 
-![esxi-009.png](/assets/esxi/esxi-009.png)
+![esxi-009.png](../assets/esxi/esxi-009.png)
 
 ---
 
@@ -389,7 +389,7 @@ Ces volumes peuvent ensuite être utilisés pour :
 - stocker les templates
 - stocker les fichiers ISO
 
-![esxi-010.png](/assets/esxi/esxi-010.png)
+![esxi-010.png](../assets/esxi/esxi-010.png)
 
 ---
 
@@ -404,7 +404,7 @@ Il permet notamment :
 - la simplification des sauvegardes
 - la haute disponibilité des services virtualisés
 
-![esxi-011.png](/assets/esxi/esxi-011.png)
+![esxi-011.png](../assets/esxi/esxi-011.png)
 
 ---
 
