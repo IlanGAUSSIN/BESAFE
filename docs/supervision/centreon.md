@@ -1,7 +1,5 @@
 
-<p align="center">
-<img src="../assets/besafe.png" width="300">
-</p>
+![Logo BESAFE](../assets/besafe.png)
 
 ---
 
