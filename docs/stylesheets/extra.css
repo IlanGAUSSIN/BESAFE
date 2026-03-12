@@ -176,3 +176,37 @@
   border-radius: 8px;
   overflow: hidden;
 }
+
+/* =========================
+   FIX MENU MOBILE
+========================= */
+
+@media screen and (max-width: 76.24em) {
+
+  /* restaurer le comportement natif du drawer */
+  .md-sidebar--primary {
+    position: fixed !important;
+    left: 0 !important;
+    width: 260px !important;
+    max-width: 80% !important;
+    transform: translateX(-100%);
+    z-index: 1000 !important;
+    background: #131722 !important;
+  }
+
+  /* quand le menu est ouvert */
+  .md-toggle--drawer:checked ~ .md-container .md-sidebar--primary {
+    transform: translateX(0);
+  }
+
+  /* overlay sombre */
+  .md-overlay {
+    z-index: 900 !important;
+  }
+
+  /* contenu principal en dessous */
+  .md-main {
+    z-index: 1;
+  }
+
+}
