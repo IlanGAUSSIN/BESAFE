@@ -207,8 +207,15 @@
 
 }
 
-/* Supprimer signature Material */
-.md-copyright,
-.md-footer-meta__inner {
-    display: none !important;
+/* Supprimer complètement la signature Material */
+.md-footer-meta,
+.md-footer-meta__inner,
+.md-copyright {
+  display: none !important;
+}
+
+/* Nettoyer l'espace résiduel du footer */
+.md-footer {
+  margin: 0 !important;
+  padding: 0 !important;
 }
