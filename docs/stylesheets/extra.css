@@ -206,3 +206,8 @@
   }
 
 }
+
+/* Supprimer le footer Material for MkDocs */
+.md-footer-meta {
+    display: none;
+}
