@@ -207,7 +207,8 @@
 
 }
 
-/* Supprimer le footer Material for MkDocs */
-.md-footer-meta {
-    display: none;
+/* Supprimer signature Material */
+.md-copyright,
+.md-footer-meta__inner {
+    display: none !important;
 }
