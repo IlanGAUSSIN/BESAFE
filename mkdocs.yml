@@ -43,7 +43,8 @@ nav:
   - Réseaux:
       - Switch: reseaux/switch.md
       - Stormshield: reseaux/stormshield.md
-
+      - Fortigate: reseaux/fortigate.md
+      
   - Systèmes:
       - AD DS / DHCP / DNS: systemes/ad.md
       - PKI / AD CS: systemes/pki.md
@@ -52,14 +53,12 @@ nav:
       
   - Services:
       - Vaultwarden: services/vaultwarden.md
-#      - Nextcloud: services/nextcloud.md
-#      - GLPI: services/glpi.md
+      - Nextcloud: services/nextcloud.md
+      - GLPI: services/glpi.md
       - Nginx Proxy Manager: services/npm.md
 
   - Supervision:
       - Centreon: supervision/centreon.md
-      - Grafana: supervision/grafana.md
-#      - Zabbix: supervision/zabbix.md
 
-#  - Sécurité:
-#      - Wazuh: security/wazuh.md
+  - Sécurité:
+      - Wazuh: security/wazuh.md
