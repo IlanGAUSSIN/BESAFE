@@ -53,12 +53,12 @@ nav:
       
   - Services:
       - Vaultwarden: services/vaultwarden.md
-      - Nextcloud: services/nextcloud.md
-      - GLPI: services/glpi.md
+      #- Nextcloud: services/nextcloud.md
+      #- GLPI: services/glpi.md
       - Nginx Proxy Manager: services/npm.md
 
   - Supervision:
       - Centreon: supervision/centreon.md
 
   - Sécurité:
-      - Wazuh: security/wazuh.md
+     # - Wazuh: security/wazuh.md
