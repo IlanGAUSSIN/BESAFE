@@ -48,7 +48,6 @@ nav:
   - Systèmes:
       - AD DS / DHCP / DNS: systemes/ad.md
       - PKI / AD CS: systemes/pki.md
-      - iSCSI: systemes/iscsi.md
       - Sauvegardes: systemes/veeambackup.md
       
   - Services:
