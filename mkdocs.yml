@@ -48,7 +48,8 @@ nav:
   - Systèmes:
       - AD DS / DHCP / DNS: systemes/ad.md
       - PKI / AD CS: systemes/pki.md
-      - Sauvegardes: systemes/veeambackup.md
+      - RADIUS: systemes/nps.md
+      - Veeam: systemes/veeambackup.md
       
   - Services:
       - Vaultwarden: services/vaultwarden.md
