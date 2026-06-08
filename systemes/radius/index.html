@@ -1,0 +1,2017 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Wiki technique du projet BESAFE">
+      
+      
+      
+        <link rel="canonical" href="https://ilangaussin.github.io/BESAFE/systemes/radius/">
+      
+      
+        <link rel="prev" href="../pki/">
+      
+      
+        <link rel="next" href="../veeambackup/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/besafe.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>RADIUS - BESAFE - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#authentification-centralisee-radius-microsoft-nps" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="BESAFE - Documentation" class="md-header__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  <img src="../../assets/besafe.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BESAFE - Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RADIUS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BESAFE - Documentation" class="md-nav__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  <img src="../../assets/besafe.png" alt="logo">
+
+    </a>
+    BESAFE - Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/inventaire-materiel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventaire matériel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/vlan-plan-ip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLAN / Plan IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schéma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualisation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Virtualisation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../virtualisation/esxi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESXi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../virtualisation/vcenter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vCenter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Réseaux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Réseaux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/switch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/stormshield/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stormshield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/fortigate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fortigate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systèmes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Systèmes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AD DS / DHCP / DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PKI / AD CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RADIUS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RADIUS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-serveurs-nps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🖥️ Étape 1 : Serveurs NPS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🖥️ Étape 1 : Serveurs NPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-1-serveur-nte-nps-001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 1 – Serveur NTE-NPS-001
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-clients-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛰️ Étape 2 : Clients RADIUS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛰️ Étape 2 : Clients RADIUS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-2-radius-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 2 – RADIUS Clients
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-strategies-reseau-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📜 Étape 3 : Stratégies réseau (Network Policies)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📜 Étape 3 : Stratégies réseau (Network Policies)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-3-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 3 – Network Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-4-configuration-cote-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔌 Étape 4 : Configuration côté clients
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 Étape 4 : Configuration côté clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-fortigate-nte-fw-001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛡️ 4.1 – FortiGate (nte-fw-001)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-4-serveur-radius-sur-le-fortigate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 4 – Serveur RADIUS sur le FortiGate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-switch-cisco-nte-sw-001-002" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 4.2 – Switch Cisco (NTE-SW-001 / 002)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-5-configuration-aaa-radius-du-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 5 – Configuration AAA RADIUS du switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résumé global
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Liens utiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../veeambackup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veeam
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/vaultwarden/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vaultwarden
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/nextcloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nextcloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/glpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GLPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx Proxy Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervision
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Supervision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supervision/centreon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centreon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sécurité
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sécurité
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/wazuh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-serveurs-nps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🖥️ Étape 1 : Serveurs NPS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🖥️ Étape 1 : Serveurs NPS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-1-serveur-nte-nps-001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 1 – Serveur NTE-NPS-001
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-clients-radius" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛰️ Étape 2 : Clients RADIUS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛰️ Étape 2 : Clients RADIUS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-2-radius-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 2 – RADIUS Clients
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-strategies-reseau-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📜 Étape 3 : Stratégies réseau (Network Policies)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📜 Étape 3 : Stratégies réseau (Network Policies)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-3-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 3 – Network Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-4-configuration-cote-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔌 Étape 4 : Configuration côté clients
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 Étape 4 : Configuration côté clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-fortigate-nte-fw-001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛡️ 4.1 – FortiGate (nte-fw-001)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-4-serveur-radius-sur-le-fortigate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 4 – Serveur RADIUS sur le FortiGate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-switch-cisco-nte-sw-001-002" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔧 4.2 – Switch Cisco (NTE-SW-001 / 002)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-5-configuration-aaa-radius-du-switch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 5 – Configuration AAA RADIUS du switch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résumé global
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Liens utiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="authentification-centralisee-radius-microsoft-nps">🔑 Authentification centralisée RADIUS (Microsoft NPS)</h1>
+<blockquote>
+<p>Cette page documente le service <strong>RADIUS</strong> de l’infrastructure <strong>BESAFE</strong>, reposant sur <strong>Microsoft NPS</strong> (Network Policy Server).
+Il centralise l’authentification de l’<strong>accès VPN</strong> (FortiGate) et de l’<strong>administration des switches</strong> (Cisco), avec les comptes <strong>Active Directory</strong> <code>besafeit.local</code>.</p>
+</blockquote>
+<hr />
+<h2 id="details-techniques">⚙️ Détails techniques</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Élément</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Rôle Windows</strong></td>
+<td style="text-align: left;">NPAS – Network Policy and Access Services (NPS)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Serveur principal</strong></td>
+<td style="text-align: left;"><code>NTE-NPS-001</code> (10.47.30.41 – VLAN 30 SRV)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Serveur secondaire</strong></td>
+<td style="text-align: left;"><code>NTE-NPS-002</code> (haute disponibilité)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OS</strong></td>
+<td style="text-align: left;">Microsoft Windows Server 2025 Standard</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Domaine</strong></td>
+<td style="text-align: left;"><code>besafeit.local</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Protocole</strong></td>
+<td style="text-align: left;">RADIUS (UDP 1812/1813)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Clients RADIUS</strong></td>
+<td style="text-align: left;">FortiGate <code>nte-fw-001</code>, switches <code>nte-sw-001</code> / <code>nte-sw-002</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔗 Voir aussi la page <a href="./forti-nte-fw-001.md">Pare-feu FortiWiFi 40F</a> (Étape 5) pour le côté consommateur du VPN.</p>
+</blockquote>
+<hr />
+<h2 id="etape-1-serveurs-nps">🖥️ Étape 1 : Serveurs NPS</h2>
+<blockquote>
+<p>Objectif : héberger le rôle <strong>NPS</strong> sur deux serveurs membres du domaine pour assurer la <strong>haute disponibilité</strong> de l’authentification.</p>
+</blockquote>
+<h3 id="capture-1-serveur-nte-nps-001">📸 Capture 1 – Serveur <code>NTE-NPS-001</code></h3>
+<p><img alt="Serveur NTE-NPS-001" src="../../assets/radius/nps-radius-001.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Paramètre</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Nom</strong></td>
+<td style="text-align: left;"><code>NTE-NPS-001</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Domaine</strong></td>
+<td style="text-align: left;"><code>besafeit.local</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Adresse IP</strong></td>
+<td style="text-align: left;">10.47.30.41 (VLAN 30 – SRV)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>OS</strong></td>
+<td style="text-align: left;">Windows Server 2025 Standard</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Rôle</strong></td>
+<td style="text-align: left;">NPAS (NPS)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Processeur / RAM</strong></td>
+<td style="text-align: left;">Intel Xeon E5-2690 v3 / 8 Go</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Time zone</strong></td>
+<td style="text-align: left;">UTC+01:00 (Bruxelles, Paris…)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Defender Firewall / AV</strong></td>
+<td style="text-align: left;">On / Real-Time Protection On</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔒 Les serveurs <code>NTE-NPS-001</code> et <code>NTE-NPS-002</code> sont <strong>membres du domaine</strong> <code>besafeit.local</code>, ce qui permet à NPS d’authentifier directement les comptes et groupes <strong>Active Directory</strong>.
+⚠️ Quelques événements <strong>Group Policy / Time-Service</strong> sont présents dans le journal — à surveiller (synchro NTP / GPO).</p>
+</blockquote>
+<hr />
+<h2 id="etape-2-clients-radius">🛰️ Étape 2 : Clients RADIUS</h2>
+<blockquote>
+<p>Objectif : déclarer dans NPS les équipements autorisés à envoyer des requêtes d’authentification (NAS).</p>
+</blockquote>
+<h3 id="capture-2-radius-clients">📸 Capture 2 – RADIUS Clients</h3>
+<p><img alt="RADIUS Clients NPS" src="../../assets/radius/nps-radius-002.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Friendly Name</th>
+<th style="text-align: left;">Adresse</th>
+<th style="text-align: left;">Fabricant</th>
+<th style="text-align: left;">Statut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>nte-fw-001</code></td>
+<td style="text-align: left;">10.47.30.254</td>
+<td style="text-align: left;">RADIUS Standard</td>
+<td style="text-align: left;">🟢 Enabled</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>nte-sw-001</code></td>
+<td style="text-align: left;"><code>nte-sw-001.besafeit.local</code></td>
+<td style="text-align: left;">RADIUS Standard</td>
+<td style="text-align: left;">🟢 Enabled</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>nte-sw-002</code></td>
+<td style="text-align: left;"><code>nte-sw-002.besafeit.local</code></td>
+<td style="text-align: left;">RADIUS Standard</td>
+<td style="text-align: left;">🟢 Enabled</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 Chaque client RADIUS partage un <strong>secret</strong> avec le NPS (non affiché ici, à ne <strong>jamais</strong> documenter en clair).
+ℹ️ Le pare-feu est déclaré via son IP sur le VLAN 30 (<code>10.47.30.254</code>), les switches via leur <strong>nom DNS</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="etape-3-strategies-reseau-network-policies">📜 Étape 3 : Stratégies réseau (Network Policies)</h2>
+<blockquote>
+<p>Objectif : définir <strong>qui</strong> est autorisé à se connecter et <strong>dans quelles conditions</strong>. Les stratégies sont évaluées par <strong>ordre de traitement</strong> croissant.</p>
+</blockquote>
+<h3 id="capture-3-network-policies">📸 Capture 3 – Network Policies</h3>
+<p><img alt="Network Policies NPS" src="../../assets/radius/nps-radius-003.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Ordre</th>
+<th style="text-align: left;">Stratégie</th>
+<th style="text-align: left;">Statut</th>
+<th style="text-align: left;">Accès</th>
+<th style="text-align: left;">Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><code>VPN-IPSEC-FortiGate</code></td>
+<td style="text-align: left;">Enabled</td>
+<td style="text-align: left;">✅ Grant Access</td>
+<td style="text-align: left;">Accès VPN IPSec via le FortiGate</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;"><code>Cisco-Switch-NTE-SW-001-Admin-Access</code></td>
+<td style="text-align: left;">Enabled</td>
+<td style="text-align: left;">✅ Grant Access</td>
+<td style="text-align: left;">Admin du switch SW-001</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"><code>Cisco-Switch-NTE-SW-002-Admin-Access</code></td>
+<td style="text-align: left;">Enabled</td>
+<td style="text-align: left;">✅ Grant Access</td>
+<td style="text-align: left;">Admin du switch SW-002</td>
+</tr>
+<tr>
+<td style="text-align: center;">999998</td>
+<td style="text-align: left;"><code>Connections to Microsoft RRAS server</code></td>
+<td style="text-align: left;">Enabled</td>
+<td style="text-align: left;">⛔ Deny Access</td>
+<td style="text-align: left;">Refus par défaut (RRAS)</td>
+</tr>
+<tr>
+<td style="text-align: center;">999999</td>
+<td style="text-align: left;"><code>Connections to other access servers</code></td>
+<td style="text-align: left;">Enabled</td>
+<td style="text-align: left;">⛔ Deny Access</td>
+<td style="text-align: left;">Refus par défaut (catch-all)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🧱 <strong>Logique de filtrage</strong> : les 3 premières stratégies <strong>autorisent</strong> des cas précis (VPN, admin switches) en s’appuyant sur des <strong>groupes AD</strong> et le client RADIUS source ; tout le reste tombe dans les deux stratégies <strong>Deny</strong> par défaut (ordre 999998 / 999999).
+💡 L’ordre de traitement est essentiel : NPS applique <strong>la première stratégie dont les conditions sont remplies</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="etape-4-configuration-cote-clients">🔌 Étape 4 : Configuration côté clients</h2>
+<h3 id="41-fortigate-nte-fw-001">🛡️ 4.1 – FortiGate (<code>nte-fw-001</code>)</h3>
+<h3 id="capture-4-serveur-radius-sur-le-fortigate">📸 Capture 4 – Serveur RADIUS sur le FortiGate</h3>
+<p><img alt="RADIUS sur FortiGate" src="../../assets/radius/forti-radius-004.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Paramètre</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Nom</strong></td>
+<td style="text-align: left;"><code>BESAFE_RADIUS</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Méthode d’auth.</strong></td>
+<td style="text-align: left;">Default</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Serveur principal</strong></td>
+<td style="text-align: left;"><code>NTE-NPS-001.besafeit.local</code> — 🟢 Successful</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Serveur secondaire</strong></td>
+<td style="text-align: left;"><code>NTE-NPS-002.besafeit.local</code> — 🟢 Successful</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ Les deux serveurs répondent (Test Connectivity = Successful). Le FortiGate utilise ce connecteur pour l’authentification <strong>VPN IPSec</strong> (stratégie NPS <code>VPN-IPSEC-FortiGate</code>).</p>
+</blockquote>
+<hr />
+<h3 id="42-switch-cisco-nte-sw-001-002">🔧 4.2 – Switch Cisco (<code>NTE-SW-001</code> / <code>002</code>)</h3>
+<h3 id="capture-5-configuration-aaa-radius-du-switch">📸 Capture 5 – Configuration AAA RADIUS du switch</h3>
+<p><img alt="Config AAA switch Cisco" src="../../assets/radius/switch-radius-005.png" /></p>
+<p>Modèle : <strong>Cisco Catalyst C1000-24T-4G-L</strong> (IOS 15.2). Extrait de la configuration AAA :</p>
+<pre><code class="language-cisco">aaa new-model
+!
+aaa group server radius RADIUS-NPS
+ server name NTE-NPS-001
+ server name NTE-NPS-002
+ ip radius source-interface Vlan100
+!
+aaa authentication login VTY-AUTH group RADIUS-NPS local
+aaa authentication login CON-AUTH local
+aaa authorization exec VTY-AUTHZ group RADIUS-NPS local if-authenticated
+aaa accounting exec VTY-ACCT start-stop group RADIUS-NPS
+!
+username admin privilege 15 secret 9 &lt;REDACTED&gt;
+</code></pre>
+<p><strong>Lecture de la configuration :</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Ligne</th>
+<th style="text-align: left;">Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>aaa group server radius RADIUS-NPS</code></td>
+<td style="text-align: left;">Groupe pointant vers les 2 serveurs NPS (<code>NTE-NPS-001</code>, <code>NTE-NPS-002</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ip radius source-interface Vlan100</code></td>
+<td style="text-align: left;">Les requêtes RADIUS partent du <strong>VLAN 100 (MGT_NET)</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>authentication login VTY-AUTH … group RADIUS-NPS local</code></td>
+<td style="text-align: left;">Connexion <strong>VTY (SSH)</strong> → RADIUS, <strong>repli local</strong> si NPS injoignable</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>authentication login CON-AUTH local</code></td>
+<td style="text-align: left;">Connexion <strong>console</strong> → compte <strong>local</strong> uniquement</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>authorization exec VTY-AUTHZ … if-authenticated</code></td>
+<td style="text-align: left;">Niveau de privilège attribué après authentification réussie</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>accounting exec VTY-ACCT start-stop</code></td>
+<td style="text-align: left;"><strong>Journalisation</strong> des sessions admin vers NPS</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔒 Le <strong>repli <code>local</code></strong> (fallback) garantit qu’un administrateur peut toujours se connecter en console même si les deux NPS sont indisponibles.
+⚠️ Le hash du compte <code>admin</code> (<code>secret 9 …</code>) est <strong>masqué</strong> ici : ne jamais publier de secret/hash dans le wiki.</p>
+</blockquote>
+<hr />
+<h2 id="resume-global">✅ Résumé global</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Étape</th>
+<th style="text-align: left;">Élément</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: center;">État</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1️⃣</td>
+<td style="text-align: left;"><strong>Serveurs NPS</strong></td>
+<td style="text-align: left;"><code>NTE-NPS-001</code> / <code>002</code> (AD <code>besafeit.local</code>)</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">2️⃣</td>
+<td style="text-align: left;"><strong>Clients RADIUS</strong></td>
+<td style="text-align: left;">FortiGate + 2 switches Cisco</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">3️⃣</td>
+<td style="text-align: left;"><strong>Network Policies</strong></td>
+<td style="text-align: left;">VPN + admin switches (Grant) + Deny par défaut</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">4️⃣</td>
+<td style="text-align: left;"><strong>FortiGate</strong></td>
+<td style="text-align: left;">Connecteur <code>BESAFE_RADIUS</code> (HA, testé OK)</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">5️⃣</td>
+<td style="text-align: left;"><strong>Switches Cisco</strong></td>
+<td style="text-align: left;">AAA <code>RADIUS-NPS</code> + repli local</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="liens-utiles">🔗 Liens utiles</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/windows-server/networking/technologies/nps/nps-top">Microsoft NPS – Documentation officielle</a></li>
+<li><a href="https://learn.microsoft.com/windows-server/networking/technologies/nps/nps-manage">NPS : RADIUS Clients &amp; Network Policies</a></li>
+<li><a href="https://www.cisco.com/c/en/us/support/docs/security-vpn/remote-authentication-dial-user-service-radius/13838-10.html">Cisco IOS – Configuration AAA / RADIUS</a></li>
+<li><a href="https://docs.fortinet.com/document/fortigate/7.6.0/administration-guide/769721">FortiGate – Authentification RADIUS</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

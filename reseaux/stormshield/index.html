@@ -1,0 +1,2506 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Wiki technique du projet BESAFE">
+      
+      
+      
+        <link rel="canonical" href="https://ilangaussin.github.io/BESAFE/reseaux/stormshield/">
+      
+      
+        <link rel="prev" href="../switch/">
+      
+      
+        <link rel="next" href="../fortigate/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/besafe.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Stormshield - BESAFE - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration-du-pare-feu-stormshield-sn210" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="BESAFE - Documentation" class="md-header__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  <img src="../../assets/besafe.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BESAFE - Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Stormshield
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BESAFE - Documentation" class="md-nav__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  <img src="../../assets/besafe.png" alt="logo">
+
+    </a>
+    BESAFE - Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/inventaire-materiel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventaire matériel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/vlan-plan-ip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLAN / Plan IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schéma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualisation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Virtualisation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../virtualisation/esxi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESXi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../virtualisation/vcenter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vCenter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Réseaux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Réseaux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../switch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stormshield
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stormshield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-configuration-reseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Étape 1 : Configuration réseau
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Étape 1 : Configuration réseau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-1-vue-densemble-des-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 1 – Vue d’ensemble des interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-2-vue-des-vlan-configures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 2 – Vue des VLAN configurés
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-3-routage-par-defaut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 3 – Routage par défaut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonnes-pratiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Bonnes pratiques
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-nat-et-filtrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧱 Étape 2 : NAT et filtrage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 Étape 2 : NAT et filtrage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-4-nat-sortant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 4 – NAT sortant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-5-nat-entrant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 5 – NAT entrant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-6-politique-de-filtrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 6 – Politique de filtrage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-vpn-ipsec-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔐 Étape 3 : VPN (IPSec / SSL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Étape 3 : VPN (IPSec / SSL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-objets-reseau-ports-utilises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 3.1 – Objets réseau &amp; ports utilisés
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-7-objets-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 7 – Objets VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configuration-vpn-ssl-client-to-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔒 3.2 – Configuration VPN SSL (Client-to-Site)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-8-parametres-vpn-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 8 – Paramètres VPN SSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-droits-dacces-vpn-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛂 3.3 – Droits d’accès VPN (LDAP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-9-droits-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 9 – Droits VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-4-certificat-ssl-du-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📜 Étape 4 : Certificat SSL du Firewall
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📜 Étape 4 : Certificat SSL du Firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-10-certificat-genere-pour-le-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 10 – Certificat généré pour le firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-11-export-du-certificat-sur-le-serveur-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 11 – Export du certificat sur le serveur Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-12-import-du-certificat-dans-stormshield" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 12 – Import du certificat dans Stormshield
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-13-parametres-dimport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 13 – Paramètres d’import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-14-certificat-importe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 14 – Certificat importé
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-15-affectation-du-certificat-a-linterface-dadministration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 15 – Affectation du certificat à l’interface d’administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-16-assignation-au-portail-captive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 16 – Assignation au portail Captive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-17-verification-cote-navigateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 17 – Vérification côté navigateur
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-5-integration-active-directory-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Étape 5 : Intégration Active Directory / LDAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Étape 5 : Intégration Active Directory / LDAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-18-configuration-du-repertoire-ldap-ad-besafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 18 – Configuration du répertoire LDAP (AD BESAFE)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-19-politique-dauthentification-default-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 19 – Politique d’authentification (Default = LDAP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-20-vue-des-utilisateurs-ad-reconnus-par-le-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 20 – Vue des utilisateurs AD reconnus par le Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résumé global
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Liens utiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fortigate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fortigate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systèmes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Systèmes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AD DS / DHCP / DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PKI / AD CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/radius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RADIUS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/veeambackup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veeam
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/vaultwarden/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vaultwarden
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/nextcloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nextcloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/glpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GLPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx Proxy Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervision
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Supervision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supervision/centreon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centreon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sécurité
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sécurité
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/wazuh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-configuration-reseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Étape 1 : Configuration réseau
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Étape 1 : Configuration réseau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-1-vue-densemble-des-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 1 – Vue d’ensemble des interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-2-vue-des-vlan-configures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 2 – Vue des VLAN configurés
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-3-routage-par-defaut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 3 – Routage par défaut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonnes-pratiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Bonnes pratiques
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-nat-et-filtrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧱 Étape 2 : NAT et filtrage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 Étape 2 : NAT et filtrage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-4-nat-sortant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 4 – NAT sortant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-5-nat-entrant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 5 – NAT entrant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-6-politique-de-filtrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 6 – Politique de filtrage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-vpn-ipsec-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔐 Étape 3 : VPN (IPSec / SSL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Étape 3 : VPN (IPSec / SSL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-objets-reseau-ports-utilises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 3.1 – Objets réseau &amp; ports utilisés
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-7-objets-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 7 – Objets VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configuration-vpn-ssl-client-to-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔒 3.2 – Configuration VPN SSL (Client-to-Site)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-8-parametres-vpn-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 8 – Paramètres VPN SSL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-droits-dacces-vpn-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛂 3.3 – Droits d’accès VPN (LDAP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-9-droits-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 9 – Droits VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-4-certificat-ssl-du-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📜 Étape 4 : Certificat SSL du Firewall
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📜 Étape 4 : Certificat SSL du Firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-10-certificat-genere-pour-le-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 10 – Certificat généré pour le firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-11-export-du-certificat-sur-le-serveur-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 11 – Export du certificat sur le serveur Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-12-import-du-certificat-dans-stormshield" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 12 – Import du certificat dans Stormshield
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-13-parametres-dimport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 13 – Paramètres d’import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-14-certificat-importe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 14 – Certificat importé
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-15-affectation-du-certificat-a-linterface-dadministration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 15 – Affectation du certificat à l’interface d’administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-16-assignation-au-portail-captive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 16 – Assignation au portail Captive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-17-verification-cote-navigateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 17 – Vérification côté navigateur
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-5-integration-active-directory-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Étape 5 : Intégration Active Directory / LDAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Étape 5 : Intégration Active Directory / LDAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capture-18-configuration-du-repertoire-ldap-ad-besafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 18 – Configuration du répertoire LDAP (AD BESAFE)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-19-politique-dauthentification-default-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 19 – Politique d’authentification (Default = LDAP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capture-20-vue-des-utilisateurs-ad-reconnus-par-le-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Capture 20 – Vue des utilisateurs AD reconnus par le Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résumé global
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Liens utiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="configuration-du-pare-feu-stormshield-sn210">🔥 Configuration du pare-feu Stormshield SN210</h1>
+<blockquote>
+<p>Cette page documente la configuration complète du <strong>pare-feu Stormshield SN210</strong> utilisé dans l’infrastructure <strong>BESAFE</strong>.<br />
+Il s’agit du point de contrôle central entre le LAN interne, la DMZ et la sortie Internet.</p>
+</blockquote>
+<hr />
+<h2 id="details-techniques">⚙️ Détails techniques</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Élément</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Modèle</strong></td>
+<td style="text-align: left;">Stormshield SN210 (physique)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Firmware</strong></td>
+<td style="text-align: left;">v4.7.4</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Rôle</strong></td>
+<td style="text-align: left;">Pare-feu, routage inter-VLAN, NAT, VPN</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Accès WebAdmin</strong></td>
+<td style="text-align: left;"><a href="https://10.47.200.254:8443/admin">https://10.47.200.254:8443/admin</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Méthode d’administration</strong></td>
+<td style="text-align: left;">HTTPS / SSH</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="etape-1-configuration-reseau">🌐 Étape 1 : Configuration réseau</h2>
+<blockquote>
+<p>Objectif : définir les interfaces physiques et VLANs associés afin d’assurer le routage entre les réseaux internes et la connectivité Internet.</p>
+</blockquote>
+<hr />
+<h3 id="capture-1-vue-densemble-des-interfaces">📸 Capture 1 – Vue d’ensemble des interfaces</h3>
+<p><img alt="Interfaces Stormshield" src="../../assets/stormshield/network-stormshield-001.png" /></p>
+<p>Le pare-feu <strong>SN210</strong> dispose de <strong>3 interfaces physiques principales</strong> :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Interface</th>
+<th style="text-align: left;">Nom</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>OUT (eth0)</strong></td>
+<td style="text-align: left;">WAN</td>
+<td style="text-align: left;">DHCP</td>
+<td style="text-align: left;">Connectée directement à la <strong>box Internet</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>IN (eth1)</strong></td>
+<td style="text-align: left;">LAN (<strong>Trunk 802.1Q</strong>)</td>
+<td style="text-align: left;">VLAN tagués</td>
+<td style="text-align: left;">Transporte tous les VLAN internes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DMZ (eth2)</strong></td>
+<td style="text-align: left;">DMZ</td>
+<td style="text-align: left;">Statique</td>
+<td style="text-align: left;">Réseau isolé pour les services exposés</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="capture-2-vue-des-vlan-configures">📸 Capture 2 – Vue des VLAN configurés</h3>
+<p><img alt="VLANs configurés" src="../../assets/stormshield/networkstormshield-002.png" /></p>
+<p>L’interface <strong>IN (eth1)</strong> transporte les VLAN suivants :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">VLAN</th>
+<th style="text-align: left;">Nom</th>
+<th style="text-align: left;">Réseau</th>
+<th style="text-align: left;">Adresse FW (.254)</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">SRV</td>
+<td style="text-align: left;">10.47.30.0/24</td>
+<td style="text-align: left;">10.47.30.254</td>
+<td style="text-align: left;">Serveurs AD/DNS/DHCP/PKI</td>
+</tr>
+<tr>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">SI/Admin</td>
+<td style="text-align: left;">10.47.40.0/24</td>
+<td style="text-align: left;">10.47.40.254</td>
+<td style="text-align: left;">Admin interne</td>
+</tr>
+<tr>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">DMZ</td>
+<td style="text-align: left;">10.47.50.0/24</td>
+<td style="text-align: left;">10.47.50.254</td>
+<td style="text-align: left;">Réseau exposé</td>
+</tr>
+<tr>
+<td style="text-align: left;">60</td>
+<td style="text-align: left;">LAN</td>
+<td style="text-align: left;">10.47.60.0/24</td>
+<td style="text-align: left;">10.47.60.254</td>
+<td style="text-align: left;">Utilisateurs internes</td>
+</tr>
+<tr>
+<td style="text-align: left;">90</td>
+<td style="text-align: left;">BACKUP</td>
+<td style="text-align: left;">10.47.90.0/24</td>
+<td style="text-align: left;">10.47.90.254</td>
+<td style="text-align: left;">Sauvegarde (Veeam)</td>
+</tr>
+<tr>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">MGT_Networks</td>
+<td style="text-align: left;">10.47.100.0/24</td>
+<td style="text-align: left;">10.47.100.254</td>
+<td style="text-align: left;">Mgmt Switch / FW</td>
+</tr>
+<tr>
+<td style="text-align: left;">101</td>
+<td style="text-align: left;">MGT_Systems</td>
+<td style="text-align: left;">10.47.101.0/24</td>
+<td style="text-align: left;">10.47.101.254</td>
+<td style="text-align: left;">Mgmt ESXi / VCSA</td>
+</tr>
+<tr>
+<td style="text-align: left;">102</td>
+<td style="text-align: left;">IDRAC</td>
+<td style="text-align: left;">10.47.102.0/24</td>
+<td style="text-align: left;">10.47.102.254</td>
+<td style="text-align: left;">Accès IDRAC serveurs</td>
+</tr>
+<tr>
+<td style="text-align: left;">110</td>
+<td style="text-align: left;">MONITORING</td>
+<td style="text-align: left;">10.47.110.0/24</td>
+<td style="text-align: left;">10.47.110.254</td>
+<td style="text-align: left;">Supervision (Zabbix / Grafana / Prometheus)</td>
+</tr>
+<tr>
+<td style="text-align: left;">120</td>
+<td style="text-align: left;">SECURITY</td>
+<td style="text-align: left;">10.47.120.0/24</td>
+<td style="text-align: left;">10.47.120.254</td>
+<td style="text-align: left;">Wazuh / IDS / SOC</td>
+</tr>
+<tr>
+<td style="text-align: left;">130</td>
+<td style="text-align: left;">APPLICATIF</td>
+<td style="text-align: left;">10.47.130.0/24</td>
+<td style="text-align: left;">10.47.130.254</td>
+<td style="text-align: left;">GLPI / Nextcloud / Vault</td>
+</tr>
+<tr>
+<td style="text-align: left;">150</td>
+<td style="text-align: left;">VPN</td>
+<td style="text-align: left;">10.47.150.0/24</td>
+<td style="text-align: left;">10.47.150.254</td>
+<td style="text-align: left;">Accès distant</td>
+</tr>
+<tr>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">MGT_FW</td>
+<td style="text-align: left;">10.47.200.0/24</td>
+<td style="text-align: left;">10.47.200.254</td>
+<td style="text-align: left;">Accès administrateurs FW</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="capture-3-routage-par-defaut">📸 Capture 3 – Routage par défaut</h3>
+<p><img alt="Routage par défaut" src="../../assets/stormshield/network-stormshield-003.png" /></p>
+<ul>
+<li>La <strong>passerelle par défaut (WAN)</strong> est obtenue via DHCP depuis la box Internet.  </li>
+<li>Le routage inter-VLAN est géré localement sur le SN210.  </li>
+<li>Une route statique optionnelle peut exister vers le <strong>réseau VPN (150)</strong>.</li>
+</ul>
+<hr />
+<h3 id="bonnes-pratiques">⚙️ Bonnes pratiques</h3>
+<ul>
+<li>🔒 Limiter les VLANs exposés à la DMZ.  </li>
+<li>🧱 Créer des objets réseau par VLAN pour simplifier les règles.  </li>
+<li>🕒 Activer la NTP sync sur le FW pour les logs centralisés.  </li>
+</ul>
+<hr />
+<h2 id="etape-2-nat-et-filtrage">🧱 Étape 2 : NAT et filtrage</h2>
+<blockquote>
+<p>Objectif : créer les règles de translation d’adresse (NAT) et de filtrage entre les VLANs internes, la DMZ et Internet.</p>
+</blockquote>
+<hr />
+<h3 id="capture-4-nat-sortant">📸 Capture 4 – NAT sortant</h3>
+<p><img alt="NAT sortant" src="../../assets/stormshield/nat-stormshield-004.png" /></p>
+<hr />
+<h3 id="capture-5-nat-entrant">📸 Capture 5 – NAT entrant</h3>
+<p><img alt="NAT entrant" src="../../assets/stormshield/nat-stormshield-005.png" /></p>
+<hr />
+<h3 id="capture-6-politique-de-filtrage">📸 Capture 6 – Politique de filtrage</h3>
+<p><img alt="Règles de filtrage" src="../assets/stormshield/nat-stormshield-006.png" /></p>
+<blockquote>
+<p>💡 Organiser les règles par zone (WAN, LAN, DMZ, VPN) pour plus de clarté.</p>
+</blockquote>
+<hr />
+<h2 id="etape-3-vpn-ipsec-ssl">🔐 Étape 3 : VPN (IPSec / SSL)</h2>
+<h3 id="31-objets-reseau-ports-utilises">🌐 3.1 – Objets réseau &amp; ports utilisés</h3>
+<h3 id="capture-7-objets-vpn">📸 Capture 7 – Objets VPN</h3>
+<p><img alt="Objets VPN" src="../../assets/stormshield/vpn-stormshield-007.png" /></p>
+<p>Objets utilisés par les VPN :</p>
+<ul>
+<li><strong>Networks-VPNUDP / VPNTCP</strong> → Pools d’adresses VPN  </li>
+<li><strong>sslvpn / udpvpn / VPN-UDP / VPN-TCP</strong> → Ports utilisés pour le SSL VPN  </li>
+<li><strong>Network_internals</strong> → Réseau BESAFE accessible via VPN  </li>
+</ul>
+<hr />
+<h3 id="32-configuration-vpn-ssl-client-to-site">🔒 3.2 – Configuration VPN SSL (Client-to-Site)</h3>
+<h3 id="capture-8-parametres-vpn-ssl">📸 Capture 8 – Paramètres VPN SSL</h3>
+<p><img alt="VPN SSL" src="../../assets/stormshield/vpn-stormshield-008.png" /></p>
+<p>Principaux réglages :</p>
+<ul>
+<li><strong>IP publique UTM</strong> : 62.160.x.x  </li>
+<li><strong>Réseaux accessibles</strong> : Network_internals  </li>
+<li><strong>Ports</strong> : UDP 11947 / TCP 4437  </li>
+<li><strong>DNS fournis</strong> : NTE-DC-001 / NTE-DC-002  </li>
+<li><strong>Options</strong> : Interdiction DNS tiers, écoute sur toutes interfaces  </li>
+</ul>
+<hr />
+<h3 id="33-droits-dacces-vpn-ldap">🛂 3.3 – Droits d’accès VPN (LDAP)</h3>
+<h3 id="capture-9-droits-vpn">📸 Capture 9 – Droits VPN</h3>
+<p><img alt="Access Privileges" src="../../assets/stormshield/vpn-stormshield-009.png" /></p>
+<ul>
+<li>Groupe AD autorisé : <strong>VPN_Access@besafe.local</strong>  </li>
+<li>Accès <strong>SSL VPN</strong> : Allow  </li>
+<li>Accès <strong>IPSec</strong> : Allow  </li>
+<li>Authentification via <strong>LDAP AD</strong></li>
+</ul>
+<hr />
+<h2 id="etape-4-certificat-ssl-du-firewall">📜 Étape 4 : Certificat SSL du Firewall</h2>
+<blockquote>
+<p>L’objectif est d’importer un <strong>certificat signé par la </strong>PKI interne** pour sécuriser l’accès HTTPS à l’interface d’administration du pare-feu et au portail d’authentification.</p>
+</blockquote>
+<hr />
+<h3 id="capture-10-certificat-genere-pour-le-firewall">📸 Capture 10 – Certificat généré pour le firewall</h3>
+<p><img alt="Certificat FW" src="../../assets/stormshield/cert-stormshield-010.png" /></p>
+<p>Le certificat <strong>fw01.besafe.local</strong> est émis par <em>BesafeSubCA2</em> et exporté au format <strong>P12</strong> avec les SAN :
+- <code>fw01.besafe.local</code>
+- <code>nte-fw-001.besafe.local</code></p>
+<hr />
+<h3 id="capture-11-export-du-certificat-sur-le-serveur-windows">📸 Capture 11 – Export du certificat sur le serveur Windows</h3>
+<p><img alt="Export Cert" src="../../assets/stormshield/cert-stormshield-011.png" /></p>
+<p>Le fichier <strong>fw01.besafe.local.p12</strong> est prêt pour l’import sur le Stormshield.</p>
+<hr />
+<h3 id="capture-12-import-du-certificat-dans-stormshield">📸 Capture 12 – Import du certificat dans Stormshield</h3>
+<p><img alt="Import FW Cert" src="../../assets/stormshield/cert-stormshield-012.png" /></p>
+<p>Navigation :<br />
+<strong>Objects → Certificates and PKI → Add → Import a file</strong></p>
+<hr />
+<h3 id="capture-13-parametres-dimport">📸 Capture 13 – Paramètres d’import</h3>
+<p><img alt="Import File" src="../../assets/stormshield/cert-stormshield-013.png" /></p>
+<ul>
+<li><strong>File format :</strong> P12  </li>
+<li><strong>Password :</strong> mot de passe d’export  </li>
+<li><strong>What to import :</strong> All  </li>
+</ul>
+<hr />
+<h3 id="capture-14-certificat-importe">📸 Capture 14 – Certificat importé</h3>
+<p><img alt="Cert List" src="../../assets/stormshield/cert-stormshield-014.png" /></p>
+<p>Vérification :<br />
+- Chaîne complète → BesafeRootCA → BesafeSubCA2 → fw01.besafe.local<br />
+- SAN corrects<br />
+- Signature SHA256</p>
+<hr />
+<h3 id="capture-15-affectation-du-certificat-a-linterface-dadministration">📸 Capture 15 – Affectation du certificat à l’interface d’administration</h3>
+<p><img alt="Assign SSL" src="../../assets/stormshield/cert-stormshield-015.png" /></p>
+<p>Chemin :<br />
+<strong>System → Configuration → Firewall Administration → Configure the SSL certificate</strong></p>
+<p>Sélectionner : <strong>fw01.besafe.local</strong></p>
+<hr />
+<h3 id="capture-16-assignation-au-portail-captive">📸 Capture 16 – Assignation au portail Captive</h3>
+<p><img alt="Portal Cert" src="../../assets/stormshield/cert-stormshield-016.png" /></p>
+<p>Chemin :<br />
+<strong>Users → Authentication → Captive Portal</strong></p>
+<p>Sélectionner également : <strong>fw01.besafe.local</strong></p>
+<hr />
+<h3 id="capture-17-verification-cote-navigateur">📸 Capture 17 – Vérification côté navigateur</h3>
+<p><img alt="Browser Check" src="../../assets/stormshield/cert-stormshield-017.png" /></p>
+<p>La connexion HTTPS est maintenant :<br />
+- 🔒 Sécurisée<br />
+- ✔️ Sans avertissement<br />
+- 🎯 Signée par ta PKI BesafeSubCA2</p>
+<hr />
+<h2 id="etape-5-integration-active-directory-ldap">🧩 Étape 5 : Intégration Active Directory / LDAP</h2>
+<blockquote>
+<p>Objectif : permettre au pare-feu Stormshield d’utiliser <strong>les comptes AD</strong> pour<br />
+– l’authentification VPN (SSL &amp; IPSec),<br />
+– l’accès administrateur au WebAdmin,<br />
+– la gestion centralisée des permissions.</p>
+</blockquote>
+<h3 id="capture-18-configuration-du-repertoire-ldap-ad-besafe">📸 Capture 18 – Configuration du répertoire LDAP (AD BESAFE)</h3>
+<p><img alt="LDAP Directory Configuration" src="../../assets/stormshield/ldap-stormshield-018.png" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Paramètre</th>
+<th style="text-align: left;">Valeur BESAFE</th>
+<th style="text-align: left;">Commentaire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Server</strong></td>
+<td style="text-align: left;"><code>NTE-DC-001</code></td>
+<td style="text-align: left;">Contrôleur principal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Backup Server</strong></td>
+<td style="text-align: left;"><code>NTE-DC-002</code></td>
+<td style="text-align: left;">Haute disponibilité LDAP</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Protocol</strong></td>
+<td style="text-align: left;"><code>LDAPS</code></td>
+<td style="text-align: left;">Connexion chiffrée recommandée</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Root Domain (Base DN)</strong></td>
+<td style="text-align: left;"><code>dc=besafe,dc=local</code></td>
+<td style="text-align: left;">Domaine racine</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bind DN</strong></td>
+<td style="text-align: left;"><code>CN=ldap vpn,OU=ldap,OU=Users,OU=Hard...</code></td>
+<td style="text-align: left;">Compte de service dédié</td>
+</tr>
+</tbody>
+</table>
+<p>🔒 <strong>Notes de sécurité BESAFE :</strong>
+- Le compte <strong>ldap vpn</strong> est un <em>compte de service dédié</em>, placé dans l’OU sécurisée <em>Harden_T12</em>.<br />
+- Il dispose uniquement du droit <strong>Read</strong> dans l’annuaire.<br />
+- L’usage de <strong>LDAPS</strong> est obligatoire (port <strong>636</strong>) → Empêche la fuite d’identifiants en clair.</p>
+<hr />
+<h3 id="capture-19-politique-dauthentification-default-ldap">📸 Capture 19 – Politique d’authentification (Default = LDAP)</h3>
+<p><img alt="Authentication Policy" src="../../assets/stormshield/ldap-stormshield-019.png" /></p>
+<p>Le pare-feu utilise <strong>LDAP</strong> comme méthode d’authentification principale pour :</p>
+<ul>
+<li>VPN SSL  </li>
+<li>VPN IPSec (EAP / ID-Password / AD)  </li>
+<li>Connexion administrateur (optionnel selon politique BESAFE)</li>
+</ul>
+<p>👉 Cela permet d’utiliser <strong>les groupes AD</strong> pour autoriser l’accès VPN.<br />
+Exemple : le groupe <strong><code>VPN_Access@besafe.local</code></strong> → accès SSL + IPSec.</p>
+<hr />
+<h3 id="capture-20-vue-des-utilisateurs-ad-reconnus-par-le-firewall">📸 Capture 20 – Vue des utilisateurs AD reconnus par le Firewall</h3>
+<p><img alt="Users &amp; Groups" src="../../assets/stormshield/ldap-stormshield-020.png" /></p>
+<p>Le pare-feu interroge directement <strong>Active Directory</strong> via LDAPS et remonte les comptes/groupes disponibles.<br />
+Cela permet d'appliquer des politiques d’accès basées sur les groupes AD (ex : <code>VPN_Access@besafe.local</code>).</p>
+<hr />
+<h2 id="resume-global">✅ Résumé global</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Étape</th>
+<th style="text-align: left;">Élément</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Validation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1️⃣</td>
+<td style="text-align: left;"><strong>Interfaces</strong></td>
+<td style="text-align: left;">OUT, IN (Trunk), DMZ</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">2️⃣</td>
+<td style="text-align: left;"><strong>VLANs</strong></td>
+<td style="text-align: left;">Nos VLANs</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">3️⃣</td>
+<td style="text-align: left;"><strong>NAT / Filtrage</strong></td>
+<td style="text-align: left;">Configuré selon politique BESAFE</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">4️⃣</td>
+<td style="text-align: left;"><strong>VPN</strong></td>
+<td style="text-align: left;">À compléter</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">5️⃣</td>
+<td style="text-align: left;"><strong>Certificat SSL</strong></td>
+<td style="text-align: left;">À compléter</td>
+<td style="text-align: left;">✅</td>
+</tr>
+<tr>
+<td style="text-align: left;">6️⃣</td>
+<td style="text-align: left;"><strong>AD / Auth</strong></td>
+<td style="text-align: left;">À compléter</td>
+<td style="text-align: left;">✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="liens-utiles">🔗 Liens utiles</h2>
+<ul>
+<li><a href="https://documentation.stormshield.eu/">Documentation officielle Stormshield Network Security</a></li>
+<li><a href="https://kb.stormshield.eu/">Base de connaissances Stormshield</a></li>
+<li><a href="https://documentation.stormshield.eu/SNS/v4/fr/">Guide d’administration SNS v4</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

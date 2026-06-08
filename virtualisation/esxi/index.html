@@ -1,0 +1,2386 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Wiki technique du projet BESAFE">
+      
+      
+      
+        <link rel="canonical" href="https://ilangaussin.github.io/BESAFE/virtualisation/esxi/">
+      
+      
+        <link rel="prev" href="../../architecture/schema/">
+      
+      
+        <link rel="next" href="../vcenter/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/besafe.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>ESXi - BESAFE - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation-et-configuration-de-vmware-esxi" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="BESAFE - Documentation" class="md-header__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  <img src="../../assets/besafe.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BESAFE - Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ESXi
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BESAFE - Documentation" class="md-nav__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  <img src="../../assets/besafe.png" alt="logo">
+
+    </a>
+    BESAFE - Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/inventaire-materiel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventaire matériel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/vlan-plan-ip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLAN / Plan IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schéma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualisation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Virtualisation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESXi
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESXi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-configuration-reseau-de-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Étape 1 : Configuration réseau de management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Étape 1 : Configuration réseau de management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-ipv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📡 Configuration IPv4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧭 Configuration DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suffixe-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔎 Suffixe DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-dans-larchitecture-besafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Intégration dans l’architecture BESAFE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat-attendu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Résultat attendu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-architecture-reseau-virtuelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 Étape 2 : Architecture réseau virtuelle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔀 Étape 2 : Architecture réseau virtuelle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-generale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Architecture générale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-vmkernel-de-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Interface VMkernel de management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-vmkernel-dediees-aux-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔁 Interfaces VMkernel dédiées aux services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmk1-reseau-iscsi-primaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vmk1 — réseau iSCSI primaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmk2-reseau-iscsi-secondaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vmk2 — réseau iSCSI secondaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmk3-reseau-vmotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vmk3 — réseau vMotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vswitch-dedies-au-stockage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔌 vSwitch dédiés au stockage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Port Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connexion-au-reseau-physique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Connexion au réseau physique
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objectifs-de-cette-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Objectifs de cette architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-architecture-stockage-iscsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💾 Étape 3 : Architecture stockage iSCSI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💾 Étape 3 : Architecture stockage iSCSI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe-du-stockage-iscsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Principe du stockage iSCSI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adaptateur-iscsi-esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔌 Adaptateur iSCSI ESXi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Port Binding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multipathing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔁 Multipathing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#targets-iscsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Targets iSCSI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presentation-des-lun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗄️ Présentation des LUN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-dans-linfrastructure-besafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Intégration dans l’infrastructure BESAFE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat-attendu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Résultat attendu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-des-etapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résumé des étapes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Liens utiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vcenter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vCenter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Réseaux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Réseaux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/switch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/stormshield/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stormshield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/fortigate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fortigate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systèmes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Systèmes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AD DS / DHCP / DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PKI / AD CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/radius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RADIUS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/veeambackup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veeam
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/vaultwarden/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vaultwarden
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/nextcloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nextcloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/glpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GLPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../services/npm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx Proxy Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervision
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Supervision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supervision/centreon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centreon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sécurité
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sécurité
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/wazuh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-configuration-reseau-de-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Étape 1 : Configuration réseau de management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Étape 1 : Configuration réseau de management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-ipv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📡 Configuration IPv4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧭 Configuration DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suffixe-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔎 Suffixe DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-dans-larchitecture-besafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Intégration dans l’architecture BESAFE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat-attendu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Résultat attendu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-architecture-reseau-virtuelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔀 Étape 2 : Architecture réseau virtuelle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔀 Étape 2 : Architecture réseau virtuelle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-generale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Architecture générale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interface-vmkernel-de-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Interface VMkernel de management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-vmkernel-dediees-aux-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔁 Interfaces VMkernel dédiées aux services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmk1-reseau-iscsi-primaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vmk1 — réseau iSCSI primaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmk2-reseau-iscsi-secondaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vmk2 — réseau iSCSI secondaire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vmk3-reseau-vmotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vmk3 — réseau vMotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vswitch-dedies-au-stockage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔌 vSwitch dédiés au stockage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Port Groups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connexion-au-reseau-physique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Connexion au réseau physique
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objectifs-de-cette-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Objectifs de cette architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-3-architecture-stockage-iscsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💾 Étape 3 : Architecture stockage iSCSI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💾 Étape 3 : Architecture stockage iSCSI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe-du-stockage-iscsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 Principe du stockage iSCSI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adaptateur-iscsi-esxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔌 Adaptateur iSCSI ESXi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Port Binding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multipathing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔁 Multipathing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#targets-iscsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Targets iSCSI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presentation-des-lun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗄️ Présentation des LUN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-dans-linfrastructure-besafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Intégration dans l’infrastructure BESAFE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat-attendu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Résultat attendu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resume-des-etapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résumé des étapes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liens-utiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Liens utiles
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="installation-et-configuration-de-vmware-esxi">🖥️ Installation et configuration de VMware ESXi</h1>
+<blockquote>
+<p>Cette page décrit l’installation et la configuration initiale d’un hôte <strong>VMware ESXi 8.0</strong> dans le cadre du projet <strong>BESAFE</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="details-techniques">⚙️ Détails techniques</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Élément</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Version</strong></td>
+<td style="text-align: left;">VMware ESXi 8.0</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Matériel</strong></td>
+<td style="text-align: left;">24 CPUs x Intel(R) Xeon(R) CPU E5-2690 v3 @ 2.60GHz – 256 Go RAM</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Rôle</strong></td>
+<td style="text-align: left;">Hyperviseur de virtualisation (Cluster BESAFE)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Objectif</strong></td>
+<td style="text-align: left;">Héberger les VMs d’infrastructure (AD, PKI, GLPI, etc.)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="etape-1-configuration-reseau-de-management">🌐 Étape 1 : Configuration réseau de management</h2>
+<blockquote>
+<p>Cette section décrit la configuration réseau utilisée par l’hôte <strong>ESXi</strong> pour son administration et son intégration dans l’infrastructure <strong>BESAFE</strong>.</p>
+</blockquote>
+<p>La configuration réseau de management permet :</p>
+<ul>
+<li>l’accès à l’interface <strong>ESXi Host Client</strong></li>
+<li>la résolution DNS interne</li>
+<li>l’intégration dans l’environnement <strong>Active Directory / DNS</strong></li>
+<li>la communication avec les services d’infrastructure (monitoring, sauvegarde, etc.)</li>
+</ul>
+<hr />
+<h3 id="configuration-ipv4">📡 Configuration IPv4</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Paramètre</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Mode</strong></td>
+<td style="text-align: left;">Statique</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Adresse IP</strong></td>
+<td style="text-align: left;"><code>10.47.101.201</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Masque</strong></td>
+<td style="text-align: left;"><code>255.255.255.0</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Passerelle</strong></td>
+<td style="text-align: left;"><code>10.47.101.254</code></td>
+</tr>
+</tbody>
+</table>
+<p>Cette adresse correspond au <strong>réseau de management de l’infrastructure</strong>.</p>
+<p>L’accès à l’hyperviseur s’effectue via :
+https://10.47.101.201 ou https://nte-esxi-001</p>
+<p><img alt="esxi-001.png" src="../../assets/esxi/esxi-001.png" /></p>
+<hr />
+<h3 id="configuration-dns">🧭 Configuration DNS</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Paramètre</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>DNS principal</strong></td>
+<td style="text-align: left;"><code>10.47.30.1</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DNS secondaire</strong></td>
+<td style="text-align: left;"><code>10.47.30.2</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Nom d’hôte</strong></td>
+<td style="text-align: left;"><code>nte-esxi-001</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Domaine</strong></td>
+<td style="text-align: left;"><code>besafeit.local</code></td>
+</tr>
+</tbody>
+</table>
+<p>Les serveurs DNS utilisés sont les <strong>contrôleurs de domaine de l’infrastructure BESAFE</strong>.</p>
+<p>Cela permet notamment :</p>
+<ul>
+<li>la résolution des services internes</li>
+<li>l’intégration dans les outils d’administration</li>
+<li>l’utilisation du FQDN pour l’accès à l’hyperviseur</li>
+</ul>
+<p><img alt="esxi-002.png" src="../../assets/esxi/esxi-002.png" /></p>
+<hr />
+<h3 id="suffixe-dns">🔎 Suffixe DNS</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Paramètre</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Search Domain</strong></td>
+<td style="text-align: left;"><code>besafeit.local</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ce suffixe permet la résolution automatique des noms courts.</p>
+<p>Exemple :
+nte-esxi-001</p>
+<p>sera automatiquement résolu vers :
+nte-esxi-001.besafeit.local</p>
+<p><img alt="esxi-003.png" src="../../assets/esxi/esxi-003.png" /></p>
+<hr />
+<h3 id="integration-dans-larchitecture-besafe">🧩 Intégration dans l’architecture BESAFE</h3>
+<p>Le réseau de management ESXi est isolé dans un <strong>VLAN dédié à l’administration de l’infrastructure</strong>.</p>
+<p>Cela permet :</p>
+<ul>
+<li>de limiter l’exposition de l’hyperviseur</li>
+<li>de séparer le trafic d’administration du trafic VM</li>
+<li>d’appliquer des règles de sécurité spécifiques</li>
+</ul>
+<hr />
+<h3 id="resultat-attendu">🎯 Résultat attendu</h3>
+<ul>
+<li>accès sécurisé à l’hyperviseur</li>
+<li>résolution DNS interne fonctionnelle</li>
+<li>intégration dans l’infrastructure BESAFE</li>
+<li>isolation du réseau d’administration</li>
+</ul>
+<p><img alt="esxi-004.png" src="../../assets/esxi/esxi-004.png" /></p>
+<hr />
+<h2 id="etape-2-architecture-reseau-virtuelle">🔀 Étape 2 : Architecture réseau virtuelle</h2>
+<p>Cette section décrit l’architecture réseau virtuelle de l’hôte <strong>ESXi nte-esxi-001</strong> au sein de l’infrastructure <strong>BESAFE</strong>.</p>
+<p>L’objectif est de comprendre :</p>
+<ul>
+<li>comment les flux sont segmentés</li>
+<li>comment les interfaces VMkernel sont utilisées</li>
+<li>comment les machines virtuelles accèdent au réseau</li>
+<li>comment l’hyperviseur est connecté au réseau physique</li>
+</ul>
+<hr />
+<h3 id="architecture-generale">🧠 Architecture générale</h3>
+<p><img alt="Architecture VMware Networking" src="../../assets/esxi/42jdglxxbz.png" /></p>
+<p>Ce schéma illustre le fonctionnement du <strong>réseau virtuel VMware</strong>.</p>
+<p>Chaque hôte ESXi possède :</p>
+<ul>
+<li>des <strong>interfaces physiques (vmnic)</strong></li>
+<li>des <strong>commutateurs virtuels</strong></li>
+<li>des <strong>interfaces VMkernel</strong></li>
+<li>des <strong>port groups</strong></li>
+</ul>
+<p>Les flux réseau sont ensuite transportés vers le <strong>switch physique</strong> de l’infrastructure.</p>
+<hr />
+<h3 id="interface-vmkernel-de-management">🌐 Interface VMkernel de management</h3>
+<p>La première interface VMkernel de l’hôte est <strong>vmk0</strong>.</p>
+<p>Elle correspond à l’interface utilisée pour :</p>
+<ul>
+<li>l’administration de l’hyperviseur</li>
+<li>l’accès au <strong>ESXi Host Client</strong></li>
+<li>la communication avec <strong>vCenter</strong></li>
+<li>les services d’infrastructure</li>
+</ul>
+<p>Cette interface est associée au <strong>port group de management</strong>.</p>
+<p>Le trafic qui transite par cette interface inclut notamment :</p>
+<ul>
+<li>SSH</li>
+<li>HTTPS</li>
+<li>supervision</li>
+<li>API vSphere</li>
+</ul>
+<p>Cette interface constitue donc le <strong>point d’entrée principal de l’hyperviseur</strong>.</p>
+<p><img alt="esxi-005.png" src="../../assets/esxi/esxi-005.png" /></p>
+<h3 id="interfaces-vmkernel-dediees-aux-services">🔁 Interfaces VMkernel dédiées aux services</h3>
+<p>L’hôte dispose également de plusieurs interfaces VMkernel supplémentaires.</p>
+<p>Ces interfaces permettent de <strong>séparer les flux critiques de l’infrastructure</strong>.</p>
+<p>Dans cette architecture on retrouve :</p>
+<h3 id="vmk1-reseau-iscsi-primaire">vmk1 — réseau iSCSI primaire</h3>
+<p>Cette interface est utilisée pour la communication avec la baie de stockage via le protocole <strong>iSCSI</strong>.</p>
+<p>Elle est rattachée à un <strong>vSwitch dédié au stockage</strong> afin d’isoler complètement ce trafic du reste du réseau.</p>
+<hr />
+<h3 id="vmk2-reseau-iscsi-secondaire">vmk2 — réseau iSCSI secondaire</h3>
+<p>Cette interface correspond au <strong>second réseau iSCSI</strong>.</p>
+<p>Elle permet :</p>
+<ul>
+<li>le <strong>multipathing</strong></li>
+<li>la <strong>tolérance de panne</strong></li>
+<li>une meilleure répartition de charge</li>
+</ul>
+<p>Les deux interfaces iSCSI fonctionnent donc sur <strong>deux réseaux distincts</strong>.</p>
+<hr />
+<h3 id="vmk3-reseau-vmotion">vmk3 — réseau vMotion</h3>
+<p>Cette interface est dédiée au trafic <strong>vMotion</strong>.</p>
+<p>Elle permet la migration des machines virtuelles entre les hôtes ESXi sans interruption de service.</p>
+<p>Le trafic vMotion est généralement très important en volume, c’est pourquoi il est isolé sur un réseau spécifique.</p>
+<p><img alt="esxi-006.png" src="../../assets/esxi/esxi-006.png" /></p>
+<hr />
+<p>L’infrastructure utilise un <strong>vSphere Distributed Switch</strong> nommé :
+VDS_TRUNK</p>
+<p>Le distributed switch permet :</p>
+<ul>
+<li>une configuration réseau centralisée</li>
+<li>une cohérence entre tous les hôtes ESXi</li>
+<li>la gestion centralisée des VLAN</li>
+<li>une administration simplifiée via <strong>vCenter</strong></li>
+</ul>
+<p>Tous les VLAN de l’infrastructure transitent via ce vDS.</p>
+<hr />
+<h3 id="vswitch-dedies-au-stockage">🔌 vSwitch dédiés au stockage</h3>
+<p>En complément du vDS, l’hôte dispose de deux <strong>vSwitch standards</strong> :</p>
+<ul>
+<li><code>VISCSI_11</code></li>
+<li><code>VISCSI_12</code></li>
+</ul>
+<p>Ces commutateurs virtuels sont exclusivement utilisés pour le trafic <strong>iSCSI</strong>.</p>
+<p>Ce choix d’architecture permet :</p>
+<ul>
+<li>d’isoler totalement le trafic stockage</li>
+<li>d’éviter toute interférence avec le réseau VM</li>
+<li>d’améliorer la performance et la stabilité du stockage</li>
+</ul>
+<p><img alt="esxi-007.png" src="../../assets/esxi/esxi-007.png" /></p>
+<hr />
+<h3 id="port-groups">📦 Port Groups</h3>
+<p>Les <strong>port groups</strong> sont les points de connexion entre :</p>
+<ul>
+<li>les machines virtuelles</li>
+<li>les réseaux VLAN de l’infrastructure</li>
+</ul>
+<p>Chaque port group correspond à un <strong>VLAN spécifique</strong>.</p>
+<p>Les machines virtuelles sont ensuite connectées à ces port groups selon leur rôle :</p>
+<ul>
+<li>production</li>
+<li>supervision</li>
+<li>DMZ</li>
+<li>sauvegarde</li>
+<li>services internes</li>
+</ul>
+<p>Cela permet d’appliquer une <strong>segmentation réseau stricte</strong> au niveau de la virtualisation.</p>
+<p><img alt="esxi-008.png" src="../../assets/esxi/esxi-008.png" /></p>
+<hr />
+<h3 id="connexion-au-reseau-physique">🔗 Connexion au réseau physique</h3>
+<p>Les commutateurs virtuels utilisent des <strong>uplinks</strong> reliés aux interfaces physiques de l’hôte.</p>
+<p>Ces interfaces sont les <strong>vmnic</strong>.</p>
+<p>Elles permettent d’acheminer le trafic vers le <strong>switch physique</strong> de l’infrastructure.</p>
+<p>Les VLAN sont transportés via des liens <strong>trunk</strong> afin de permettre à l’hyperviseur d’exposer plusieurs réseaux virtuels.</p>
+<hr />
+<h3 id="objectifs-de-cette-architecture">🎯 Objectifs de cette architecture</h3>
+<p>Cette architecture réseau permet :</p>
+<ul>
+<li>la <strong>séparation des flux critiques</strong></li>
+<li>une <strong>segmentation réseau forte</strong></li>
+<li>une <strong>meilleure performance</strong></li>
+<li>une <strong>administration centralisée</strong></li>
+<li>une <strong>résilience accrue</strong></li>
+</ul>
+<p>Elle constitue la base du fonctionnement réseau de l’infrastructure virtualisée <strong>BESAFE</strong>.</p>
+<hr />
+<h2 id="etape-3-architecture-stockage-iscsi">💾 Étape 3 : Architecture stockage iSCSI</h2>
+<p>Cette section décrit la configuration du stockage <strong>iSCSI</strong> utilisée par l’hôte ESXi dans l’infrastructure <strong>BESAFE</strong>.</p>
+<p>Le protocole iSCSI permet à l’hyperviseur d’accéder à des volumes de stockage distants comme s’il s’agissait de disques locaux.</p>
+<p>Ces volumes sont ensuite utilisés pour créer les <strong>datastores VMFS</strong> qui hébergent les machines virtuelles.</p>
+<hr />
+<h3 id="principe-du-stockage-iscsi">🧠 Principe du stockage iSCSI</h3>
+<p>Le protocole <strong>iSCSI (Internet Small Computer System Interface)</strong> permet de transporter des commandes SCSI sur un réseau IP.</p>
+<p>Dans une architecture VMware, cela permet :</p>
+<ul>
+<li>de connecter les hyperviseurs à une baie de stockage</li>
+<li>de centraliser les disques des machines virtuelles</li>
+<li>de permettre la migration des VM entre hôtes</li>
+<li>d'assurer la haute disponibilité du stockage</li>
+</ul>
+<p>L’hyperviseur accède ainsi aux <strong>LUN exposées par la baie de stockage</strong>.</p>
+<hr />
+<h3 id="adaptateur-iscsi-esxi">🔌 Adaptateur iSCSI ESXi</h3>
+<p>L’hôte utilise un <strong>adaptateur iSCSI logiciel VMware</strong>.</p>
+<p>Cet adaptateur apparaît sous la forme :
+vmhba64</p>
+<p>Cet adaptateur permet à ESXi de communiquer avec les <strong>targets iSCSI du stockage</strong>.</p>
+<p>Contrairement à une carte HBA matérielle, cet adaptateur fonctionne via les interfaces réseau classiques de l’hyperviseur.</p>
+<hr />
+<h3 id="port-binding">🔗 Port Binding</h3>
+<p>Le <strong>port binding</strong> permet d’associer plusieurs interfaces VMkernel à l’adaptateur iSCSI.</p>
+<p>Dans l’architecture BESAFE, deux interfaces sont utilisées :</p>
+<ul>
+<li><strong>vmk1</strong></li>
+<li><strong>vmk2</strong></li>
+</ul>
+<p>Chaque interface correspond à un <strong>réseau iSCSI distinct</strong>.</p>
+<p>Cette configuration permet d’utiliser plusieurs chemins vers le stockage.</p>
+<hr />
+<h3 id="multipathing">🔁 Multipathing</h3>
+<p>L’utilisation de plusieurs interfaces réseau permet d’activer le <strong>multipathing</strong>.</p>
+<p>Le multipathing offre plusieurs avantages :</p>
+<ul>
+<li>tolérance de panne réseau</li>
+<li>répartition de charge</li>
+<li>meilleure performance globale</li>
+<li>haute disponibilité du stockage</li>
+</ul>
+<p>Si un chemin réseau devient indisponible, ESXi peut automatiquement utiliser un autre chemin.</p>
+<hr />
+<h3 id="targets-iscsi">🎯 Targets iSCSI</h3>
+<p>L’hyperviseur se connecte à plusieurs <strong>targets iSCSI exposées par le stockage</strong>.</p>
+<p>Ces targets correspondent aux volumes de stockage exportés par la baie.</p>
+<p>Chaque target est identifiée par un <strong>IQN (iSCSI Qualified Name)</strong>.</p>
+<p>Les connexions sont établies via le port standard : 3260</p>
+<p>Les différentes LUN présentées par le stockage sont ensuite détectées par l’hyperviseur.</p>
+<p><img alt="esxi-009.png" src="../../assets/esxi/esxi-009.png" /></p>
+<hr />
+<h3 id="presentation-des-lun">🗄️ Présentation des LUN</h3>
+<p>Une fois les targets détectées, ESXi voit apparaître les volumes sous forme de <strong>disques SCSI</strong>.</p>
+<p>Ces volumes peuvent ensuite être utilisés pour :</p>
+<ul>
+<li>créer des <strong>datastores VMFS</strong></li>
+<li>héberger les machines virtuelles</li>
+<li>stocker les templates</li>
+<li>stocker les fichiers ISO</li>
+</ul>
+<p><img alt="esxi-010.png" src="../../assets/esxi/esxi-010.png" /></p>
+<hr />
+<h3 id="integration-dans-linfrastructure-besafe">🧩 Intégration dans l’infrastructure BESAFE</h3>
+<p>Dans cette architecture, le stockage iSCSI constitue la couche de <strong>stockage partagé de l’infrastructure virtualisée</strong>.</p>
+<p>Il permet notamment :</p>
+<ul>
+<li>la migration vMotion</li>
+<li>la centralisation du stockage VM</li>
+<li>la simplification des sauvegardes</li>
+<li>la haute disponibilité des services virtualisés</li>
+</ul>
+<p><img alt="esxi-011.png" src="../../assets/esxi/esxi-011.png" /></p>
+<hr />
+<h3 id="resultat-attendu_1">🎯 Résultat attendu</h3>
+<p>L’hôte ESXi est capable :</p>
+<ul>
+<li>d’accéder aux volumes de stockage via iSCSI</li>
+<li>d’utiliser plusieurs chemins réseau vers la baie</li>
+<li>d’assurer une meilleure résilience du stockage</li>
+</ul>
+<p>Cette configuration constitue la base du stockage des machines virtuelles de l’infrastructure <strong>BESAFE</strong>.</p>
+<hr />
+<h2 id="resume-des-etapes">✅ Résumé des étapes</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Étape</th>
+<th style="text-align: left;">Objectif</th>
+<th style="text-align: left;">Résultat attendu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1️⃣ <strong>Configuration réseau de management</strong></td>
+<td style="text-align: left;">Définir une IP statique, DNS et passerelle</td>
+<td style="text-align: left;">Accès stable à l’interface web</td>
+</tr>
+<tr>
+<td style="text-align: left;">2️⃣ <strong>Architecture réseau virtuelle</strong></td>
+<td style="text-align: left;">vmk, vSwitch, Port group</td>
+<td style="text-align: left;">Configuration et uniformisation de l'architecture réseau</td>
+</tr>
+<tr>
+<td style="text-align: left;">3️⃣ <strong>Architecture stockage iSCSI</strong></td>
+<td style="text-align: left;">Initiateur iSCSI, target, LUN, DATASTORE</td>
+<td style="text-align: left;">Reliés nos hyperviseurs à la baie de stockage</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="liens-utiles">🔗 Liens utiles</h2>
+<ul>
+<li><a href="https://docs.vmware.com/fr/VMware-vSphere/index.html">Documentation officielle VMware ESXi</a></li>
+<li><a href="/vCenter">Guide vCenter Server</a></li>
+<li><a href="/Infrastructure/Schéma">Schéma BESAFE</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

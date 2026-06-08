@@ -1,0 +1,1749 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Wiki technique du projet BESAFE">
+      
+      
+      
+        <link rel="canonical" href="https://ilangaussin.github.io/BESAFE/services/npm/">
+      
+      
+        <link rel="prev" href="../glpi/">
+      
+      
+        <link rel="next" href="../../supervision/centreon/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/besafe.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Nginx Proxy Manager - BESAFE - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nginx-proxy-manager" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../.." title="BESAFE - Documentation" class="md-header__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  <img src="../../assets/besafe.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BESAFE - Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Nginx Proxy Manager
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BESAFE - Documentation" class="md-nav__button md-logo" aria-label="BESAFE - Documentation" data-md-component="logo">
+      
+  <img src="../../assets/besafe.png" alt="logo">
+
+    </a>
+    BESAFE - Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/inventaire-materiel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inventaire matériel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/vlan-plan-ip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLAN / Plan IP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schéma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtualisation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Virtualisation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../virtualisation/esxi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESXi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../virtualisation/vcenter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vCenter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Réseaux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Réseaux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/switch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/stormshield/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stormshield
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reseaux/fortigate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fortigate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Systèmes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Systèmes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/ad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AD DS / DHCP / DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/pki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PKI / AD CS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/radius/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RADIUS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../systemes/veeambackup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Veeam
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vaultwarden/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vaultwarden
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nextcloud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nextcloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glpi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GLPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx Proxy Manager
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nginx Proxy Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-architecture-role-du-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Étape 1 : Architecture &amp; rôle du service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Étape 1 : Architecture &amp; rôle du service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe-de-fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principe de fonctionnement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-du-reverse-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rôle du Reverse Proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminaison TLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publication-des-services-internes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publication des services internes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-deploiement-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐳 Étape 2 : Déploiement Docker
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supervision
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Supervision
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supervision/centreon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centreon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sécurité
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sécurité
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/wazuh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wazuh
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#details-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Détails techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-1-architecture-role-du-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 Étape 1 : Architecture &amp; rôle du service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Étape 1 : Architecture &amp; rôle du service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principe-de-fonctionnement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principe de fonctionnement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-du-reverse-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rôle du Reverse Proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terminaison-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminaison TLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publication-des-services-internes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publication des services internes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etape-2-deploiement-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐳 Étape 2 : Déploiement Docker
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="nginx-proxy-manager">🔁 Nginx Proxy Manager</h1>
+<blockquote>
+<p>Mise en place d’un <strong>Nginx Proxy Manager </strong>, il est le point d'entré par internet vers mes ressources interne.</p>
+</blockquote>
+<hr />
+<h2 id="details-techniques">⚙️ Détails techniques</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Élément</th>
+<th style="text-align: left;">Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>OS</strong></td>
+<td style="text-align: left;">Debian 13</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Rôle</strong></td>
+<td style="text-align: left;">Reverse-proxy / entrée HTTP(S) unique Internet</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>NPM</strong></td>
+<td style="text-align: left;"><code>NTE-NPM-001</code> – <code>10.47.50.201/24</code> (DMZ)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Ports exposés</strong></td>
+<td style="text-align: left;">80 / 443 / 81 (UI Admin)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="etape-1-architecture-role-du-service">🌐 Étape 1 : Architecture &amp; rôle du service</h2>
+<p><strong>Nginx Proxy Manager (NPM)</strong> est utilisé dans l’infrastructure BESAFE comme <strong>reverse proxy central</strong>.</p>
+<p>Son rôle est de permettre l’exposition sécurisée des services internes vers Internet.</p>
+<p>Il agit comme une <strong>passerelle HTTP/HTTPS</strong> entre l’extérieur et les applications hébergées dans l’infrastructure.</p>
+<hr />
+<h3 id="principe-de-fonctionnement">Principe de fonctionnement</h3>
+<p>Lorsqu’un utilisateur accède à un service via un nom de domaine :
+https://wiki.besafeit.fr</p>
+<p>la requête suit le chemin suivant :
+<img alt="reverseproxy.png" src="../../assets/npm/reverseproxy.png" /></p>
+<p>NPM agit donc comme <strong>point d’entrée unique pour les applications web</strong>.</p>
+<hr />
+<h3 id="role-du-reverse-proxy">Rôle du Reverse Proxy</h3>
+<p>Le reverse proxy permet plusieurs fonctions essentielles :</p>
+<h3 id="terminaison-tls">Terminaison TLS</h3>
+<p>Les certificats SSL sont gérés directement par NPM :</p>
+<ul>
+<li>génération automatique via Let's Encrypt</li>
+<li>renouvellement automatique</li>
+<li>gestion centralisée des certificats</li>
+</ul>
+<hr />
+<h3 id="publication-des-services-internes">Publication des services internes</h3>
+<p>Les applications internes ne sont <strong>jamais exposées directement sur Internet</strong>.</p>
+<p>NPM redirige simplement les requêtes vers les services internes.</p>
+<p>Exemple :
+wiki.besafeit.fr → 10.47.130.102:3000
+vault.besafeit.fr → 10.47.130.201:8080
+cloud.besafeit.fr → 10.47.50.210:8080</p>
+<hr />
+<h2 id="etape-2-deploiement-docker">🐳 Étape 2 : Déploiement Docker</h2>
+<p>Dans l’infrastructure BESAFE, <strong>Nginx Proxy Manager est déployé via Docker Compose</strong> sur une machine dédiée.</p>
+<p>Le service est composé de deux conteneurs :</p>
+<ul>
+<li><strong>nginx proxy manager</strong></li>
+<li><strong>base de données MariaDB</strong></li>
+</ul>
+<p>Cette architecture permet :</p>
+<ul>
+<li>la persistance des données</li>
+<li>une maintenance simplifiée</li>
+<li>un déploiement rapide</li>
+<li>une isolation des services</li>
+</ul>
+<hr />
+<h1 id="arborescence-du-service">Arborescence du service</h1>
+<p>Le service est installé dans le répertoire : /opt/npm
+Structure :
+/opt/npm
+├── docker-compose.yml
+├── data/
+├── letsencrypt/
+└── mysql/</p>
+<p>Description des répertoires :</p>
+<table>
+<thead>
+<tr>
+<th>Répertoire</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>configuration NPM</td>
+</tr>
+<tr>
+<td>letsencrypt</td>
+<td>certificats SSL</td>
+</tr>
+<tr>
+<td>mysql</td>
+<td>données MariaDB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="fichier-docker-composeyml">Fichier docker-compose.yml</h1>
+<pre><code class="language-yaml">services:
+
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+
+    ports:
+      - &quot;80:80&quot;     # HTTP
+      - &quot;443:443&quot;   # HTTPS
+      - &quot;81:81&quot;     # Interface Admin
+
+    environment:
+      TZ: &quot;Australia/Brisbane&quot;
+      DB_MYSQL_HOST: &quot;db&quot;
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: &quot;npm&quot;
+      DB_MYSQL_PASSWORD: &quot;npm&quot;
+      DB_MYSQL_NAME: &quot;npm&quot;
+
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    depends_on:
+      - db
+
+  db:
+    image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: &quot;npm&quot;
+      MYSQL_DATABASE: &quot;npm&quot;
+      MYSQL_USER: &quot;npm&quot;
+      MYSQL_PASSWORD: &quot;npm&quot;
+      MARIADB_AUTO_UPGRADE: '1'
+    volumes:
+      - ./mysql:/var/lib/mysql
+</code></pre>
+<h3 id="port-exposes">Port exposés :</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Port</th>
+<th style="text-align: left;">Fonction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">80</td>
+<td style="text-align: left;">HTTP</td>
+</tr>
+<tr>
+<td style="text-align: left;">443</td>
+<td style="text-align: left;">HTTPS</td>
+</tr>
+<tr>
+<td style="text-align: left;">81</td>
+<td style="text-align: left;">Interface d'administration</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="demarrage-du-service">Démarrage du service :</h3>
+<p>Dans le répertoire : /opt/npm</p>
+<pre><code class="language-bash">docker compose up -d  
+docker ps
+</code></pre>
+<hr />
+<h2 id="etape-3-certificats-lets-encrypt-via-dns-cloudflare">🔐 Étape 3 : Certificats Let's Encrypt via DNS Cloudflare</h2>
+<p>Dans l’infrastructure BESAFE, <strong>Nginx Proxy Manager</strong> gère les certificats TLS de manière centralisée via <strong>Let’s Encrypt</strong>.</p>
+<p>La méthode utilisée n’est pas le challenge HTTP classique, mais un <strong>challenge DNS</strong> avec <strong>Cloudflare</strong>.</p>
+<p>Cette approche permet :</p>
+<ul>
+<li>d’émettre des certificats sans exposer temporairement le port HTTP</li>
+<li>de gérer facilement plusieurs sous-domaines</li>
+<li>d’automatiser le renouvellement des certificats</li>
+<li>de s’intégrer proprement à une architecture reverse proxy</li>
+</ul>
+<hr />
+<h3 id="principe-de-fonctionnement_1">Principe de fonctionnement</h3>
+<p>Le mécanisme repose sur la chaîne suivante :</p>
+<pre><code class="language-text">Nginx Proxy Manager
+   │
+   ▼
+Cloudflare API
+   │
+   ▼
+Création d’un enregistrement DNS temporaire (_acme-challenge)
+   │
+   ▼
+Validation par Let’s Encrypt
+   │
+   ▼
+Émission du certificat
+</code></pre>
+<p>NPM utilise donc un token API Cloudflare pour créer automatiquement les enregistrements DNS nécessaires à la validation.</p>
+<h3 id="integration-cloudflare">Intégration Cloudflare</h3>
+<p><img alt="Zone DNS Cloudflare" src="../../assets/npm/npm-007.png" /></p>
+<blockquote>
+<p>Les différents sous-domaines publiés via NPM pointent vers l’IP publique de l’infrastructure</p>
+</blockquote>
+<p>Les différents sous-domaines publiés via NPM pointent vers l’IP publique de l’infrastructure</p>
+<h3 id="token-api-cloudflare">Token API Cloudflare</h3>
+<p><img alt="API Token" src="../../assets/npm/npm-009.png" /></p>
+<p>Un token API restreint est utilisé pour permettre à NPM de modifier uniquement la zone DNS nécessaire.</p>
+<p>Permissions attribuées :
+- Zone / Zone / Read
+- Zone / DNS / Edit</p>
+<p>Portée :</p>
+<p>Specific zone → <strong>besafeit.fr</strong></p>
+<p>Cette approche est préférable à l’utilisation de la Global API Key, car elle limite fortement les privilèges donnés au service.</p>
+<h3 id="generation-dun-certificat-dans-npm">Génération d'un Certificat dans NPM</h3>
+<p><img alt="npm-004.png" src="../../assets/npm/npm-004.png" />  </p>
+<p>Cette méthode présente plusieurs avantages dans BESAFE :
+- pas besoin d’ouvrir temporairement un challenge HTTP spécifique
+- fonctionne même pour des services non directement exposés en clair
+- compatible avec plusieurs sous-domaines
+- automatisation complète depuis NPM
+- renouvellement transparent des certificats</p>
+<p>Elle est particulièrement adaptée à une architecture où NPM joue le rôle de frontal HTTPS unique.</p>
+<p><img alt="npm-005.png" src="../../assets/npm/npm-005.png" />
+Cici, il suffit seulement de renseigner ton registar DNS, puis de remplacer dans le credential par ton token API.</p>
+<hr />
+<h2 id="resume-des-etapes-nginx-proxy-manager">✅ Résumé des étapes – Nginx Proxy Manager</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Étape</th>
+<th style="text-align: left;">Objectif</th>
+<th style="text-align: left;">Résultat attendu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1️⃣ Architecture NPM</strong></td>
+<td style="text-align: left;">Centraliser la publication des services web</td>
+<td style="text-align: left;">Reverse proxy unique pour l’infrastructure</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2️⃣ Déploiement Docker</strong></td>
+<td style="text-align: left;">Héberger NPM et sa base MariaDB</td>
+<td style="text-align: left;">Service persistent et maintenable</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3️⃣ Certificats Let's Encrypt</strong></td>
+<td style="text-align: left;">Automatiser la gestion TLS via DNS Cloudflare</td>
+<td style="text-align: left;">Certificats SSL valides</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="liens-utiles">🔗 Liens utiles</h2>
+<ul>
+<li><a href="https://nginxproxymanager.com/">Documentation officielle Nginx Proxy Manager</a></li>
+<li><a href="https://docs.docker.com/compose/">Documentation Docker Compose</a></li>
+<li><a href="https://keepalived.readthedocs.io/en/latest/">Documentation Keepalived (VRRP)</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

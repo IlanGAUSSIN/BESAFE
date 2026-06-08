@@ -1,0 +1,221 @@
+:root {
+  --md-primary-fg-color: #8b0a1a;
+  --md-primary-fg-color--light: #b11226;
+  --md-primary-fg-color--dark: #5c0611;
+
+  --md-accent-fg-color: #e63946;
+  --md-accent-fg-color--transparent: rgba(230, 57, 70, 0.15);
+
+  --md-default-bg-color: #111318;
+  --md-default-fg-color: #e6e6e6;
+  --md-default-fg-color--light: #b8bcc8;
+  --md-default-fg-color--lighter: #8f96a3;
+
+  --besafe-border: rgba(255,255,255,0.06);
+  --besafe-active: #ff4d6d;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.md-header {
+  background: linear-gradient(90deg,#5c0611 0%,#8b0a1a 45%,#b11226 100%);
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+
+.md-header__button.md-logo img {
+  height: 24px;
+}
+
+.md-search__form {
+  border-radius: 8px;
+}
+
+/* =========================
+   FOND GLOBAL UNIFIÉ
+========================= */
+
+.md-main,
+.md-main__inner,
+.md-content,
+.md-content__inner,
+.md-sidebar,
+.md-sidebar__scrollwrap {
+  background: transparent !important;
+}
+
+/* =========================
+   TEXTE / LIENS
+========================= */
+
+.md-nav__link {
+  color:#dde2ea;
+}
+
+.md-nav__link:hover {
+  color:var(--besafe-active);
+}
+
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active {
+  color:var(--besafe-active)!important;
+  font-weight:700;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight:700;
+}
+
+.md-typeset pre > code {
+  border-radius:10px;
+}
+
+.md-typeset table:not([class]) {
+  border-radius:8px;
+  overflow:hidden;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media screen and (min-width:76.25em){
+
+  .md-grid{
+    max-width:84rem;
+  }
+
+  /* largeur colonnes */
+  .md-sidebar--primary{
+    width:12.8rem;
+    border-right:1px solid var(--besafe-border);
+  }
+
+  .md-sidebar--secondary{
+    width:11.2rem;
+    border-left:1px solid var(--besafe-border);
+  }
+
+  /* NAVIGATION GAUCHE */
+
+  .md-nav--primary > .md-nav__list > .md-nav__item--section{
+    margin-top:.7rem;
+    padding-top:.5rem;
+    border-top:1px solid var(--besafe-border);
+  }
+
+  .md-nav--primary > .md-nav__list > .md-nav__item--section:first-child{
+    margin-top:.15rem;
+    padding-top:0;
+    border-top:none;
+  }
+
+  .md-nav--primary > .md-nav__list > .md-nav__item--section > .md-nav__link{
+    font-size:.82rem;
+    font-weight:700;
+    color:#9ea9bb!important;
+    padding-bottom:.2rem;
+  }
+
+  .md-nav--primary .md-nav__item .md-nav__item .md-nav__link{
+    font-size:.76rem;
+    padding-top:.08rem;
+    padding-bottom:.08rem;
+  }
+
+  /* TABLE DES MATIÈRES */
+
+  .md-nav--secondary{
+    background:transparent!important;
+    box-shadow:none!important;
+  }
+
+  .md-nav--secondary .md-nav__title{
+    font-size:.74rem;
+    font-weight:700;
+    color:#aeb7c5;
+    margin-bottom:.35rem;
+    border-bottom:1px solid var(--besafe-border);
+    padding-bottom:.3rem;
+  }
+
+  .md-nav--secondary .md-nav__link{
+    font-size:.74rem;
+    line-height:1.25;
+    color:#d3d9e3;
+    padding-top:.08rem;
+    padding-bottom:.08rem;
+    opacity:.92;
+  }
+
+  .md-nav--secondary .md-nav__link:hover{
+    opacity:1;
+  }
+
+  .md-nav--secondary .md-nav .md-nav__link{
+    font-size:.7rem;
+    color:#b2bac8;
+  }
+
+  .md-nav--secondary .md-nav .md-nav__item{
+    margin-left:.2rem;
+    padding-left:.28rem;
+    border-left:1px solid rgba(255,255,255,.05);
+  }
+
+}
+
+/* =========================
+   MOBILE / TABLET
+========================= */
+
+@media screen and (max-width:76.24em){
+
+  /* on masque la ToC */
+  .md-sidebar--secondary{
+    display:none!important;
+  }
+
+  /* header compact */
+  .md-header__title{
+    font-size:.92rem;
+  }
+
+  .md-header__button.md-logo img{
+    height:20px;
+  }
+
+  /* texte plus compact */
+  .md-typeset{
+    font-size:.82rem;
+  }
+
+  .md-typeset h1{
+    font-size:1.55rem;
+  }
+
+  .md-typeset h2{
+    font-size:1.2rem;
+  }
+
+  .md-typeset h3{
+    font-size:1rem;
+  }
+
+}
+
+/* Supprimer complètement la signature Material */
+.md-footer-meta,
+.md-footer-meta__inner,
+.md-copyright {
+  display: none !important;
+}
+
+/* Nettoyer l'espace résiduel du footer */
+.md-footer {
+  margin: 0 !important;
+  padding: 0 !important;
+}
