@@ -134,12 +134,6 @@ Le LAN interne repose sur un **agrégat 802.3ad (LACP)** nommé **TRUNK (TRUNK_L
 | **Transport** | UDP |
 | **NAT traversal** | Enable |
 | **Dead Peer Detection** | On Demand (retry 3 / 20 s) |
-
----
-
-### 📸 Capture 6 – Authentification
-![VPN IPSec - Authentication](../assets/forti/vpn-forti-006.png)
-
 | Paramètre | Valeur |
 |:--|:--|
 | **Méthode** | Pre-shared Key |
@@ -147,12 +141,6 @@ Le LAN interne repose sur un **agrégat 802.3ad (LACP)** nommé **TRUNK (TRUNK_L
 | **EAP** | Activé (EAP identity request) |
 | **User group** | `Ipsec_Users` |
 | **Accepted peer ID / Remote gateway** | Any |
-
----
-
-### 📸 Capture 7 – Propositions Phase 1 / Phase 2
-![VPN IPSec - Phases](../assets/forti/vpn-forti-007.png)
-
 **Phase 1 :**
 - Chiffrement / authentification : **AES128-SHA256** et **AES256-SHA256**
 - Groupes Diffie-Hellman : **20** et **21**
@@ -180,14 +168,11 @@ Le LAN interne repose sur un **agrégat 802.3ad (LACP)** nommé **TRUNK (TRUNK_L
 | `GLOBAL_RULES` | 3 | Règles transverses (PING, AD/LDAP/DNS, NTP) |
 | `EXTERNAL_RULES` | 6 | Flux sortants vers Internet (WAN) |
 | `MANAGEMENT_RULES` | 9 | Administration depuis le bastion / SI |
-| `SUPERVISION_RULES` | 5 | Supervision (⚠️ désactivées) |
-| `INTERNAL_RULES` | 6 | Flux inter-VLAN applicatifs (⚠️ désactivées) |
+| `SUPERVISION_RULES` | 5 | Supervision  |
+| `INTERNAL_RULES` | 6 | Flux inter-VLAN applicatifs |
 | `Implicit` | 1 | Implicit Deny (refus par défaut) |
 
 ---
-
-### 📸 Capture 9 – GLOBAL_RULES & EXTERNAL_RULES
-![Règles globales et externes](../assets/forti/policy-forti-008.png)
 
 **GLOBAL_RULES**
 
@@ -202,18 +187,13 @@ Le LAN interne repose sur un **agrégat 802.3ad (LACP)** nommé **TRUNK (TRUNK_L
 | ID | Nom | Service | Action |
 |:--|:--|:--|:--|
 | 32 | Accès Internet utilisateurs (LAN/SI/VPN) | Email Access, Web Access | ✅ ACCEPT |
-| 39 | `BRAWL STARS` | ALL | ⚠️ ACCEPT (à revoir) |
 | 40 | `SRV-EXT-ALLOW-INTERNET` | Web, Email, Rustdesk (TCP/UDP) | ✅ ACCEPT |
 | 33 | `EXT-DMZ-ALLOW-HTTPS` → `NTE-NPM-001` | HTTPS | ✅ ACCEPT |
 | 13 | `DC-EXT-ALLOW-NTP` (`GRP_DC`) | NTP | ✅ ACCEPT |
 | 20 | `NTP-EXT-ALLOW-NTP` (`GRP-NTP`) | NTP | ✅ ACCEPT |
 
-> ⚠️ La règle **`BRAWL STARS (39)`** autorise **tous les services** : à supprimer ou restreindre en production.
-
 ---
 
-### 📸 Capture 10 – MANAGEMENT_RULES
-![Règles d'administration](../assets/forti/policy-forti-009.png)
 
 Accès d’administration, principalement depuis le **bastion** (`Zone_v180_BASTION`), le **SI** (`Zone_v40_SI`) et la **zone VPN**, vers les comptes/objets sources `NTE-BASTION-001`, `NTE-PAWT0-001` et `VPN_IPSEC_range`.
 
@@ -231,36 +211,28 @@ Accès d’administration, principalement depuis le **bastion** (`Zone_v180_BAST
 
 ---
 
-### 📸 Capture 11 – SUPERVISION_RULES
-![Règles de supervision](../assets/forti/policy-forti-010.png)
-
 Flux depuis `Zone_v110_MONITORING` (source `NTE-SUP-001`) vers les équipements supervisés.
 
 | ID | Nom | Cible | Service | État |
 |:--|:--|:--|:--|:--|
-| 27 | `SUP_TO_OTHER_ALLOW_SNMP` | `GRP_LINUX`, `GRP_SNMP_SUP` | SNMP | ⛔ Disabled |
-| 41 | `SUP_TO_ESXi_ALLOW_HTTPS` | `GRP_ESXI` | HTTPS, Daemon_VCSA | ⛔ Disabled |
-| 28 | `SUP_TO_OTHER_ALLOW_WinRM` | `GRP_Windows` | WinRM | ⛔ Disabled |
-| 29 | `SUP_TO_OTHER_ALLOW_SSH` | `GRP_LINUX` | SSH | ⛔ Disabled |
-| 35 | `SUP_TO_FW_ALLOW_HTTPS` | `NTE-FW-001` | Port_FW | ⛔ Disabled |
-
-> ⚠️ L’ensemble du groupe **SUPERVISION_RULES est désactivé** : à réactiver une fois la supervision validée.
+| 27 | `SUP_TO_OTHER_ALLOW_SNMP` | `GRP_LINUX`, `GRP_SNMP_SUP` | SNMP |
+| 41 | `SUP_TO_ESXi_ALLOW_HTTPS` | `GRP_ESXI` | HTTPS, Daemon_VCSA |
+| 28 | `SUP_TO_OTHER_ALLOW_WinRM` | `GRP_Windows` | WinRM |
+| 29 | `SUP_TO_OTHER_ALLOW_SSH` | `GRP_LINUX` | SSH |
+| 35 | `SUP_TO_FW_ALLOW_HTTPS` | `NTE-FW-001` | Port_FW |
 
 ---
-
-### 📸 Capture 12 – INTERNAL_RULES
-![Règles internes](../assets/forti/policy-forti-011.png)
 
 Flux applicatifs inter-VLAN.
 
 | ID | Nom | Flux | Service | État |
 |:--|:--|:--|:--|:--|
-| 24 | `SW_TO_NPS_ALLOW_RADIUS` | `Zone_v100_MGT_NET` → `Zone_v30_SRV` (`GRP_NPS`) | RADIUS | ⛔ Disabled |
-| 34 | `DMZ-TO-APPLICATIF-ALLOW-HTTP` | `Zone_v50_DMZ` → `Zone_v130_APPLICATIF` | Port_Vault, Port_Wiki, Port_Cloud | ⛔ Disabled |
-| 37 | `LAN-TO-APPLICATIF-ALLOW-WEB` | LAN/SI/VPN → `Zone_v130_APPLICATIF` | HTTP, HTTPS | ⛔ Disabled |
-| 25 | `SRV-TO-SECURITY-ALLOW-WAZUH` | Zones → `Zone_v120_SECURITY` (`NTE-WAZUH-001`) | Port_Wazuh | ⛔ Disabled |
-| 38 | `BACKUP_TO_NAS_ISCSI` | `Zone_v90_BACKUP` → `Zone_v101_MGT_SYS` (`NTE-NAS-001`) | iSCSI | ⛔ Disabled |
-| 36 | `BACKUP_TO_ESXi_ALLOW_WEB_&_NFC` | `Zone_v90_BACKUP` → `Zone_v101_MGT_SYS` (`GRP_ESXI`) | HTTPS, NFC | ⛔ Disabled |
+| 24 | `SW_TO_NPS_ALLOW_RADIUS` | `Zone_v100_MGT_NET` → `Zone_v30_SRV` (`GRP_NPS`) | RADIUS |
+| 34 | `DMZ-TO-APPLICATIF-ALLOW-HTTP` | `Zone_v50_DMZ` → `Zone_v130_APPLICATIF` | Port_Vault, Port_Wiki, Port_Cloud |
+| 37 | `LAN-TO-APPLICATIF-ALLOW-WEB` | LAN/SI/VPN → `Zone_v130_APPLICATIF` | HTTP, HTTPS |
+| 25 | `SRV-TO-SECURITY-ALLOW-WAZUH` | Zones → `Zone_v120_SECURITY` (`NTE-WAZUH-001`) | Port_Wazuh |
+| 38 | `BACKUP_TO_NAS_ISCSI` | `Zone_v90_BACKUP` → `Zone_v101_MGT_SYS` (`NTE-NAS-001`) | iSCSI |
+| 36 | `BACKUP_TO_ESXi_ALLOW_WEB_&_NFC` | `Zone_v90_BACKUP` → `Zone_v101_MGT_SYS` (`GRP_ESXI`) | HTTPS, NFC |
 | — | `Implicit Deny (0)` | any → any | ALL | 🚫 DENY |
 
 > 💡 Tout flux non explicitement autorisé tombe dans le **Implicit Deny** (refus par défaut).
