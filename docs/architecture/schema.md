@@ -10,7 +10,7 @@ Cette page présente **l’architecture de référence** du projet BESAFE :
 
 ## 🧱 Schéma physique – Baie / Datacenter
 
-![schema-logique-besafe.png](../asset/schema/schema-physique-besafe.png)
+![schema-physique-besafe.png](../assets/schema/BESAFE-Schema_Physique.png)
 
 ### 🎯 Objectif
 Donner une vue **matérielle** : équipements, U occupées, chemins d’alimentation, agrégations réseau, liens iSCSI/Backups.
@@ -28,7 +28,8 @@ Donner une vue **matérielle** : équipements, U occupées, chemins d’alimenta
 
 ## 🧩 Schéma logique – Architecture & Services
 
-![Schéma logique de l’infrastructure](../asset/schema/schema-logique-besafe.png)
+![Schéma logique de l’infrastructure](../asset/schema/BESAFE-Schema_Logique.png)
+![Schéma Fonctionnel de l’infrastructure](../asset/schema/BESAFE-Schema_Fonctionnel.png)
 
 ### 🗂️ Couches logiques
 - **WAN** : accès Internet, VPN/IPsec.
